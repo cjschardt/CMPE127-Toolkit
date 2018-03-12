@@ -71,7 +71,7 @@ Keyboard keyboard(
     .ps2_clk(ps2_clk),
     .ps2_data(ps2_data),
     .data(scan_code),
-    .cs(1),
+    .cs(1'b1),
     .clr(clr),
     .ready(key_ready)
 );
@@ -283,10 +283,10 @@ SHIFTREGISTER #(.WIDTH(`SCAN_CODE_LENGTH)) scan_code_register (
 COUNTER #(.WIDTH(4)) counter_ps2_clks (
 	.rst(internal_clear),
 	.clk(!ps2_clk_sync),
-	.load(0),
-	.increment(1),
+	.load(1'b0),
+	.increment(1'b1),
 	.enable(!count_finished),
-	.D(0),
+	.D(4'b0),
 	.Q(count_output)
 );
 
@@ -475,7 +475,6 @@ wire busy;
 // wire [12:0] address;
 reg [12:0] address;
 wire next;
-wire [7:0] scan_code;
 wire [31:0] extended_count;
 wire command;
 

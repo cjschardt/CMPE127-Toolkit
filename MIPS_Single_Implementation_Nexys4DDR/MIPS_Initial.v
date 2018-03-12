@@ -351,7 +351,7 @@ module datapath(
 	wire [4:0]  writereg, writerega;
 	wire [31:0] pcnext, pcnext2, pcnextbr, pcplus4, pcbranch, signimm, signimmsh, srca, srcb, result, pcresult, mux2reg, spr2mux, hold;
     wire [63:0] multspr;
-
+z
 	// next PC logic
 	flopr #(32) pcreg(clk, reset, pcnext2, pc);
 	adder       pcadd1(pc, 32'b100, pcplus4);

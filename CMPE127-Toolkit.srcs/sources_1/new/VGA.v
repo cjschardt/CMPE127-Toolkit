@@ -288,8 +288,8 @@ MUX #(
 );
 
 RAM #(
-.WIDTH(8), 
-.LENGTH(2400)
+    .WIDTH(8), 
+    .LENGTH(2400)
 ) video_ram (
     .clk(clk),
     .we(video_wr),
