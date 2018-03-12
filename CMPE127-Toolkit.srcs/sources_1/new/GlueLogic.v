@@ -240,8 +240,8 @@ endmodule
 //////////////////////////////////
 
 module DFLIPFLOP #(parameter WIDTH = 1)(
-	input wire rst,
 	input wire clk,
+	input wire rst,
 	input wire [WIDTH-1:0] D,
 	output reg [WIDTH-1:0] Q
 );

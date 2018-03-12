@@ -30,6 +30,7 @@ module RAM_B #(
     input wire we,
     input wire cs,
     input wire oe,
+    output reg ack,
     input wire [ADDRESS_WIDTH-1:0] address,
     inout wire [BYTE_WIDTH-1:0] data
 );
@@ -43,7 +44,7 @@ parameter BYTE_WIDTH = 8;
 // ==================================
 //// Registers
 // ==================================
-reg [WIDTH-1:0] ram [0:LENGTH];
+reg [RAM_WIDTH-1:0] ram [0:LENGTH];
 reg [BYTE_WIDTH-1:0] data_out;
 // ==================================
 //// Wires
@@ -63,6 +64,7 @@ begin
     if(USE_FILE)
     begin
         $readmemh(FILE_NAME, ram);
+        ack = 0;
     end
 end
 
@@ -70,11 +72,17 @@ always @(posedge clk)
 begin
     if (cs && we)
     begin
-       ram[address][((COLUMN+1)*8)-1:COLUMN*8] = data;
+       ram[address] = data << (COLUMN*8);
+       ack = 1;
     end
     else if (cs && oe && !we)
     begin
-        data_out = ram[address][((COLUMN+1)*8)-1:COLUMN*8];
+        data_out = (ram[address] >> (COLUMN*8)) & 8'hFF;
+        ack = 1;
+    end
+    else
+    begin
+        ack = 0;
     end
 end
 
@@ -140,6 +148,48 @@ end
 
 endmodule
 
+module ROM_MIPS #(
+    parameter LENGTH = 32'h1000,
+    parameter WIDTH = 32,
+    parameter FILE_NAME = "rom.mem"
+)
+(
+    input wire clk,
+    input wire rst,
+	input wire [$clog2(LENGTH)-1:0] a,
+    input wire enable,
+    output reg acknowledge, 
+	output wire [WIDTH-1:0] out 
+);
+
+ROM 
+#(
+    .LENGTH(LENGTH),
+    .WIDTH(WIDTH)
+) rom (
+    .a(a),
+    .out(out)
+);
+
+always @(posedge clk or posedge rst)
+begin
+    if(rst)
+    begin
+        acknowledge <= 0;
+    end
+    else if(enable)
+    begin
+        acknowledge <= 1;
+    end
+    else if(!enable)
+    begin
+        acknowledge <= 0;
+    end
+end
+
+endmodule
+
+
 module ROM #(
     parameter LENGTH = 32'h1000,
     parameter WIDTH = 32,
@@ -153,7 +203,6 @@ module ROM #(
 // ==================================
 //// Internal Parameter Field
 // ==================================
-
 // ==================================
 //// Wires
 // ==================================

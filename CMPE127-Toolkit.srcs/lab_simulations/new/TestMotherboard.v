@@ -57,7 +57,10 @@ begin
     #5
     rst = 1;
     #5
+    clk = 1;
+    #5
     rst = 0;
+    clk = 0;
 end
 endtask;
 
@@ -75,7 +78,7 @@ begin
 end
 endtask
 
-parameter FULL_CYCLE = 32'd10_000;
+parameter FULL_CYCLE = 32'd100;
 
 initial begin
     #10
