@@ -118,7 +118,7 @@ reg [WIDTH-1:0] data_out;
 // ==================================
 //// Wire Assignments
 // ==================================
-assign data = (cs && oe && !we) ? data_out : 8'bz;
+assign data = (cs && oe && !we) ? data_out : {(WIDTH){1'bz}};
 // ==================================
 //// Modules
 // ==================================
@@ -134,6 +134,7 @@ begin
     end
     else
     begin
+        data_out = {(WIDTH){ 1'b0 }};
 		for (i=0; i<32; i=i+1) 
         begin
 			ram[i] = {(WIDTH){ 1'b0 }};

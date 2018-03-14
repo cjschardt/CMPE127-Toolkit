@@ -155,21 +155,25 @@
 `define NUMBER_OF_REGISTERS     32
 `define STACK_POINTER           29
 `define INSTRUCTION_WIDTH       32
+`define RETURN_ADDRESS_REGISTER 31
 
 module MIPS(
     input wire clk,
     input wire rst,
     output wire BusCycle,
+    output wire MemWrite,
+    output wire MemRead,
     output wire [`REGISTER_WIDTH-1:0] AddressBus,
     output wire [`REGISTER_WIDTH-1:0] DataBus,
     output wire [`REGISTER_WIDTH-1:0] ProgramCounter,
-    output wire [`REGISTER_WIDTH-1:0] Instruction
+    output wire [`REGISTER_WIDTH-1:0] ALUResult,
+    input wire  [`REGISTER_WIDTH-1:0] Instruction
 );
 
-assign AddressBus = alu_result;
-assign DataBus    = write_data;
-assign ProgramCounter = pc;
-assign Instruction = mips_instruction;
+assign AddressBus       = (BusCycle) ? alu_result : `REGISTER_WIDTH'bZ;
+assign ALUResult        = alu_result;
+assign ProgramCounter   = pc;
+assign mips_instruction = Instruction;
 
 //// R-type instruction
 wire [ 5:0] opcode                 = mips_instruction[31:26];
@@ -202,21 +206,14 @@ PROCESSOR_DECODER decoder(
     .MemWrite(MemWrite),
     .MemRead(MemRead),
     .MemToReg(MemToReg),
+    .Jump(Jump),
+    .RegisterJump(RegisterJump),
     .ALUOp(ALUOp),
-    .PCSrc(PCSrc)
+    .PCSrc(PCSrc),
+    .PCToReg(PCToReg)
 );
 
 wire [`REGISTER_WIDTH-1:0] pc;
-
-/* Instruction Memory */
-ROM #(
-    .LENGTH(32'h1000),
-    .WIDTH(32),
-    .FILE_NAME("CPU_TEST.mem")
-) rom (
-	.a({2'b00, pc[31:2]}),
-	.out(mips_instruction)
-);
 
 REGISTER #(.WIDTH(`REGISTER_WIDTH)) pc_register (
 	.rst(rst),
@@ -232,14 +229,14 @@ ADDER #(.WIDTH(`REGISTER_WIDTH)) adder (
 	.y(next_pc)
 );
 
-wire RegDst;
+wire [1:0] RegDst;
 
 MUX #(
     .WIDTH($clog2(`NUMBER_OF_REGISTERS)),
-    .INPUTS(2)
+    .INPUTS(3)
 ) register_destination_mux (
     .select(RegDst),
-    .in({ register_target, register_destination}),
+    .in({ `RETURN_ADDRESS_REGISTER, register_target, register_destination }),
     .out(write_address)
 );
 
@@ -285,7 +282,7 @@ ADDER #(.WIDTH(`REGISTER_WIDTH)) branch_pc_adder (
 	.y(branch_pc)
 );
 
-wire [`REGISTER_WIDTH-1:0] branch_pc;
+wire [`REGISTER_WIDTH-1:0] branch_pc, branch_path_pc;
 wire PCSrc;
 
 MUX #(
@@ -294,6 +291,37 @@ MUX #(
 ) branch_or_next_pc_mux (
     .select(PCSrc),
     .in({ branch_pc, next_pc }),
+    .out(branch_path_pc)
+);
+
+wire Jump;
+
+wire [`REGISTER_WIDTH-1:0] return_address;
+
+ADDER #(.WIDTH(`REGISTER_WIDTH)) instruction_after_jump (
+	.a(pc),
+    .b(32'h4),
+	.y(return_address)
+);
+
+wire [`REGISTER_WIDTH-1:0] jump_pc;
+wire RegisterJump;
+
+MUX #(
+    .WIDTH(`REGISTER_WIDTH),
+    .INPUTS(2)
+) jump_pc_mux (
+    .select(RegisterJump),
+    .in({ alu_result , immediate_extended_shifted }),
+    .out(jump_pc)
+);
+
+MUX #(
+    .WIDTH(`REGISTER_WIDTH),
+    .INPUTS(2)
+) final_pc_mux (
+    .select(Jump),
+    .in({ jump_pc, branch_path_pc }),
     .out(final_pc)
 );
 
@@ -317,58 +345,47 @@ ALU alu(
 	.a(read_data_1),
     .b(alu_b),
 	.ALUOp(ALUOp),
+    .shift_amount(shift_amount),
 	.result(alu_result),
 	.zero(zero),
     .less_than_eq(less_than_eq), 
     .greater_than(greater_than)
 );
 
-wire MemWrite, MemRead;
-wire ram_cs;
-
-OR #(.WIDTH(2))
-ram_cs_or
-(
-    .in({ MemWrite, MemRead }),
-	.out(ram_cs)
-);
 
 TRIBUFFER #(.WIDTH(`REGISTER_WIDTH))
 buffer_databus
 (
 	.oe(MemWrite),
 	.in(read_data_2),
-	.out(ram_data_bus)
-);
-
-wire [`REGISTER_WIDTH-1:0] ram_data_bus;
-
-/* Data Memory */
-RAM #(
-    .LENGTH(32'h1000/4),
-    .WIDTH(32),
-    .USE_FILE(0),
-    .FILE_NAME("ram.mem")
-) ram (
-    .clk(clk),
-    .we(MemWrite),
-    .cs(ram_cs),
-    .oe(MemRead),
-    .address(alu_result),
-    .data(ram_data_bus)
+	.out(DataBus)
 );
 
 wire MemToReg;
+wire [`REGISTER_WIDTH-1:0] memory_to_reg_data;
 
 MUX #(
     .WIDTH(`REGISTER_WIDTH),
     .INPUTS(2)
 ) mem_to_reg (
     .select(MemToReg),
-    .in({ ram_data_bus, alu_result }),
+    .in({ DataBus, alu_result }),
+    .out(memory_to_reg_data)
+);
+
+wire PCToReg;
+
+MUX #(
+    .WIDTH(`REGISTER_WIDTH),
+    .INPUTS(2)
+) pc_to_reg (
+    .select(PCToReg),
+    .in({ return_address, memory_to_reg_data }),
     .out(write_data)
 );
 
+// wire MemWrite, MemRead;
+// wire [`REGISTER_WIDTH-1:0] DataBus;
 endmodule
 
 module PROCESSOR_DECODER(
@@ -378,12 +395,15 @@ module PROCESSOR_DECODER(
     input wire                      less_than_eq,
     input wire                      greater_than,
     output wire                     BusCycle,
-    output reg                      RegDst,
+    output reg [1:0]                RegDst,
     output reg                      RegWrite,
     output reg                      ALUSrc,
     output reg                      MemWrite,
     output reg                      MemRead,
     output reg                      MemToReg,
+    output reg                      Jump,
+    output reg                      RegisterJump,
+    output reg                      PCToReg,
     output reg [`ALU_OP_CODE_WIDTH-1:0]  ALUOp,
     output reg                     PCSrc
 );
@@ -396,10 +416,24 @@ assign BusCycle = (MemRead | MemWrite);
 `define PCSRC_NEXT_INSTRUCTION 0
 `define PCSRC_BRANCH_VALUE     1
 
-`define REGDST_FROM_RTYPE 0
-`define REGDST_FROM_ITYPE 1
+`define REGDST_FROM_RTYPE  0
+`define REGDST_FROM_ITYPE  1
+`define REGDST_RETURN_ADDR 2
 
 `define ALU_NULL_OPCODE   `ALU_OP_CODE_WIDTH'b0
+
+`define UNSUPPORTED_OPERATIONS   \
+            RegWrite    <= 1'bx; \
+            RegDst      <= 1'bx; \
+            ALUSrc      <= 1'bx; \
+            MemWrite    <= 1'bx; \
+            MemRead     <= 1'bx; \
+            MemToReg    <= 1'bx; \
+            Jump        <= 1'bx; \
+            RegisterJump<= 1'bx; \
+            PCToReg     <= 1'bx; \
+            PCSrc       <= 1'bx; \
+            ALUOp       <= 1'bx
 
 // assign {nbranch, regwrite, regdst, alusrc, branch, memwrite, memtoreg, jump,  pcspr, rawr, aluop} = controls;
 
@@ -438,6 +472,18 @@ begin
             MemRead     <= 0;
             MemToReg    <= 0;
             PCSrc       <= 0;
+            case(funct)
+                `FUNCTION_OP_JR,
+                `FUNCTION_OP_JALR: begin
+                    RegisterJump <= 1;
+                    Jump <= 1; 
+                end
+                default: begin 
+                    RegisterJump <= 0;
+                    Jump <= 0;
+                end
+            endcase
+            PCToReg     <= 0;
             ALUOp       <= funct;
         end
         `OP_ADDI,
@@ -454,6 +500,9 @@ begin
             MemRead     <= 0;
             MemToReg    <= 0;
             PCSrc       <= 0;
+            Jump        <= 0;
+            RegisterJump<= 0;
+            PCToReg     <= 0;
             ALUOp       <= immediate_funct;
         end
         `OP_BEQ: begin
@@ -463,6 +512,9 @@ begin
             MemWrite    <= 0;
             MemRead     <= 0;
             MemToReg    <= 0;
+            Jump        <= 0;
+            RegisterJump<= 0;
+            PCToReg     <= 0;
             PCSrc       <= (zero) ? `PCSRC_BRANCH_VALUE : `PCSRC_NEXT_INSTRUCTION;
             ALUOp       <= `FUNCTION_OP_SUB;
         end
@@ -473,6 +525,9 @@ begin
             MemWrite    <= 0;
             MemRead     <= 0;
             MemToReg    <= 0;
+            Jump        <= 0;
+            RegisterJump<= 0;
+            PCToReg     <= 0;
             PCSrc       <= (!zero) ? `PCSRC_BRANCH_VALUE : `PCSRC_NEXT_INSTRUCTION;
             ALUOp       <= `FUNCTION_OP_SUB;
         end
@@ -483,6 +538,9 @@ begin
             MemWrite    <= 0;
             MemRead     <= 0;
             MemToReg    <= 0;
+            Jump        <= 0;
+            RegisterJump<= 0;
+            PCToReg     <= 0;
             PCSrc       <= (greater_than) ? `PCSRC_BRANCH_VALUE : `PCSRC_NEXT_INSTRUCTION;
             ALUOp       <= `FUNCTION_OP_SUB;
         end
@@ -493,56 +551,47 @@ begin
             MemWrite    <= 0;
             MemRead     <= 0;
             MemToReg    <= 0;
+            Jump        <= 0;
+            RegisterJump<= 0;
+            PCToReg     <= 0;
             PCSrc       <= (less_than_eq) ? `PCSRC_BRANCH_VALUE : `PCSRC_NEXT_INSTRUCTION;
             ALUOp       <= `FUNCTION_OP_SUB;
         end
         `OP_BGEZAL,
         `OP_BLTZAL: begin
-            RegWrite    <= 1'bx;
-            RegDst      <= 1'bx;
-            ALUSrc      <= 1'bx;
-            MemWrite    <= 1'bx;
-            MemRead     <= 1'bx;
-            MemToReg    <= 1'bx;
-            PCSrc       <= 1'bx;
-            ALUOp       <= 1'bx;
+            `UNSUPPORTED_OPERATIONS;
         end
-        // `OP_J: begin
-        //     RegWrite    <= 0;
-        //     RegDst      <= 0;
-        //     ALUSrc      <= 0;
-        //     MemWrite    <= 0;
-        //     MemRead     <= 0;
-        //     MemToReg    <= 0;
-        //     PCSrc       <= (!zero) ? `PCSRC_NEXT_INSTRUCTION : `PCSRC_BRANCH_VALUE;
-        //     ALUOp       <= `FUNCTION_OP_SUB;
-        //     controls <= `DECODER_CONTROL_WIDTH'b000000010000;
-        // end
-        // `OP_JAL: begin
-        //     RegWrite    <= 0;
-        //     RegDst      <= 0;
-        //     ALUSrc      <= 0;
-        //     MemWrite    <= 0;
-        //     MemRead     <= 0;
-        //     MemToReg    <= 0;
-        //     PCSrc       <= (!zero) ? `PCSRC_NEXT_INSTRUCTION : `PCSRC_BRANCH_VALUE;
-        //     ALUOp       <= `FUNCTION_OP_SUB;
-        //     controls <= `DECODER_CONTROL_WIDTH'b010000010100;
-        // end
+        `OP_J: begin
+            RegWrite    <= 0;
+            RegDst      <= 0;
+            ALUSrc      <= 0;
+            MemWrite    <= 0;
+            MemRead     <= 0;
+            MemToReg    <= 0;
+            Jump        <= 1;
+            PCToReg     <= 0;
+            PCSrc       <= 0;
+            ALUOp       <= `ALU_NULL_OPCODE;
+        end
+        `OP_JAL: begin
+            RegWrite    <= 1;
+            RegDst      <= `REGDST_RETURN_ADDR;
+            ALUSrc      <= 0;
+            MemWrite    <= 0;
+            MemRead     <= 0;
+            MemToReg    <= 0;
+            Jump        <= 1;
+            PCToReg     <= 1;
+            PCSrc       <= 0;
+            ALUOp       <= `ALU_NULL_OPCODE;
+        end
         `OP_LB,
         `OP_LBU,
         `OP_LH,
         `OP_LHU,
         `OP_LL,
         `OP_LUI: begin
-            RegWrite    <= 1'bx;
-            RegDst      <= 1'bx;
-            ALUSrc      <= 1'bx;
-            MemWrite    <= 1'bx;
-            MemRead     <= 1'bx;
-            MemToReg    <= 1'bx;
-            PCSrc       <= 1'bx;
-            ALUOp       <= 1'bx;
+            `UNSUPPORTED_OPERATIONS;
         end
         `OP_LW: begin
             RegWrite    <= 1;
@@ -551,20 +600,16 @@ begin
             MemWrite    <= 0;
             MemRead     <= 1;
             MemToReg    <= 1;
+            Jump        <= 0;
+            RegisterJump<= 0;
+            PCToReg     <= 0;
             PCSrc       <= 0;
             ALUOp       <= `FUNCTION_OP_ADD;
         end
         `OP_SB, 
         `OP_SC, 
         `OP_SH: begin
-            RegWrite    <= 1'bx;
-            RegDst      <= 1'bx;
-            ALUSrc      <= 1'bx;
-            MemWrite    <= 1'bx;
-            MemRead     <= 1'bx;
-            MemToReg    <= 1'bx;
-            PCSrc       <= 1'bx;
-            ALUOp       <= 1'bx;
+            `UNSUPPORTED_OPERATIONS;
         end 
         `OP_SW: begin
             RegWrite    <= 0;
@@ -573,18 +618,14 @@ begin
             MemWrite    <= 1;
             MemRead     <= 0;
             MemToReg    <= 0;
+            Jump        <= 0;
+            RegisterJump<= 0;
+            PCToReg     <= 0;
             PCSrc       <= 0;
             ALUOp       <= `FUNCTION_OP_ADD;
         end
         default: begin // unsupported opcode
-            RegWrite    <= 1'bx;
-            RegDst      <= 1'bx;
-            ALUSrc      <= 1'bx;
-            MemWrite    <= 1'bx;
-            MemRead     <= 1'bx;
-            MemToReg    <= 1'bx;
-            PCSrc       <= 1'bx;
-            ALUOp       <= 1'bx;
+            `UNSUPPORTED_OPERATIONS;
         end
     endcase
 end
@@ -624,7 +665,7 @@ begin
         //`OP_SB:      alu_funct <= `FUNCTION_OP_SB;
         //`OP_SC:      alu_funct <= `FUNCTION_OP_SC;
         //`OP_SH:      alu_funct <= `FUNCTION_OP_SH;
-        //`OP_SLTI:    alu_funct <= `FUNCTION_OP_SLTI;
+        `OP_SLTI:    alu_funct <= `FUNCTION_OP_SLTI;
         //`OP_SLTIU:   alu_funct <= `FUNCTION_OP_SLTIU;
         //`OP_SW:      alu_funct <= `FUNCTION_OP_SW;
         `OP_XORI :   alu_funct <= `FUNCTION_OP_XOR;
@@ -694,6 +735,7 @@ module ALU(
 	input wire 	[`REGISTER_WIDTH-1:0]	    a,
     input wire 	[`REGISTER_WIDTH-1:0]       b,
 	input wire 	[`ALU_FUNCTION_WIDTH-1:0]   ALUOp,
+    input wire  [5:0]                       shift_amount,
 	output reg	[`REGISTER_WIDTH-1:0]       result,
 	output wire			                    zero,
     output wire			                    less_than_eq,
@@ -721,8 +763,8 @@ begin
         `FUNCTION_OP_CLZ:       result <= `REGISTER_WIDTH'hxxxxxxxx; // count leading zeros
         `FUNCTION_OP_DIV:       result <= `REGISTER_WIDTH'hxxxxxxxx;
         `FUNCTION_OP_DIVU:      result <= `REGISTER_WIDTH'hxxxxxxxx;
-        `FUNCTION_OP_JALR:      result <= `REGISTER_WIDTH'hxxxxxxxx;
-        `FUNCTION_OP_JR:        result <= `REGISTER_WIDTH'hxxxxxxxx;
+        `FUNCTION_OP_JALR:      result <=  a;
+        `FUNCTION_OP_JR:        result <=  a;
         `FUNCTION_OP_MFHI:      result <= `REGISTER_WIDTH'hxxxxxxxx;
         `FUNCTION_OP_MFLO:      result <= `REGISTER_WIDTH'hxxxxxxxx;
         `FUNCTION_OP_MOVN:      result <= (b == 32'b0);
@@ -735,13 +777,13 @@ begin
         `FUNCTION_OP_MULTU:     result <= `REGISTER_WIDTH'hxxxxxxxx;
         `FUNCTION_OP_NOR:       result <= ~(a | b);
         `FUNCTION_OP_OR:        result <=  (a | b);
-        `FUNCTION_OP_SLL:       result <=  (a << b);
+        `FUNCTION_OP_SLL:       result <=  (a << shift_amount);
         `FUNCTION_OP_SLLV:      result <=  (a << b);
         `FUNCTION_OP_SLT:       result <=  (signed_a < signed_b) ? 32'b1 : 32'b0;
         `FUNCTION_OP_SLTU:      result <=  (a < b) ? 32'b1 : 32'b0;
         `FUNCTION_OP_SRA:       result <= `REGISTER_WIDTH'hxxxxxxxx;
         `FUNCTION_OP_SRAV:      result <= `REGISTER_WIDTH'hxxxxxxxx;
-        `FUNCTION_OP_SRL:       result <=  (a >> b);
+        `FUNCTION_OP_SRL:       result <=  (a >> shift_amount);
         `FUNCTION_OP_SRLV:      result <=  (a >> b);
         `FUNCTION_OP_SUB:       result <=  (signed_a - signed_b);
         `FUNCTION_OP_SUBU:      result <= `REGISTER_WIDTH'hxxxxxxxx;
