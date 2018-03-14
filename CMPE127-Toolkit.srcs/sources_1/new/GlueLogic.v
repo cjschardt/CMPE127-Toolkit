@@ -300,7 +300,7 @@ begin
     begin
     	Q <= 0;
     end
-    else
+    else if(load)
     begin
         Q <= in;
     end

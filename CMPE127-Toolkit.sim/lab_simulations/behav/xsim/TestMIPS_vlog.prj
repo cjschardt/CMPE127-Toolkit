@@ -19,6 +19,7 @@ verilog xil_defaultlib  \
 "../../../../CMPE127-Toolkit.srcs/sources_1/new/MIPS.v" \
 "../../../../CMPE127-Toolkit.srcs/lab_simulations/new/Lab0.v" \
 "../../../../CMPE127-Toolkit.srcs/lab_simulations/new/TestMotherboard.v" \
+"../../../../CMPE127-Toolkit.srcs/lab_simulations/new/TestMIPS.v" \
 
 # compile glbl module
 verilog xil_defaultlib "glbl.v"

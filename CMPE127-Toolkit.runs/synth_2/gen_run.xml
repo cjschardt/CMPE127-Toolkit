@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="synth_2" LaunchPart="xc7a100tcsg324-1" LaunchTime="1520973222">
-  <File Type="VDS-TIMING-PB" Name="Keyboard_DEMO_timing_summary_synth.pb"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="Keyboard_DEMO_timing_summary_synth.rpt"/>
+  <File Type="PA-TCL" Name="Keyboard_DEMO.tcl"/>
+  <File Type="REPORTS-TCL" Name="Keyboard_DEMO_reports.tcl"/>
+  <File Type="RDS-RDS" Name="Keyboard_DEMO.vds"/>
   <File Type="RDS-DCP" Name="Keyboard_DEMO.dcp"/>
   <File Type="RDS-UTIL-PB" Name="VGA_Terminal_utilization_synth.pb"/>
   <File Type="RDS-UTIL" Name="Keyboard_DEMO_utilization_synth.rpt"/>
-  <File Type="RDS-PROPCONSTRS" Name="Keyboard_DEMO_drc_synth.rpt"/>
-  <File Type="RDS-RDS" Name="Keyboard_DEMO.vds"/>
-  <File Type="REPORTS-TCL" Name="Keyboard_DEMO_reports.tcl"/>
-  <File Type="PA-TCL" Name="Keyboard_DEMO.tcl"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/AmbientLightSensor.v">

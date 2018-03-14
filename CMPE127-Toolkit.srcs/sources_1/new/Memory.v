@@ -88,7 +88,6 @@ end
 
 endmodule
 
-
 module RAM #(
     parameter LENGTH = 32'h1000,
     parameter WIDTH = 32,
@@ -126,11 +125,19 @@ assign data = (cs && oe && !we) ? data_out : 8'bz;
 // ==================================
 //// Behavioral Block
 // ==================================
+integer i;
 initial
 begin
     if(USE_FILE)
     begin
         $readmemh(FILE_NAME, ram);
+    end
+    else
+    begin
+		for (i=0; i<32; i=i+1) 
+        begin
+			ram[i] = {(WIDTH){ 1'b0 }};
+        end
     end
 end
 
