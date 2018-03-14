@@ -1,29 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="impl_1" LaunchPart="xc7a50tcsg324-1" LaunchTime="1511739168">
-  <File Type="PLACE-UTIL-PB" Name="Motherboard_utilization_placed.pb"/>
-  <File Type="ROUTE-TIMING-RPX" Name="Motherboard_timing_summary_routed.rpx"/>
-  <File Type="BITSTR-RBT" Name="Motherboard.rbt"/>
-  <File Type="OPT-HWDEF" Name="Motherboard.hwdef"/>
-  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="Motherboard_methodology_drc_routed.pb"/>
-  <File Type="ROUTE-DRC-PB" Name="Motherboard_drc_routed.pb"/>
-  <File Type="BITSTR-NKY" Name="Motherboard.nky"/>
-  <File Type="POSTROUTE-PHYSOPT-DCP" Name="Motherboard_postroute_physopt.dcp"/>
+  <File Type="BITSTR-SYSDEF" Name="Motherboard.sysdef"/>
+  <File Type="PLACE-CTRL" Name="Motherboard_control_sets_placed.rpt"/>
+  <File Type="ROUTE-TIMING-PB" Name="Motherboard_timing_summary_routed.pb"/>
+  <File Type="BITSTR-MSK" Name="Motherboard.msk"/>
+  <File Type="PLACE-PRE-SIMILARITY" Name="Motherboard_incremental_reuse_pre_placed.rpt"/>
+  <File Type="POSTPLACE-PWROPT-DCP" Name="Motherboard_postplace_pwropt.dcp"/>
+  <File Type="ROUTE-DRC-RPX" Name="Motherboard_drc_routed.rpx"/>
+  <File Type="ROUTE-PWR" Name="Motherboard_power_routed.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="Motherboard_postroute_physopt_bb.dcp"/>
+  <File Type="ROUTE-PWR-RPX" Name="Motherboard_power_routed.rpx"/>
+  <File Type="ROUTE-STATUS-PB" Name="Motherboard_route_status.pb"/>
+  <File Type="OPT-DCP" Name="Motherboard_opt.dcp"/>
+  <File Type="BITSTR-MMI" Name="Motherboard.mmi"/>
+  <File Type="BG-BIN" Name="Motherboard.bin"/>
+  <File Type="ROUTE-TIMINGSUMMARY" Name="Motherboard_timing_summary_routed.rpt"/>
+  <File Type="OPT-DRC" Name="Motherboard_drc_opted.rpt"/>
   <File Type="ROUTE-STATUS" Name="Motherboard_route_status.rpt"/>
   <File Type="PLACE-DCP" Name="Motherboard_placed.dcp"/>
   <File Type="PA-TCL" Name="Motherboard.tcl"/>
-  <File Type="OPT-DRC" Name="Motherboard_drc_opted.rpt"/>
-  <File Type="BG-BIN" Name="Motherboard.bin"/>
-  <File Type="ROUTE-TIMINGSUMMARY" Name="Motherboard_timing_summary_routed.rpt"/>
-  <File Type="BITSTR-MMI" Name="Motherboard.mmi"/>
-  <File Type="OPT-DCP" Name="Motherboard_opt.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-DCP" Name="Motherboard_postroute_physopt.dcp"/>
+  <File Type="BITSTR-NKY" Name="Motherboard.nky"/>
+  <File Type="OPT-HWDEF" Name="Motherboard.hwdef"/>
+  <File Type="ROUTE-TIMING-RPX" Name="Motherboard_timing_summary_routed.rpx"/>
+  <File Type="BITSTR-RBT" Name="Motherboard.rbt"/>
+  <File Type="PLACE-UTIL-PB" Name="Motherboard_utilization_placed.pb"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="Motherboard_methodology_drc_routed.pb"/>
+  <File Type="ROUTE-DRC-PB" Name="Motherboard_drc_routed.pb"/>
   <File Type="BITSTR-LTX" Name="Motherboard.ltx"/>
+  <File Type="REPORTS-TCL" Name="Motherboard_reports.tcl"/>
+  <File Type="PWROPT-DCP" Name="Motherboard_pwropt.dcp"/>
   <File Type="PHYSOPT-DCP" Name="Motherboard_physopt.dcp"/>
   <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="Motherboard_methodology_drc_routed.rpx"/>
   <File Type="ROUTE-PWR-SUM" Name="Motherboard_power_summary_routed.pb"/>
   <File Type="ROUTE-CLK" Name="Motherboard_clock_utilization_routed.rpt"/>
   <File Type="BITSTR-BMM" Name="Motherboard_bd.bmm"/>
-  <File Type="PWROPT-DCP" Name="Motherboard_pwropt.dcp"/>
-  <File Type="REPORTS-TCL" Name="Motherboard_reports.tcl"/>
   <File Type="BG-BGN" Name="Motherboard.bgn"/>
   <File Type="ROUTE-BLACKBOX-DCP" Name="Motherboard_routed_bb.dcp"/>
   <File Type="PLACE-UTIL" Name="Motherboard_utilization_placed.rpt"/>
@@ -36,17 +47,6 @@
   <File Type="ROUTE-METHODOLOGY-DRC" Name="Motherboard_methodology_drc_routed.rpt"/>
   <File Type="ROUTE-DCP" Name="Motherboard_routed.dcp"/>
   <File Type="BG-BIT" Name="Motherboard.bit"/>
-  <File Type="ROUTE-STATUS-PB" Name="Motherboard_route_status.pb"/>
-  <File Type="ROUTE-PWR-RPX" Name="Motherboard_power_routed.rpx"/>
-  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="Motherboard_postroute_physopt_bb.dcp"/>
-  <File Type="ROUTE-PWR" Name="Motherboard_power_routed.rpt"/>
-  <File Type="ROUTE-DRC-RPX" Name="Motherboard_drc_routed.rpx"/>
-  <File Type="POSTPLACE-PWROPT-DCP" Name="Motherboard_postplace_pwropt.dcp"/>
-  <File Type="PLACE-PRE-SIMILARITY" Name="Motherboard_incremental_reuse_pre_placed.rpt"/>
-  <File Type="BITSTR-MSK" Name="Motherboard.msk"/>
-  <File Type="ROUTE-TIMING-PB" Name="Motherboard_timing_summary_routed.pb"/>
-  <File Type="PLACE-CTRL" Name="Motherboard_control_sets_placed.rpt"/>
-  <File Type="BITSTR-SYSDEF" Name="Motherboard.sysdef"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/imports/new/ExtToIntSync.v">

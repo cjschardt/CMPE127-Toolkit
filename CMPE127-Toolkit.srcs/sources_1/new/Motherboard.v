@@ -193,7 +193,7 @@ RAM_B #(
     .data(data_bus[15:8])
 );
 
- RAM_B #(
+RAM_B #(
     .LENGTH(32'h1000/4),
     .COLUMN(0),
     .USE_FILE(1),

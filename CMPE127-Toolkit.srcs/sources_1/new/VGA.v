@@ -530,7 +530,7 @@ always @(posedge pclk or posedge rst) begin
                     4'hF: buffer_data_out = "F";
                 endcase
                 
-                if(i > (`TERMINAL_COLUMNS*(`HARDWARE_CONTROLLED_ROWS-1)-1))
+                if(i > (`TERMINAL_COLUMNS*(`HARDWARE_CONTROLLED_ROWS-1)-2))
                 begin
                     state = COPY_BUFFER_TO_VIDEO;
                     i = 0;

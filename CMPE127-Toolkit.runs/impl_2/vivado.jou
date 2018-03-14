@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2017.3 (64-bit)
+# SW Build 2018833 on Wed Oct  4 19:58:07 MDT 2017
+# IP Build 2016188 on Wed Oct  4 21:52:56 MDT 2017
+# Start of session at: Tue Mar 13 13:35:17 2018
+# Process ID: 8346
+# Current directory: /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.runs/impl_2
+# Command line: vivado -log Keyboard_DEMO.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source Keyboard_DEMO.tcl -notrace
+# Log file: /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.runs/impl_2/Keyboard_DEMO.vdi
+# Journal file: /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.runs/impl_2/vivado.jou
+#-----------------------------------------------------------
+source Keyboard_DEMO.tcl -notrace

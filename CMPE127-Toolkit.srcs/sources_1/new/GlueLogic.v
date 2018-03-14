@@ -286,6 +286,28 @@ end
 
 endmodule
 
+module REGISTER #(parameter WIDTH = 8)(
+	input wire rst,
+	input wire clk,
+	input wire load,
+	input wire [WIDTH-1:0] in,
+	output reg [WIDTH-1:0] Q
+);
+
+always @(posedge clk or posedge rst)
+begin
+    if (rst)
+    begin
+    	Q <= 0;
+    end
+    else
+    begin
+        Q <= in;
+    end
+end
+
+endmodule
+
 //////////////////////////////////
 // COUNTERS
 //////////////////////////////////

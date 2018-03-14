@@ -17,8 +17,6 @@ proc create_report { reportName command } {
   }
 }
 set_param xicom.use_bs_reader 1
-set_msg_config -id {Synth 8-256} -limit 10000
-set_msg_config -id {Synth 8-638} -limit 10000
 create_project -in_memory -part xc7a100tcsg324-1
 
 set_param project.singleFileAddWarning.threshold 0
@@ -61,14 +59,14 @@ read_verilog -library xil_defaultlib {
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/Motherboard/imports/new/Motherboard.xdc
-set_property used_in_implementation false [get_files /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/Motherboard/imports/new/Motherboard.xdc]
+read_xdc /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/constrs_Keyboard_VGA_Demo/imports/new/Keyboard_VGA.xdc
+set_property used_in_implementation false [get_files /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/constrs_Keyboard_VGA_Demo/imports/new/Keyboard_VGA.xdc]
 
 
-synth_design -top Motherboard -part xc7a100tcsg324-1
+synth_design -top Keyboard_DEMO -part xc7a100tcsg324-1
 
 
 # disable binary constraint mode for synth run checkpoints
 set_param constraints.enableBinaryConstraints false
-write_checkpoint -force -noxdef Motherboard.dcp
-create_report "synth_2_synth_report_utilization_0" "report_utilization -file Motherboard_utilization_synth.rpt -pb VGA_Terminal_utilization_synth.pb"
+write_checkpoint -force -noxdef Keyboard_DEMO.dcp
+create_report "synth_2_synth_report_utilization_0" "report_utilization -file Keyboard_DEMO_utilization_synth.rpt -pb VGA_Terminal_utilization_synth.pb"

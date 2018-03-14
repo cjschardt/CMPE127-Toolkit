@@ -6,4 +6,4 @@
 # Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 #
 
-vivado -log Keyboard_DEMO.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source Keyboard_DEMO.tcl
+vivado -log Keyboard_DEMO.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source Keyboard_DEMO.tcl -notrace
