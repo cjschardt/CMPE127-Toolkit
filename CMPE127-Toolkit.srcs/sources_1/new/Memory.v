@@ -27,10 +27,10 @@ module RAM_B #(
 )
 (
     input wire clk,
+    input wire rst,
     input wire we,
     input wire cs,
     input wire oe,
-    output reg ack,
     input wire [ADDRESS_WIDTH-1:0] address,
     inout wire [BYTE_WIDTH-1:0] data
 );
@@ -64,25 +64,22 @@ begin
     if(USE_FILE)
     begin
         $readmemh(FILE_NAME, ram);
-        ack = 0;
     end
 end
 
-always @(posedge clk) 
+always @(posedge clk or posedge rst)
 begin
-    if (cs && we)
+    if(rst)
+    begin
+        $readmemh(FILE_NAME, ram);
+    end
+    else if (cs && we)
     begin
        ram[address] = data << (COLUMN*8);
-       ack = 1;
     end
     else if (cs && oe && !we)
     begin
         data_out = (ram[address] >> (COLUMN*8)) & 8'hFF;
-        ack = 1;
-    end
-    else
-    begin
-        ack = 0;
     end
 end
 
@@ -155,48 +152,6 @@ begin
 end
 
 endmodule
-
-module ROM_MIPS #(
-    parameter LENGTH = 32'h1000,
-    parameter WIDTH = 32,
-    parameter FILE_NAME = "rom.mem"
-)
-(
-    input wire clk,
-    input wire rst,
-	input wire [$clog2(LENGTH)-1:0] a,
-    input wire enable,
-    output reg acknowledge, 
-	output wire [WIDTH-1:0] out 
-);
-
-ROM 
-#(
-    .LENGTH(LENGTH),
-    .WIDTH(WIDTH)
-) rom (
-    .a(a),
-    .out(out)
-);
-
-always @(posedge clk or posedge rst)
-begin
-    if(rst)
-    begin
-        acknowledge <= 0;
-    end
-    else if(enable)
-    begin
-        acknowledge <= 1;
-    end
-    else if(!enable)
-    begin
-        acknowledge <= 0;
-    end
-end
-
-endmodule
-
 
 module ROM #(
     parameter LENGTH = 32'h1000,
@@ -288,6 +243,7 @@ begin
         mem[write_position] = " ";
         write_position = 0;
         previously_empty = 0;
+        out = 0;
         full = 0;
         empty = 1;
     end

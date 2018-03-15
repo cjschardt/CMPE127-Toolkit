@@ -25,7 +25,8 @@ reg clk;
 reg rst;
 
 wire [31:0] AddressBus, DataBus, ProgramCounter, Instruction, ALUResult;
-wire BusCycle, MemWrite, MemRead;
+wire BusCycle, MemRead;
+wire [3:0] MemWrite;
 
 MIPS mips(
     .clk(!clk),
@@ -45,7 +46,7 @@ wire ram_cs;
 OR #(.WIDTH(2))
 ram_cs_or
 (
-    .in({ MemWrite, MemRead }),
+    .in({ |MemWrite, MemRead }),
 	.out(ram_cs)
 );
 
@@ -59,19 +60,76 @@ ROM #(
 	.out(Instruction)
 );
 /* Data Memory */
-RAM #(
+
+RAM_B #(
     .LENGTH(32'd255),
-    .WIDTH(32),
-    .USE_FILE(0),
+    .COLUMN(3),
+    .USE_FILE(1),
     .FILE_NAME("ram.mem")
-) ram (
+) ramb_3 (
     .clk(clk),
-    .we(MemWrite),
+    .we(MemWrite[3]),
     .cs(ram_cs),
     .oe(MemRead),
-    .address(AddressBus[9:2]),
-    .data(DataBus)
+    .address(AddressBus[13:2]),
+    .data(DataBus[31:24])
 );
+
+RAM_B #(
+    .LENGTH(32'd255),
+    .COLUMN(2),
+    .USE_FILE(1),
+    .FILE_NAME("ram.mem")
+) ramb_2 (
+    .clk(clk),
+    .we(MemWrite[2]),
+    .cs(ram_cs),
+    .oe(MemRead),
+    .address(AddressBus[13:2]),
+    .data(DataBus[23:16])
+);
+
+ RAM_B #(
+    .LENGTH(32'd255),
+    .COLUMN(1),
+    .USE_FILE(1),
+    .FILE_NAME("ram.mem")
+) ramb_1 (
+    .clk(clk),
+    .we(MemWrite[1]),
+    .cs(ram_cs),
+    .oe(MemRead),
+    .address(AddressBus[13:2]),
+    .data(DataBus[15:8])
+);
+
+RAM_B #(
+    .LENGTH(32'd255),
+    .COLUMN(0),
+    .USE_FILE(1),
+    .FILE_NAME("ram.mem")
+) ramb_0 (
+    .clk(clk),
+    .we(MemWrite[0]),
+    .cs(ram_cs),
+    .oe(MemRead),
+    .address(AddressBus[13:2]),
+    .data(DataBus[7:0])
+);
+
+// RAM #(
+//     .LENGTH(32'd255),
+//     .WIDTH(32),
+//     .USE_FILE(0),
+//     .FILE_NAME("ram.mem")
+// ) ram (
+//     .clk(clk),
+//     .we(|MemWrite),
+//     .cs(ram_cs),
+//     .oe(MemRead),
+//     .address(AddressBus[9:2]),
+//     .data(DataBus)
+// );
 
 task RESET;
 begin

@@ -21,6 +21,7 @@
 
 module TestMotherboard;
 
+integer clock_count;
 reg clk;
 reg rst;
 reg ps2_clk;
@@ -34,7 +35,7 @@ wire [3:0] b;
 
 Motherboard motherboard(
 	//// input 100 MHz clock
-    .clk(clk),
+    .clk100Mhz(clk),
     .rst(rst),
     .ps2_clk(ps2_clk),
     .ps2_data(ps2_data),
@@ -45,19 +46,20 @@ Motherboard motherboard(
     //// RGB 4-bit singal that go to a DAC (range 0V <-> 0.7V) to generate a color intensity
     .r(r),
     .g(g),
-    .b(b)
+    .b(b),
+    .clk_select(1'b1),
+    .button_clock(1'b1)
 );
 
 task RESET;
 begin
     rst = 0;
+    clock_count = 0;
     clk = 0;
     ps2_clk = 0;
     ps2_data = 0;
     #5
     rst = 1;
-    #5
-    clk = 1;
     #5
     rst = 0;
     clk = 0;
@@ -72,13 +74,14 @@ begin
 	begin
 		#5
 		clk = 1;
+		clock_count = clock_count + 1;
 		#5
 		clk = 0;
 	end
 end
 endtask
 
-parameter FULL_CYCLE = 32'd100;
+parameter FULL_CYCLE = 32'd1000;
 
 initial begin
     #10
