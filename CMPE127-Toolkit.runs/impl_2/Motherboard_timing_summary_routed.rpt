@@ -1,7 +1,7 @@
 Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2017.3 (lin64) Build 2018833 Wed Oct  4 19:58:07 MDT 2017
-| Date         : Thu Mar 15 20:48:31 2018
+| Date         : Fri Mar 16 13:40:33 2018
 | Host         : kammce-Lenovo-Y40-80 running 64-bit Ubuntu 16.04.4 LTS
 | Command      : report_timing_summary -file Motherboard_timing_summary_routed.rpt -warn_on_violation -rpx Keyboard_DEMO_timing_summary_routed.rpx
 | Design       : Motherboard
@@ -52,21 +52,25 @@ Table of Contents
 
 1. checking no_clock
 --------------------
- There are 33059 register/latch pins with no clock driven by root clock pin: clk_select (HIGH)
+ There are 33144 register/latch pins with no clock driven by root clock pin: clk_select (HIGH)
 
- There are 33059 register/latch pins with no clock driven by root clock pin: button_clk/sync_out_reg[0]/Q (HIGH)
+ There are 33144 register/latch pins with no clock driven by root clock pin: button_clk/sync_out_reg[0]/Q (HIGH)
 
- There are 33059 register/latch pins with no clock driven by root clock pin: clock/slow_clk_reg/Q (HIGH)
+ There are 33144 register/latch pins with no clock driven by root clock pin: clock/slow_clk_reg/Q (HIGH)
 
- There are 64 register/latch pins with no clock driven by root clock pin: mips/pc_register/Q_reg[2]_rep__0/Q (HIGH)
+ There are 14 register/latch pins with no clock driven by root clock pin: keyboard/keyboard/sync_clk/sync_out_reg[0]/Q (HIGH)
 
- There are 64 register/latch pins with no clock driven by root clock pin: mips/pc_register/Q_reg[3]_rep__0/Q (HIGH)
+ There are 96 register/latch pins with no clock driven by root clock pin: mips/pc_register/Q_reg[2]/Q (HIGH)
 
- There are 64 register/latch pins with no clock driven by root clock pin: mips/pc_register/Q_reg[4]_rep/Q (HIGH)
+ There are 96 register/latch pins with no clock driven by root clock pin: mips/pc_register/Q_reg[3]/Q (HIGH)
 
- There are 64 register/latch pins with no clock driven by root clock pin: mips/pc_register/Q_reg[5]/Q (HIGH)
+ There are 96 register/latch pins with no clock driven by root clock pin: mips/pc_register/Q_reg[4]/Q (HIGH)
 
- There are 64 register/latch pins with no clock driven by root clock pin: mips/pc_register/Q_reg[6]_rep/Q (HIGH)
+ There are 96 register/latch pins with no clock driven by root clock pin: mips/pc_register/Q_reg[5]/Q (HIGH)
+
+ There are 96 register/latch pins with no clock driven by root clock pin: mips/pc_register/Q_reg[6]/Q (HIGH)
+
+ There are 96 register/latch pins with no clock driven by root clock pin: mips/pc_register/Q_reg[7]/Q (HIGH)
 
  There are 68 register/latch pins with no clock driven by root clock pin: vga_term/pixel_clock_generator/pclk_reg/Q (HIGH)
 
@@ -83,14 +87,14 @@ Table of Contents
 
 4. checking unconstrained_internal_endpoints
 --------------------------------------------
- There are 67072 pins that are not constrained for maximum delay. (HIGH)
+ There are 67114 pins that are not constrained for maximum delay. (HIGH)
 
  There are 0 pins that are not constrained for maximum delay due to constant clock.
 
 
 5. checking no_input_delay
 --------------------------
- There are 2 input ports with no input delay specified. (HIGH)
+ There are 5 input ports with no input delay specified. (HIGH)
 
  There are 0 input ports with no input delay but user has a false path constraint.
 
@@ -142,7 +146,7 @@ Table of Contents
 
     WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
     -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-      0.579        0.000                      0                  398        0.264        0.000                      0                  398        4.500        0.000                       0                   198  
+      1.201        0.000                      0                  419        0.122        0.000                      0                  419        4.500        0.000                       0                   221  
 
 
 All user specified timing constraints are met.
@@ -165,7 +169,7 @@ sys_clk_pin  {0.000 5.000}      10.000          100.000
 
 Clock             WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
 -----             -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-sys_clk_pin         0.579        0.000                      0                  398        0.264        0.000                      0                  398        4.500        0.000                       0                   198  
+sys_clk_pin         1.201        0.000                      0                  419        0.122        0.000                      0                  419        4.500        0.000                       0                   221  
 
 
 ------------------------------------------------------------------------------------------------
@@ -196,28 +200,28 @@ Path Group    From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing 
 From Clock:  sys_clk_pin
   To Clock:  sys_clk_pin
 
-Setup :            0  Failing Endpoints,  Worst Slack        0.579ns,  Total Violation        0.000ns
-Hold  :            0  Failing Endpoints,  Worst Slack        0.264ns,  Total Violation        0.000ns
+Setup :            0  Failing Endpoints,  Worst Slack        1.201ns,  Total Violation        0.000ns
+Hold  :            0  Failing Endpoints,  Worst Slack        0.122ns,  Total Violation        0.000ns
 PW    :            0  Failing Endpoints,  Worst Slack        4.500ns,  Total Violation        0.000ns
 ---------------------------------------------------------------------------------------------------
 
 
 Max Delay Paths
 --------------------------------------------------------------------------------------
-Slack (MET) :             0.579ns  (required time - arrival time)
-  Source:                 vga_term/cu/v_reg[0]/C
+Slack (MET) :             1.201ns  (required time - arrival time)
+  Source:                 vga_term/cu/v_reg[2]/C
                             (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            vga_term/cu/buffer_data_out_reg[1]/D
+  Destination:            vga_term/cu/buffer_data_out_reg[3]/D
                             (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             sys_clk_pin
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            10.000ns  (sys_clk_pin rise@10.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        9.373ns  (logic 3.609ns (38.506%)  route 5.764ns (61.494%))
-  Logic Levels:           12  (CARRY4=4 LUT1=1 LUT6=6 MUXF7=1)
-  Clock Path Skew:        -0.042ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    5.109ns = ( 15.109 - 10.000 ) 
-    Source Clock Delay      (SCD):    5.419ns
-    Clock Pessimism Removal (CPR):    0.267ns
+  Data Path Delay:        8.803ns  (logic 3.843ns (43.658%)  route 4.960ns (56.342%))
+  Logic Levels:           11  (CARRY4=3 LUT1=1 LUT5=2 LUT6=2 MUXF7=2 MUXF8=1)
+  Clock Path Skew:        -0.038ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.930ns = ( 14.930 - 10.000 ) 
+    Source Clock Delay      (SCD):    5.227ns
+    Clock Pessimism Removal (CPR):    0.259ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
     Total System Jitter     (TSJ):    0.071ns
     Total Input Jitter      (TIJ):    0.000ns
@@ -233,40 +237,37 @@ Slack (MET) :             0.579ns  (required time - arrival time)
     E3                   IBUF (Prop_ibuf_I_O)         1.482     1.482 r  clk100Mhz_IBUF_inst/O
                          net (fo=1, routed)           2.025     3.506    clk100Mhz_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.096     3.602 r  clk100Mhz_IBUF_BUFG_inst/O
-                         net (fo=197, routed)         1.816     5.419    vga_term/cu/clk100Mhz_IBUF_BUFG
-    SLICE_X32Y48         FDCE                                         r  vga_term/cu/v_reg[0]/C
+                         net (fo=220, routed)         1.624     5.227    vga_term/cu/clk100Mhz_IBUF_BUFG
+    SLICE_X30Y77         FDCE                                         r  vga_term/cu/v_reg[2]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X32Y48         FDCE (Prop_fdce_C_Q)         0.456     5.875 r  vga_term/cu/v_reg[0]/Q
-                         net (fo=4, routed)           0.710     6.585    vga_term/cu/v[0]
-    SLICE_X30Y44         CARRY4 (Prop_carry4_CYINIT_CO[3])
-                                                      0.595     7.180 r  vga_term/cu/v_reg[4]_i_2/CO[3]
-                         net (fo=1, routed)           0.000     7.180    vga_term/cu/v_reg[4]_i_2_n_2
-    SLICE_X30Y45         CARRY4 (Prop_carry4_CI_O[1])
-                                                      0.323     7.503 f  vga_term/cu/v_reg[8]_i_2/O[1]
-                         net (fo=2, routed)           0.513     8.016    vga_term/cu/v0[6]
-    SLICE_X29Y45         LUT1 (Prop_lut1_I0_O)        0.306     8.322 r  vga_term/cu/buffer_data_out[6]_i_69/O
-                         net (fo=1, routed)           0.000     8.322    vga_term/cu/buffer_data_out[6]_i_69_n_2
-    SLICE_X29Y45         CARRY4 (Prop_carry4_S[3]_CO[3])
-                                                      0.401     8.723 r  vga_term/cu/buffer_data_out_reg[6]_i_24/CO[3]
-                         net (fo=1, routed)           0.000     8.723    vga_term/cu/buffer_data_out_reg[6]_i_24_n_2
-    SLICE_X29Y46         CARRY4 (Prop_carry4_CI_O[0])
-                                                      0.222     8.945 r  vga_term/cu/buffer_data_out_reg[6]_i_60/O[0]
-                         net (fo=154, routed)         0.783     9.728    mips/pc_register/buffer_data_out2[4]
-    SLICE_X32Y50         LUT6 (Prop_lut6_I1_O)        0.299    10.027 r  mips/pc_register/buffer_data_out[1]_i_16/O
-                         net (fo=1, routed)           0.944    10.971    mips/pc_register/buffer_data_out[1]_i_16_n_2
-    SLICE_X30Y42         LUT6 (Prop_lut6_I5_O)        0.124    11.095 r  mips/pc_register/buffer_data_out[1]_i_10/O
-                         net (fo=1, routed)           0.303    11.398    vga_term/cu/Q_reg[4]_rep_4
-    SLICE_X30Y41         LUT6 (Prop_lut6_I0_O)        0.124    11.522 r  vga_term/cu/buffer_data_out[1]_i_6/O
-                         net (fo=1, routed)           0.868    12.390    vga_term/cu/buffer_data_out[1]_i_6_n_2
-    SLICE_X25Y41         LUT6 (Prop_lut6_I0_O)        0.124    12.514 r  vga_term/cu/buffer_data_out[1]_i_5/O
-                         net (fo=1, routed)           0.000    12.514    vga_term/cu/buffer_data_out[1]_i_5_n_2
-    SLICE_X25Y41         MUXF7 (Prop_muxf7_I0_O)      0.212    12.726 r  vga_term/cu/buffer_data_out_reg[1]_i_3/O
-                         net (fo=2, routed)           1.136    13.862    vga_term/cu/buffer_data_out_reg[1]_i_3_n_2
-    SLICE_X25Y41         LUT6 (Prop_lut6_I1_O)        0.299    14.161 r  vga_term/cu/buffer_data_out[1]_i_2/O
-                         net (fo=1, routed)           0.506    14.667    vga_term/cu/buffer_data_out[1]_i_2_n_2
-    SLICE_X23Y40         LUT6 (Prop_lut6_I4_O)        0.124    14.791 r  vga_term/cu/buffer_data_out[1]_i_1/O
-                         net (fo=1, routed)           0.000    14.791    vga_term/cu/buffer_data_out[1]_i_1_n_2
-    SLICE_X23Y40         FDCE                                         r  vga_term/cu/buffer_data_out_reg[1]/D
+    SLICE_X30Y77         FDCE (Prop_fdce_C_Q)         0.478     5.705 r  vga_term/cu/v_reg[2]/Q
+                         net (fo=1, routed)           0.501     6.206    vga_term/cu/v[2]
+    SLICE_X28Y77         CARRY4 (Prop_carry4_S[1]_CO[3])
+                                                      0.851     7.057 r  vga_term/cu/v_reg[4]_i_2/CO[3]
+                         net (fo=1, routed)           0.000     7.057    vga_term/cu/v_reg[4]_i_2_n_2
+    SLICE_X28Y78         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.222     7.279 f  vga_term/cu/v_reg[8]_i_2/O[0]
+                         net (fo=3, routed)           0.585     7.864    vga_term/cu/v0[5]
+    SLICE_X29Y77         LUT1 (Prop_lut1_I0_O)        0.328     8.192 r  vga_term/cu/buffer_data_out[6]_i_89/O
+                         net (fo=1, routed)           0.000     8.192    vga_term/cu/buffer_data_out[6]_i_89_n_2
+    SLICE_X29Y77         CARRY4 (Prop_carry4_DI[2]_O[3])
+                                                      0.401     8.593 r  vga_term/cu/buffer_data_out_reg[6]_i_39/O[3]
+                         net (fo=114, routed)         1.448    10.041    mips/pc_register/buffer_data_out2[6]
+    SLICE_X40Y70         LUT5 (Prop_lut5_I1_O)        0.306    10.347 f  mips/pc_register/buffer_data_out[6]_i_203/O
+                         net (fo=1, routed)           0.000    10.347    mips/pc_register/buffer_data_out[6]_i_203_n_2
+    SLICE_X40Y70         MUXF7 (Prop_muxf7_I0_O)      0.212    10.559 f  mips/pc_register/buffer_data_out_reg[6]_i_153/O
+                         net (fo=1, routed)           0.786    11.345    mips/pc_register/buffer_data_out_reg[6]_i_153_n_2
+    SLICE_X33Y75         LUT5 (Prop_lut5_I0_O)        0.299    11.644 f  mips/pc_register/buffer_data_out[6]_i_69/O
+                         net (fo=1, routed)           0.000    11.644    mips/pc_register/buffer_data_out[6]_i_69_n_2
+    SLICE_X33Y75         MUXF7 (Prop_muxf7_I0_O)      0.212    11.856 f  mips/pc_register/buffer_data_out_reg[6]_i_31/O
+                         net (fo=2, routed)           0.000    11.856    mips/pc_register/buffer_data_out_reg[6]_i_31_n_2
+    SLICE_X33Y75         MUXF8 (Prop_muxf8_I1_O)      0.094    11.950 f  mips/pc_register/buffer_data_out_reg[6]_i_10/O
+                         net (fo=2, routed)           0.674    12.624    mips/pc_register/buffer_data_out_reg[6]_i_10_n_2
+    SLICE_X29Y75         LUT6 (Prop_lut6_I1_O)        0.316    12.940 f  mips/pc_register/buffer_data_out[6]_i_3/O
+                         net (fo=5, routed)           0.965    13.905    vga_term/cu/v_reg[0]_0[0]
+    SLICE_X14Y75         LUT6 (Prop_lut6_I3_O)        0.124    14.029 r  vga_term/cu/buffer_data_out[3]_i_1/O
+                         net (fo=1, routed)           0.000    14.029    vga_term/cu/buffer_data_out[3]_i_1_n_2
+    SLICE_X14Y75         FDCE                                         r  vga_term/cu/buffer_data_out_reg[3]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk_pin rise edge)
@@ -276,16 +277,16 @@ Slack (MET) :             0.579ns  (required time - arrival time)
     E3                   IBUF (Prop_ibuf_I_O)         1.411    11.411 r  clk100Mhz_IBUF_inst/O
                          net (fo=1, routed)           1.920    13.331    clk100Mhz_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    13.422 r  clk100Mhz_IBUF_BUFG_inst/O
-                         net (fo=197, routed)         1.687    15.109    vga_term/cu/clk100Mhz_IBUF_BUFG
-    SLICE_X23Y40         FDCE                                         r  vga_term/cu/buffer_data_out_reg[1]/C
-                         clock pessimism              0.267    15.377    
-                         clock uncertainty           -0.035    15.341    
-    SLICE_X23Y40         FDCE (Setup_fdce_C_D)        0.029    15.370    vga_term/cu/buffer_data_out_reg[1]
+                         net (fo=220, routed)         1.507    14.930    vga_term/cu/clk100Mhz_IBUF_BUFG
+    SLICE_X14Y75         FDCE                                         r  vga_term/cu/buffer_data_out_reg[3]/C
+                         clock pessimism              0.259    15.189    
+                         clock uncertainty           -0.035    15.153    
+    SLICE_X14Y75         FDCE (Setup_fdce_C_D)        0.077    15.230    vga_term/cu/buffer_data_out_reg[3]
   -------------------------------------------------------------------
-                         required time                         15.370    
-                         arrival time                         -14.791    
+                         required time                         15.230    
+                         arrival time                         -14.029    
   -------------------------------------------------------------------
-                         slack                                  0.579    
+                         slack                                  1.201    
 
 
 
@@ -293,20 +294,20 @@ Slack (MET) :             0.579ns  (required time - arrival time)
 
 Min Delay Paths
 --------------------------------------------------------------------------------------
-Slack (MET) :             0.264ns  (arrival time - required time)
-  Source:                 vga_term/pixel_clock_generator/pclk_reg/C
+Slack (MET) :             0.122ns  (arrival time - required time)
+  Source:                 vga_term/pixel_clock_generator/count_reg[11]/C
                             (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
-  Destination:            vga_term/pixel_clock_generator/pclk_reg/D
+  Destination:            vga_term/pixel_clock_generator/count_reg[12]/D
                             (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@5.000ns period=10.000ns})
   Path Group:             sys_clk_pin
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (sys_clk_pin rise@0.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        0.384ns  (logic 0.209ns (54.384%)  route 0.175ns (45.616%))
-  Logic Levels:           1  (LUT3=1)
-  Clock Path Skew:        0.000ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    1.999ns
-    Source Clock Delay      (SCD):    1.483ns
-    Clock Pessimism Removal (CPR):    0.515ns
+  Data Path Delay:        0.521ns  (logic 0.371ns (71.210%)  route 0.150ns (28.790%))
+  Logic Levels:           3  (CARRY4=2 LUT3=1)
+  Clock Path Skew:        0.265ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.997ns
+    Source Clock Delay      (SCD):    1.486ns
+    Clock Pessimism Removal (CPR):    0.245ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
@@ -317,14 +318,20 @@ Slack (MET) :             0.264ns  (arrival time - required time)
     E3                   IBUF (Prop_ibuf_I_O)         0.250     0.250 r  clk100Mhz_IBUF_inst/O
                          net (fo=1, routed)           0.644     0.894    clk100Mhz_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.920 r  clk100Mhz_IBUF_BUFG_inst/O
-                         net (fo=197, routed)         0.564     1.483    vga_term/pixel_clock_generator/clk100Mhz_IBUF_BUFG
-    SLICE_X54Y96         FDCE                                         r  vga_term/pixel_clock_generator/pclk_reg/C
+                         net (fo=220, routed)         0.567     1.486    vga_term/pixel_clock_generator/clk100Mhz_IBUF_BUFG
+    SLICE_X58Y99         FDCE                                         r  vga_term/pixel_clock_generator/count_reg[11]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X54Y96         FDCE (Prop_fdce_C_Q)         0.164     1.647 r  vga_term/pixel_clock_generator/pclk_reg/Q
-                         net (fo=2, routed)           0.175     1.823    vga_term/pixel_clock_generator/pclk_reg_0
-    SLICE_X54Y96         LUT3 (Prop_lut3_I2_O)        0.045     1.868 r  vga_term/pixel_clock_generator/pclk_i_1/O
-                         net (fo=1, routed)           0.000     1.868    vga_term/pixel_clock_generator/pclk_i_1_n_2
-    SLICE_X54Y96         FDCE                                         r  vga_term/pixel_clock_generator/pclk_reg/D
+    SLICE_X58Y99         FDCE (Prop_fdce_C_Q)         0.164     1.650 r  vga_term/pixel_clock_generator/count_reg[11]/Q
+                         net (fo=2, routed)           0.149     1.800    vga_term/pixel_clock_generator/count_reg[11]
+    SLICE_X58Y99         LUT3 (Prop_lut3_I2_O)        0.045     1.845 r  vga_term/pixel_clock_generator/count[8]_i_2/O
+                         net (fo=1, routed)           0.000     1.845    vga_term/pixel_clock_generator/count[8]_i_2_n_2
+    SLICE_X58Y99         CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.109     1.954 r  vga_term/pixel_clock_generator/count_reg[8]_i_1/CO[3]
+                         net (fo=1, routed)           0.001     1.954    vga_term/pixel_clock_generator/count_reg[8]_i_1_n_2
+    SLICE_X58Y100        CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.053     2.007 r  vga_term/pixel_clock_generator/count_reg[12]_i_1/O[0]
+                         net (fo=1, routed)           0.000     2.007    vga_term/pixel_clock_generator/count_reg[12]_i_1_n_9
+    SLICE_X58Y100        FDCE                                         r  vga_term/pixel_clock_generator/count_reg[12]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk_pin rise edge)
@@ -334,15 +341,15 @@ Slack (MET) :             0.264ns  (arrival time - required time)
     E3                   IBUF (Prop_ibuf_I_O)         0.438     0.438 r  clk100Mhz_IBUF_inst/O
                          net (fo=1, routed)           0.699     1.136    clk100Mhz_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     1.165 r  clk100Mhz_IBUF_BUFG_inst/O
-                         net (fo=197, routed)         0.834     1.999    vga_term/pixel_clock_generator/clk100Mhz_IBUF_BUFG
-    SLICE_X54Y96         FDCE                                         r  vga_term/pixel_clock_generator/pclk_reg/C
-                         clock pessimism             -0.515     1.483    
-    SLICE_X54Y96         FDCE (Hold_fdce_C_D)         0.120     1.603    vga_term/pixel_clock_generator/pclk_reg
+                         net (fo=220, routed)         0.832     1.997    vga_term/pixel_clock_generator/clk100Mhz_IBUF_BUFG
+    SLICE_X58Y100        FDCE                                         r  vga_term/pixel_clock_generator/count_reg[12]/C
+                         clock pessimism             -0.245     1.751    
+    SLICE_X58Y100        FDCE (Hold_fdce_C_D)         0.134     1.885    vga_term/pixel_clock_generator/count_reg[12]
   -------------------------------------------------------------------
-                         required time                         -1.603    
-                         arrival time                           1.868    
+                         required time                         -1.885    
+                         arrival time                           2.007    
   -------------------------------------------------------------------
-                         slack                                  0.264    
+                         slack                                  0.122    
 
 
 
@@ -356,9 +363,9 @@ Period(ns):         10.000
 Sources:            { clk100Mhz }
 
 Check Type        Corner  Lib Pin             Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location      Pin
-Min Period        n/a     RAMB36E1/CLKARDCLK  n/a            2.944         10.000      7.056      RAMB36_X0Y6   vga_term/video_ram/ram_reg/CLKARDCLK
-Low Pulse Width   Slow    FDCE/C              n/a            0.500         5.000       4.500      SLICE_X30Y34  vga_term/cu/i_reg[13]/C
-High Pulse Width  Slow    FDCE/C              n/a            0.500         5.000       4.500      SLICE_X17Y31  vga_term/cu/i_reg[10]/C
+Min Period        n/a     RAMB36E1/CLKARDCLK  n/a            2.944         10.000      7.056      RAMB36_X0Y14  vga_term/video_ram/ram_reg/CLKARDCLK
+Low Pulse Width   Slow    FDCE/C              n/a            0.500         5.000       4.500      SLICE_X4Y73   vga_term/cu/i_reg[15]/C
+High Pulse Width  Slow    FDCE/C              n/a            0.500         5.000       4.500      SLICE_X8Y82   vga_term/cu/buffer_address_reg[0]/C
 
 
 

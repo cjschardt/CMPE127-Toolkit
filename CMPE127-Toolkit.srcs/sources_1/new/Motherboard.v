@@ -22,8 +22,8 @@
 
 `define BACKSPACE               8'hF7
 
-`define KEYBOARD_ADDRESS        1781
-`define KEYBOARD_READY_ADDRESS  1782
+`define KEYBOARD_ADDRESS        32'h1784
+`define KEYBOARD_READY_ADDRESS  32'h1788
 //////////////////////////////////////////////////////////////////////////////////
 // Company:
 // Engineer:
@@ -109,7 +109,9 @@ wire keyboard_ready;
 wire vga_busy;
 
 wire MemRead, BusCycle;
-wire [31:0] AddressBus, DataBus, ProgramCounter, ALUResult, RegOut1, RegOut2, RegWriteData, Instruction;
+wire [31:0] AddressBus, DataBus;
+wire [31:0] ProgramCounter, ALUResult, RegOut1, RegOut2, RegWriteData, RegWriteAddress;
+wire [31:0] Instruction;
 wire [3:0] MemWrite;
 
 wire [7:0] scan_code;
@@ -182,6 +184,7 @@ MIPS mips(
     .RegOut1(RegOut1),
     .RegOut2(RegOut2),
     .RegWriteData(RegWriteData),
+    .RegWriteAddress(RegWriteAddress),
     .Instruction(Instruction)
 );
 
@@ -275,6 +278,8 @@ AND #(.WIDTH(4)) vga_fifo_cs_and (
 	.out(vga_fifo_cs)
 );
 
+wire [7:0] keyboard_ascii;
+
 ASCII_Keyboard keyboard(
     .clk(clk100Mhz),
     .rst(rst),
@@ -282,7 +287,7 @@ ASCII_Keyboard keyboard(
     .ps2_data(ps2_data),
     .oe(key_cs),
     .next(key_cs),
-    .ascii(DataBus[7:0]),
+    .ascii(keyboard_ascii),
     .ready(keyboard_ready),
     .scan_code_reg(scan_code),
     .extended_count(extended_count),
@@ -294,6 +299,14 @@ key_ready_buffer
 (
 	.oe(key_ready_cs),
 	.in({ 31'b0, keyboard_ready }),
+	.out(DataBus)
+);
+
+TRIBUFFER #(.WIDTH(32))
+key_ascii_buffer
+(
+	.oe(key_cs),
+	.in({ 24'b0, keyboard_ascii }),
 	.out(DataBus)
 );
 
@@ -339,7 +352,8 @@ OR #(.WIDTH(2)) fifo_to_vga_cs_and (
 	.out(vga_cs)
 );
 
-wire [31:0] ControlBus = { {(32-12){1'b0}}, 3'b0, BusCycle, 3'b0, MemRead, 3'b0, MemWrite };
+wire [31:0] ControlBus      = { {(32-12){1'b0}}, 3'b0, BusCycle, 3'b0, MemRead, 3'b0, MemWrite };
+wire [31:0] KeyboardSignals = { 20'b0, keyboard_ascii, scan_code, 3'b0, keyboard_ready};
 
 VGA_Terminal vga_term(
     .clk(clk100Mhz),
@@ -349,11 +363,11 @@ VGA_Terminal vga_term(
     .r(r),
     .g(g),
     .b(b),
-    .value0(ProgramCounter), .value1(DataBus), .value2(32'h0), .value3(32'h0),
-    .value4(ALUResult),  .value5(AddressBus), .value6(32'h0), .value7(32'h0),
-    .value8(RegOut1), .value9(ControlBus), .value10(32'h0), .value11(32'h0),
-    .value12(RegOut2), .value13(Instruction), .value14(32'h0), .value15(32'h0),
-    .value16(RegWriteData), .value17(32'h0), .value18(32'h0), .value19(32'h0),
+    .value0(ProgramCounter), .value1 (RegWriteAddress), .value2(KeyboardSignals),  .value3(32'h0),
+    .value4(ALUResult),      .value5 (DataBus),         .value6(32'h0),  .value7(32'h0),
+    .value8(RegOut1),        .value9 (AddressBus),      .value10(32'h0), .value11(32'h0),
+    .value12(RegOut2),       .value13(ControlBus),      .value14(32'h0), .value15(32'h0),
+    .value16(RegWriteData),  .value17(Instruction),     .value18(32'h0), .value19(32'h0),
     .address(vga_AddressBus),
     .data(vga_DataBus),
     .cs(vga_cs),

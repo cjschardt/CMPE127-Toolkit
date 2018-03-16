@@ -114,11 +114,10 @@ module MUX #(
     parameter WIDTH  = 1,
     parameter INPUTS = 2
 )(
-    input wire [SELECT-1:0] select,
+    input wire [$clog2(INPUTS)-1:0] select,
     input wire [(WIDTH*INPUTS)-1:0] in,
     output wire [WIDTH-1:0] out
 );
-parameter SELECT = $clog2(INPUTS);
 
 assign out = (in >> (select*WIDTH));
 

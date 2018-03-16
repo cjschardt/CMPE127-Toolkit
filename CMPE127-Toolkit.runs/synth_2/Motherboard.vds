@@ -2,8 +2,8 @@
 # Vivado v2017.3 (64-bit)
 # SW Build 2018833 on Wed Oct  4 19:58:07 MDT 2017
 # IP Build 2016188 on Wed Oct  4 21:52:56 MDT 2017
-# Start of session at: Thu Mar 15 20:36:43 2018
-# Process ID: 867
+# Start of session at: Fri Mar 16 13:28:15 2018
+# Process ID: 23564
 # Current directory: /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.runs/synth_2
 # Command line: vivado -log Motherboard.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source Motherboard.tcl
 # Log file: /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.runs/synth_2/Motherboard.vds
@@ -15,8 +15,7 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 905 
-WARNING: [Synth 8-2507] parameter declaration becomes local in MUX with formal parameter declaration list [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:121]
+INFO: Helper process launched with PID 23584 
 WARNING: [Synth 8-2507] parameter declaration becomes local in RAM_B with formal parameter declaration list [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:41]
 WARNING: [Synth 8-2507] parameter declaration becomes local in RAM_B with formal parameter declaration list [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:42]
 WARNING: [Synth 8-2507] parameter declaration becomes local in RAM_B with formal parameter declaration list [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:43]
@@ -28,27 +27,22 @@ WARNING: [Synth 8-2507] parameter declaration becomes local in PWMCapture with f
 WARNING: [Synth 8-2507] parameter declaration becomes local in PWMCapture with formal parameter declaration list [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/PWMCapture.v:41]
 WARNING: [Synth 8-2306] macro FREQ_IN redefined [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:15]
 WARNING: [Synth 8-2306] macro FREQ_IN redefined [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:7]
-WARNING: [Synth 8-2611] redeclaration of ansi port ready is not allowed [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:472]
-WARNING: [Synth 8-976] ready has already been declared [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:472]
-WARNING: [Synth 8-2654] second declaration of ready ignored [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:472]
-INFO: [Synth 8-994] ready is declared here [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:459]
 WARNING: [Synth 8-2306] macro OP_SLTIU redefined [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:80]
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1246.410 ; gain = 73.277 ; free physical = 2174 ; free virtual = 20385
+Starting RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1246.402 ; gain = 73.277 ; free physical = 2874 ; free virtual = 19566
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-638] synthesizing module 'Motherboard' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Motherboard.v:80]
 	Parameter CLOCK_DIVIDER bound to: 100 - type: integer 
 INFO: [Synth 8-638] synthesizing module 'CLOCK_GENERATOR' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Motherboard.v:47]
 	Parameter DIVIDE bound to: 100 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'CLOCK_GENERATOR' (1#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Motherboard.v:47]
-INFO: [Synth 8-638] synthesizing module 'Syncronizer' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:353]
+INFO: [Synth 8-638] synthesizing module 'Syncronizer' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:352]
 	Parameter WIDTH bound to: 1 - type: integer 
 	Parameter DEFAULT_DISABLED bound to: 0 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'Syncronizer' (2#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:353]
+INFO: [Synth 8-256] done synthesizing module 'Syncronizer' (2#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:352]
 INFO: [Synth 8-638] synthesizing module 'MUX' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:113]
 	Parameter WIDTH bound to: 1 - type: integer 
 	Parameter INPUTS bound to: 2 - type: integer 
-	Parameter SELECT bound to: 1 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'MUX' (3#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:113]
 INFO: [Synth 8-638] synthesizing module 'ROM' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:156]
 	Parameter LENGTH bound to: 4096 - type: integer 
@@ -57,64 +51,58 @@ INFO: [Synth 8-638] synthesizing module 'ROM' [/home/kammce/Documents/University
 INFO: [Synth 8-3876] $readmem data file 'rom.mem' is read successfully [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:189]
 INFO: [Synth 8-256] done synthesizing module 'ROM' (4#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:156]
 INFO: [Synth 8-638] synthesizing module 'MIPS' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:163]
-INFO: [Synth 8-638] synthesizing module 'PROCESSOR_DECODER' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:398]
-INFO: [Synth 8-638] synthesizing module 'IMMEDIATE_TO_ALU_CONVERTER' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:654]
-INFO: [Synth 8-256] done synthesizing module 'IMMEDIATE_TO_ALU_CONVERTER' (5#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:654]
-WARNING: [Synth 8-151] case item 6'b000001 is unreachable [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:466]
-WARNING: [Synth 8-3848] Net HiLoSelect in module/entity PROCESSOR_DECODER does not have driver. [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:409]
-INFO: [Synth 8-256] done synthesizing module 'PROCESSOR_DECODER' (6#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:398]
-WARNING: [Synth 8-350] instance 'decoder' of module 'PROCESSOR_DECODER' requires 17 connections, but only 16 given [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:218]
-INFO: [Synth 8-638] synthesizing module 'REGISTER' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:289]
+INFO: [Synth 8-638] synthesizing module 'PROCESSOR_DECODER' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:400]
+INFO: [Synth 8-638] synthesizing module 'IMMEDIATE_TO_ALU_CONVERTER' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:655]
+INFO: [Synth 8-256] done synthesizing module 'IMMEDIATE_TO_ALU_CONVERTER' (5#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:655]
+WARNING: [Synth 8-151] case item 6'b000001 is unreachable [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:467]
+INFO: [Synth 8-256] done synthesizing module 'PROCESSOR_DECODER' (6#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:400]
+INFO: [Synth 8-638] synthesizing module 'REGISTER' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:288]
 	Parameter WIDTH bound to: 32 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'REGISTER' (7#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:289]
-INFO: [Synth 8-638] synthesizing module 'ADDER' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:697]
+INFO: [Synth 8-256] done synthesizing module 'REGISTER' (7#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:288]
+INFO: [Synth 8-638] synthesizing module 'ADDER' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:698]
 	Parameter WIDTH bound to: 32 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'ADDER' (8#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:697]
+INFO: [Synth 8-256] done synthesizing module 'ADDER' (8#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:698]
 INFO: [Synth 8-638] synthesizing module 'MUX__parameterized0' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:113]
 	Parameter WIDTH bound to: 5 - type: integer 
 	Parameter INPUTS bound to: 3 - type: integer 
-	Parameter SELECT bound to: 2 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'MUX__parameterized0' (8#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:113]
-WARNING: [Synth 8-689] width (42) of port connection 'in' does not match port width (15) of module 'MUX__parameterized0' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:258]
-INFO: [Synth 8-638] synthesizing module 'REGFILE' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:710]
+WARNING: [Synth 8-689] width (42) of port connection 'in' does not match port width (15) of module 'MUX__parameterized0' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:260]
+INFO: [Synth 8-638] synthesizing module 'REGFILE' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:711]
 	Parameter WIDTH bound to: 32 - type: integer 
 	Parameter COUNT bound to: 32 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'REGFILE' (9#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:710]
-INFO: [Synth 8-638] synthesizing module 'VALUE_EXTEND' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:822]
+INFO: [Synth 8-256] done synthesizing module 'REGFILE' (9#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:711]
+INFO: [Synth 8-638] synthesizing module 'VALUE_EXTEND' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:834]
 	Parameter INPUT_WIDTH bound to: 16 - type: integer 
 	Parameter OUTPUT_WIDTH bound to: 32 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'VALUE_EXTEND' (10#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:822]
-INFO: [Synth 8-638] synthesizing module 'SHIFT_LEFT' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:839]
+INFO: [Synth 8-256] done synthesizing module 'VALUE_EXTEND' (10#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:834]
+INFO: [Synth 8-638] synthesizing module 'SHIFT_LEFT' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:851]
 	Parameter AMOUNT bound to: 2 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'SHIFT_LEFT' (11#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:839]
+INFO: [Synth 8-256] done synthesizing module 'SHIFT_LEFT' (11#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:851]
 INFO: [Synth 8-638] synthesizing module 'MUX__parameterized1' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:113]
 	Parameter WIDTH bound to: 32 - type: integer 
 	Parameter INPUTS bound to: 4 - type: integer 
-	Parameter SELECT bound to: 2 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'MUX__parameterized1' (11#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:113]
 INFO: [Synth 8-638] synthesizing module 'MUX__parameterized2' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:113]
 	Parameter WIDTH bound to: 32 - type: integer 
 	Parameter INPUTS bound to: 2 - type: integer 
-	Parameter SELECT bound to: 1 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'MUX__parameterized2' (11#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:113]
-INFO: [Synth 8-638] synthesizing module 'ALU' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:753]
-WARNING: [Synth 8-151] case item 6'b100001 is unreachable [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:780]
-WARNING: [Synth 8-151] case item 6'b100000 is unreachable [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:780]
-INFO: [Synth 8-256] done synthesizing module 'ALU' (12#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:753]
+INFO: [Synth 8-638] synthesizing module 'ALU' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:754]
+WARNING: [Synth 8-151] case item 6'b100001 is unreachable [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:781]
+WARNING: [Synth 8-151] case item 6'b100000 is unreachable [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:781]
+INFO: [Synth 8-256] done synthesizing module 'ALU' (12#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:754]
 INFO: [Synth 8-638] synthesizing module 'OR' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:60]
 	Parameter WIDTH bound to: 4 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'OR' (13#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:60]
 INFO: [Synth 8-638] synthesizing module 'MUX__parameterized3' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:113]
 	Parameter WIDTH bound to: 32 - type: integer 
 	Parameter INPUTS bound to: 3 - type: integer 
-	Parameter SELECT bound to: 2 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'MUX__parameterized3' (13#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:113]
 INFO: [Synth 8-638] synthesizing module 'TRIBUFFER' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:37]
 	Parameter WIDTH bound to: 32 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'TRIBUFFER' (14#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:37]
-INFO: [Synth 8-638] synthesizing module 'SHIFT_RIGHT' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:849]
+INFO: [Synth 8-638] synthesizing module 'SHIFT_RIGHT' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:861]
 	Parameter WIDTH bound to: 32 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'SHIFT_RIGHT' (15#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:849]
+INFO: [Synth 8-256] done synthesizing module 'SHIFT_RIGHT' (15#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:861]
 INFO: [Synth 8-256] done synthesizing module 'MIPS' (16#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:163]
 INFO: [Synth 8-638] synthesizing module 'RAM_B' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:22]
 	Parameter LENGTH bound to: 1024 - type: integer 
@@ -133,7 +121,7 @@ Reason is one or more of the following :
 	1: RAM is sensitive to asynchronous reset signal. this RTL style is not supported. 
 RAM "ram_reg" dissolved into registers
 INFO: [Synth 8-256] done synthesizing module 'RAM_B' (17#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:22]
-WARNING: [Synth 8-689] width (12) of port connection 'address' does not match port width (10) of module 'RAM_B' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Motherboard.v:199]
+WARNING: [Synth 8-689] width (12) of port connection 'address' does not match port width (10) of module 'RAM_B' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Motherboard.v:202]
 INFO: [Synth 8-638] synthesizing module 'RAM_B__parameterized0' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:22]
 	Parameter LENGTH bound to: 1024 - type: integer 
 	Parameter COLUMN bound to: 2 - type: integer 
@@ -151,7 +139,7 @@ Reason is one or more of the following :
 	1: RAM is sensitive to asynchronous reset signal. this RTL style is not supported. 
 RAM "ram_reg" dissolved into registers
 INFO: [Synth 8-256] done synthesizing module 'RAM_B__parameterized0' (17#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:22]
-WARNING: [Synth 8-689] width (12) of port connection 'address' does not match port width (10) of module 'RAM_B__parameterized0' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Motherboard.v:214]
+WARNING: [Synth 8-689] width (12) of port connection 'address' does not match port width (10) of module 'RAM_B__parameterized0' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Motherboard.v:217]
 INFO: [Synth 8-638] synthesizing module 'RAM_B__parameterized1' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:22]
 	Parameter LENGTH bound to: 1024 - type: integer 
 	Parameter COLUMN bound to: 1 - type: integer 
@@ -169,7 +157,7 @@ Reason is one or more of the following :
 	1: RAM is sensitive to asynchronous reset signal. this RTL style is not supported. 
 RAM "ram_reg" dissolved into registers
 INFO: [Synth 8-256] done synthesizing module 'RAM_B__parameterized1' (17#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:22]
-WARNING: [Synth 8-689] width (12) of port connection 'address' does not match port width (10) of module 'RAM_B__parameterized1' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Motherboard.v:229]
+WARNING: [Synth 8-689] width (12) of port connection 'address' does not match port width (10) of module 'RAM_B__parameterized1' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Motherboard.v:232]
 INFO: [Synth 8-638] synthesizing module 'RAM_B__parameterized2' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:22]
 	Parameter LENGTH bound to: 1024 - type: integer 
 	Parameter COLUMN bound to: 0 - type: integer 
@@ -187,11 +175,11 @@ Reason is one or more of the following :
 	1: RAM is sensitive to asynchronous reset signal. this RTL style is not supported. 
 RAM "ram_reg" dissolved into registers
 INFO: [Synth 8-256] done synthesizing module 'RAM_B__parameterized2' (17#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:22]
-WARNING: [Synth 8-689] width (12) of port connection 'address' does not match port width (10) of module 'RAM_B__parameterized2' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Motherboard.v:244]
-INFO: [Synth 8-638] synthesizing module 'DECODER' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:131]
+WARNING: [Synth 8-689] width (12) of port connection 'address' does not match port width (10) of module 'RAM_B__parameterized2' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Motherboard.v:247]
+INFO: [Synth 8-638] synthesizing module 'DECODER' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:130]
 	Parameter INPUT_WIDTH bound to: 3 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'DECODER' (18#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:131]
-WARNING: [Synth 8-689] width (3) of port connection 'out' does not match port width (8) of module 'DECODER' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Motherboard.v:256]
+INFO: [Synth 8-256] done synthesizing module 'DECODER' (18#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:130]
+WARNING: [Synth 8-689] width (3) of port connection 'out' does not match port width (8) of module 'DECODER' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Motherboard.v:259]
 INFO: [Synth 8-638] synthesizing module 'AND' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:51]
 	Parameter WIDTH bound to: 2 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'AND' (19#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:51]
@@ -205,12 +193,12 @@ INFO: [Synth 8-638] synthesizing module 'ASCII_Keyboard' [/home/kammce/Documents
 	Parameter WRITE_TO_FIFO bound to: 3 - type: integer 
 	Parameter STATE_WIDTH bound to: 2 - type: integer 
 INFO: [Synth 8-638] synthesizing module 'Keyboard' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:211]
-INFO: [Synth 8-638] synthesizing module 'SHIFTREGISTER' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:267]
+INFO: [Synth 8-638] synthesizing module 'SHIFTREGISTER' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:266]
 	Parameter WIDTH bound to: 11 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'SHIFTREGISTER' (20#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:267]
-INFO: [Synth 8-638] synthesizing module 'COUNTER' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:315]
+INFO: [Synth 8-256] done synthesizing module 'SHIFTREGISTER' (20#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:266]
+INFO: [Synth 8-638] synthesizing module 'COUNTER' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:314]
 	Parameter WIDTH bound to: 4 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'COUNTER' (21#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:315]
+INFO: [Synth 8-256] done synthesizing module 'COUNTER' (21#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:314]
 INFO: [Synth 8-638] synthesizing module 'XNOR' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:100]
 	Parameter WIDTH bound to: 8 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'XNOR' (22#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:100]
@@ -277,7 +265,6 @@ INFO: [Synth 8-256] done synthesizing module 'ConvertXYToAddress' (30#1) [/home/
 INFO: [Synth 8-638] synthesizing module 'MUX__parameterized4' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:113]
 	Parameter WIDTH bound to: 12 - type: integer 
 	Parameter INPUTS bound to: 2 - type: integer 
-	Parameter SELECT bound to: 1 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'MUX__parameterized4' (30#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:113]
 INFO: [Synth 8-638] synthesizing module 'RAM' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:88]
 	Parameter LENGTH bound to: 2400 - type: integer 
@@ -365,9 +352,6 @@ WARNING: [Synth 8-3331] design ConvertXYToAddress has unconnected port vcount[0]
 WARNING: [Synth 8-3331] design VGA_Terminal_Control_Unit has unconnected port hblank
 WARNING: [Synth 8-3331] design SHIFTREGISTER has unconnected port en
 WARNING: [Synth 8-3331] design Syncronizer has unconnected port rst
-WARNING: [Synth 8-3331] design ALU has unconnected port rst
-WARNING: [Synth 8-3331] design PROCESSOR_DECODER has unconnected port HiLoSelect[1]
-WARNING: [Synth 8-3331] design PROCESSOR_DECODER has unconnected port HiLoSelect[0]
 WARNING: [Synth 8-3331] design PROCESSOR_DECODER has unconnected port alu_result[31]
 WARNING: [Synth 8-3331] design PROCESSOR_DECODER has unconnected port alu_result[30]
 WARNING: [Synth 8-3331] design PROCESSOR_DECODER has unconnected port alu_result[29]
@@ -393,9 +377,12 @@ WARNING: [Synth 8-3331] design PROCESSOR_DECODER has unconnected port alu_result
 WARNING: [Synth 8-3331] design PROCESSOR_DECODER has unconnected port alu_result[9]
 WARNING: [Synth 8-3331] design PROCESSOR_DECODER has unconnected port alu_result[8]
 WARNING: [Synth 8-3331] design PROCESSOR_DECODER has unconnected port alu_result[7]
+WARNING: [Synth 8-3331] design PROCESSOR_DECODER has unconnected port alu_result[6]
+WARNING: [Synth 8-3331] design PROCESSOR_DECODER has unconnected port alu_result[5]
+WARNING: [Synth 8-3331] design PROCESSOR_DECODER has unconnected port alu_result[4]
 INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:16 ; elapsed = 00:00:18 . Memory (MB): peak = 1581.004 ; gain = 407.871 ; free physical = 1957 ; free virtual = 20129
+Finished RTL Elaboration : Time (s): cpu = 00:00:16 ; elapsed = 00:00:18 . Memory (MB): peak = 1580.996 ; gain = 407.871 ; free physical = 2599 ; free virtual = 19295
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -405,7 +392,7 @@ Report Check Netlist:
 |1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
 +------+------------------+-------+---------+-------+------------------+
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:19 ; elapsed = 00:00:21 . Memory (MB): peak = 1581.004 ; gain = 407.871 ; free physical = 2010 ; free virtual = 20174
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:19 ; elapsed = 00:00:21 . Memory (MB): peak = 1580.996 ; gain = 407.871 ; free physical = 2603 ; free virtual = 19305
 ---------------------------------------------------------------------------------
 INFO: [Device 21-403] Loading part xc7a100tcsg324-1
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -421,31 +408,30 @@ Completed Processing XDC Constraints
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.03 . Memory (MB): peak = 2140.637 ; gain = 0.000 ; free physical = 1498 ; free virtual = 19677
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.03 . Memory (MB): peak = 2141.629 ; gain = 0.000 ; free physical = 2027 ; free virtual = 18723
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:55 ; elapsed = 00:01:14 . Memory (MB): peak = 2140.637 ; gain = 967.504 ; free physical = 1961 ; free virtual = 20117
+Finished Constraint Validation : Time (s): cpu = 00:00:54 ; elapsed = 00:01:12 . Memory (MB): peak = 2141.629 ; gain = 968.504 ; free physical = 2389 ; free virtual = 19127
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a100tcsg324-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:55 ; elapsed = 00:01:14 . Memory (MB): peak = 2140.637 ; gain = 967.504 ; free physical = 1961 ; free virtual = 20117
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:54 ; elapsed = 00:01:12 . Memory (MB): peak = 2141.629 ; gain = 968.504 ; free physical = 2389 ; free virtual = 19127
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:55 ; elapsed = 00:01:14 . Memory (MB): peak = 2140.637 ; gain = 967.504 ; free physical = 1961 ; free virtual = 20117
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:54 ; elapsed = 00:01:12 . Memory (MB): peak = 2141.629 ; gain = 968.504 ; free physical = 2389 ; free virtual = 19127
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-5545] ROM "slow_clk" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
 INFO: [Synth 8-5545] ROM "counter" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
 INFO: [Synth 8-5546] ROM "rom" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "PCSrc" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "low_result" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5845] Not enough pipeline registers after wide multiplier. Recommended levels of pipeline registers is 4 [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:808]
-INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:337]
-WARNING: [Synth 8-6014] Unused sequential element Q_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:329]
+INFO: [Synth 8-5845] Not enough pipeline registers after wide multiplier. Recommended levels of pipeline registers is 4 [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:816]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:336]
+WARNING: [Synth 8-6014] Unused sequential element Q_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:328]
 INFO: [Synth 8-5546] ROM "break_code_detected" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "extended" won't be mapped to RAM because it is too sparse
 WARNING: [Synth 8-6014] Unused sequential element extended_count_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:133]
@@ -456,10 +442,11 @@ INFO: [Synth 8-4471] merging register 'video_wr_reg' into 'video_out_control_reg
 INFO: [Synth 8-4471] merging register 'video_oe_reg' into 'xy_count_select_reg' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:454]
 WARNING: [Synth 8-6014] Unused sequential element video_wr_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:452]
 WARNING: [Synth 8-6014] Unused sequential element video_oe_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:454]
-WARNING: [Synth 8-327] inferring latch for variable 'high_result_reg' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:788]
-WARNING: [Synth 8-327] inferring latch for variable 'low_result_reg' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:789]
+WARNING: [Synth 8-327] inferring latch for variable 'result_reg' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:772]
+WARNING: [Synth 8-327] inferring latch for variable 'high_result_reg' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:789]
+WARNING: [Synth 8-327] inferring latch for variable 'low_result_reg' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:790]
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:01:32 ; elapsed = 00:02:03 . Memory (MB): peak = 2140.637 ; gain = 967.504 ; free physical = 1810 ; free virtual = 19962
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:01:34 ; elapsed = 00:02:05 . Memory (MB): peak = 2141.629 ; gain = 968.504 ; free physical = 2256 ; free virtual = 19011
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -471,12 +458,12 @@ Report RTL Partitions:
 |3     |RAM_B__GB2                 |           1|      9554|
 |4     |RAM_B__GB3                 |           1|     13588|
 |5     |RAM_B__GB4                 |           1|     18331|
-|6     |muxpart__2060              |           1|     32736|
+|6     |muxpart__2062              |           1|     32736|
 |7     |RAM_B__parameterized0__GB1 |           1|      5434|
 |8     |RAM_B__parameterized0__GB2 |           1|      9536|
 |9     |RAM_B__parameterized0__GB3 |           1|     13574|
 |10    |RAM_B__parameterized0__GB4 |           1|     18347|
-|11    |muxpart__3085              |           1|     32736|
+|11    |muxpart__3087              |           1|     32736|
 |12    |RAM_B__parameterized1__GB1 |           1|      5436|
 |13    |RAM_B__parameterized1__GB2 |           1|      9536|
 |14    |RAM_B__parameterized1__GB3 |           1|     13622|
@@ -484,7 +471,8 @@ Report RTL Partitions:
 |16    |RAM_B__parameterized2__GB0 |           1|     31996|
 |17    |RAM_B__parameterized2__GB1 |           1|      9498|
 |18    |RAM_B__parameterized2__GB2 |           1|     13581|
-|19    |Motherboard__GC0           |           1|     27409|
+|19    |Motherboard__GCB0          |           1|     15468|
+|20    |Motherboard__GCB1          |           1|     12978|
 +------+---------------------------+------------+----------+
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -522,7 +510,7 @@ Detailed RTL Component Info :
 	              256 Bit         RAMs := 1     
 	              128 Bit         RAMs := 1     
 +---Muxes : 
-	  25 Input     33 Bit        Muxes := 1     
+	  56 Input     33 Bit        Muxes := 1     
 	   2 Input     32 Bit        Muxes := 11    
 	  24 Input     32 Bit        Muxes := 1     
 	   4 Input     32 Bit        Muxes := 3     
@@ -586,24 +574,6 @@ Detailed RTL Component Info :
 	                8 Bit    Registers := 1     
 +---Muxes : 
 	   2 Input      1 Bit        Muxes := 1024  
-Module CLOCK_GENERATOR 
-Detailed RTL Component Info : 
-+---Adders : 
-	   2 Input     32 Bit       Adders := 1     
-+---Registers : 
-	               32 Bit    Registers := 1     
-	                1 Bit    Registers := 1     
-+---Muxes : 
-	   2 Input     32 Bit        Muxes := 1     
-	   2 Input      1 Bit        Muxes := 1     
-Module Syncronizer 
-Detailed RTL Component Info : 
-+---Registers : 
-	                1 Bit    Registers := 1     
-Module ROM 
-Detailed RTL Component Info : 
-+---Muxes : 
-	  25 Input     33 Bit        Muxes := 1     
 Module IMMEDIATE_TO_ALU_CONVERTER 
 Detailed RTL Component Info : 
 +---Muxes : 
@@ -654,6 +624,14 @@ Detailed RTL Component Info :
 +---Muxes : 
 	   2 Input      4 Bit        Muxes := 1     
 	   2 Input      3 Bit        Muxes := 1     
+Module ROM 
+Detailed RTL Component Info : 
++---Muxes : 
+	  56 Input     33 Bit        Muxes := 1     
+Module Syncronizer 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 1     
 Module DECODER 
 Detailed RTL Component Info : 
 +---Muxes : 
@@ -814,6 +792,16 @@ Module VGA_Terminal
 Detailed RTL Component Info : 
 +---Adders : 
 	   2 Input     12 Bit       Adders := 1     
+Module CLOCK_GENERATOR 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     32 Bit       Adders := 1     
++---Registers : 
+	               32 Bit    Registers := 1     
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 1     
 ---------------------------------------------------------------------------------
 Finished RTL Hierarchical Component Statistics
 ---------------------------------------------------------------------------------
@@ -830,6 +818,7 @@ INFO: [Synth 8-5580] Multithreading enabled for synth_design using a maximum of 
 ---------------------------------------------------------------------------------
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
+INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
@@ -1137,6 +1126,9 @@ INFO: [Common 17-14] Message 'Synth 8-3333' appears 100 times and further instan
 INFO: [Common 17-14] Message 'Synth 8-5546' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 INFO: [Common 17-14] Message 'Synth 8-3333' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Common 17-14] Message 'Synth 8-5546' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Common 17-14] Message 'Synth 8-3333' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 DSP Report: Generating DSP low_result0, operation Mode is: A*B.
 DSP Report: operator low_result0 is absorbed into DSP low_result0.
 DSP Report: operator low_result0 is absorbed into DSP low_result0.
@@ -1149,7 +1141,7 @@ DSP Report: operator low_result0 is absorbed into DSP low_result0.
 DSP Report: Generating DSP low_result0, operation Mode is: (PCIN>>17)+A*B.
 DSP Report: operator low_result0 is absorbed into DSP low_result0.
 DSP Report: operator low_result0 is absorbed into DSP low_result0.
-WARNING: [Synth 8-6014] Unused sequential element keyboard/counter_ps2_clks/Q_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:329]
+WARNING: [Synth 8-6014] Unused sequential element keyboard/counter_ps2_clks/Q_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:328]
 WARNING: [Synth 8-6014] Unused sequential element extended_count_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:133]
 WARNING: [Synth 8-6014] Unused sequential element pixel_clock_generator/count_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:766]
 WARNING: [Synth 8-6014] Unused sequential element vga_controller/hcount_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:814]
@@ -1234,7 +1226,7 @@ WARNING: [Synth 8-3332] Sequential element (ascii_to_vga/read_position_reg[1]) i
 WARNING: [Synth 8-3332] Sequential element (ascii_to_vga/read_position_reg[2]) is unused and will be removed from module ASCII_Keyboard.
 WARNING: [Synth 8-3332] Sequential element (ascii_to_vga/read_position_reg[3]) is unused and will be removed from module ASCII_Keyboard.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:02:25 ; elapsed = 00:04:34 . Memory (MB): peak = 2144.559 ; gain = 971.426 ; free physical = 282 ; free virtual = 17966
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:02:33 ; elapsed = 00:04:47 . Memory (MB): peak = 2145.551 ; gain = 972.426 ; free physical = 359 ; free virtual = 16996
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -1270,13 +1262,13 @@ Block RAM: Preliminary Mapping  Report (see note below)
 Note: The tale above is a preliminary report that shows the Block RAMs at the current stage of the synthesis flow. Some Block RAMs may be reimplemented as non Block RAM primitives later in the synthesis flow. Multiple instantiated Block RAMs are reported only once. 
 
 Distributed RAM: Preliminary Mapping  Report (see note below)
-+-----------------+---------------------------+-----------+----------------------+---------------+
-|Module Name      | RTL Object                | Inference | Size (Depth x Width) | Primitives    | 
-+-----------------+---------------------------+-----------+----------------------+---------------+
-|mips             | regfile/register_file_reg | Implied   | 32 x 32              | RAM32M x 12   | 
-|vga_ascii_fifo   | mem_reg                   | Implied   | 32 x 8               | RAM32M x 4    | 
-|vga_address_fifo | mem_reg                   | Implied   | 32 x 12              | RAM32M x 4    | 
-+-----------------+---------------------------+-----------+----------------------+---------------+
++------------------+--------------------------------+-----------+----------------------+---------------+
+|Module Name       | RTL Object                     | Inference | Size (Depth x Width) | Primitives    | 
++------------------+--------------------------------+-----------+----------------------+---------------+
+|Motherboard__GCB0 | mips/regfile/register_file_reg | Implied   | 32 x 32              | RAM32M x 12   | 
+|vga_ascii_fifo    | mem_reg                        | Implied   | 32 x 8               | RAM32M x 4    | 
+|vga_address_fifo  | mem_reg                        | Implied   | 32 x 12              | RAM32M x 4    | 
++------------------+--------------------------------+-----------+----------------------+---------------+
 
 Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
 
@@ -1302,35 +1294,36 @@ Report RTL Partitions:
 +------+---------------------------+------------+----------+
 |1     |RAM_B__GB0                 |           1|      8194|
 |2     |RAM_B__GB1                 |           1|      1352|
-|3     |RAM_B__GB2                 |           1|      2406|
-|4     |RAM_B__GB3                 |           1|      3305|
+|3     |RAM_B__GB2                 |           1|      2422|
+|4     |RAM_B__GB3                 |           1|      3308|
 |5     |RAM_B__GB4                 |           1|      3125|
-|6     |muxpart__2060              |           1|     32736|
+|6     |muxpart__2062              |           1|     32736|
 |7     |RAM_B__parameterized0__GB1 |           1|      1382|
-|8     |RAM_B__parameterized0__GB2 |           1|      2385|
-|9     |RAM_B__parameterized0__GB3 |           1|      3331|
+|8     |RAM_B__parameterized0__GB2 |           1|      2398|
+|9     |RAM_B__parameterized0__GB3 |           1|      3337|
 |10    |RAM_B__parameterized0__GB4 |           1|      3139|
-|11    |muxpart__3085              |           1|     32736|
-|12    |RAM_B__parameterized1__GB1 |           1|      1375|
-|13    |RAM_B__parameterized1__GB2 |           1|      2387|
-|14    |RAM_B__parameterized1__GB3 |           1|      3293|
-|15    |RAM_B__parameterized1__GB4 |           1|      3129|
+|11    |muxpart__3087              |           1|     32736|
+|12    |RAM_B__parameterized1__GB1 |           1|      1388|
+|13    |RAM_B__parameterized1__GB2 |           1|      2388|
+|14    |RAM_B__parameterized1__GB3 |           1|      3297|
+|15    |RAM_B__parameterized1__GB4 |           1|      3130|
 |16    |RAM_B__parameterized2__GB0 |           1|     14160|
 |17    |RAM_B__parameterized2__GB1 |           1|      1792|
 |18    |RAM_B__parameterized2__GB2 |           1|      1880|
-|19    |Motherboard__GC0           |           1|     13476|
+|19    |Motherboard__GCB0          |           1|      8569|
+|20    |Motherboard__GCB1          |           1|      5535|
 +------+---------------------------+------------+----------+
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:02:35 ; elapsed = 00:04:48 . Memory (MB): peak = 2144.559 ; gain = 971.426 ; free physical = 160 ; free virtual = 17831
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:02:43 ; elapsed = 00:05:02 . Memory (MB): peak = 2145.551 ; gain = 972.426 ; free physical = 190 ; free virtual = 16843
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:02:47 ; elapsed = 00:05:00 . Memory (MB): peak = 2144.559 ; gain = 971.426 ; free physical = 174 ; free virtual = 17802
+Finished Timing Optimization : Time (s): cpu = 00:02:57 ; elapsed = 00:05:16 . Memory (MB): peak = 2145.551 ; gain = 972.426 ; free physical = 172 ; free virtual = 16750
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -1346,13 +1339,13 @@ Block RAM: Final Mapping  Report
 
 
 Distributed RAM: Final Mapping  Report
-+-----------------+---------------------------+-----------+----------------------+---------------+
-|Module Name      | RTL Object                | Inference | Size (Depth x Width) | Primitives    | 
-+-----------------+---------------------------+-----------+----------------------+---------------+
-|mips             | regfile/register_file_reg | Implied   | 32 x 32              | RAM32M x 12   | 
-|vga_ascii_fifo   | mem_reg                   | Implied   | 32 x 8               | RAM32M x 4    | 
-|vga_address_fifo | mem_reg                   | Implied   | 32 x 12              | RAM32M x 4    | 
-+-----------------+---------------------------+-----------+----------------------+---------------+
++------------------+--------------------------------+-----------+----------------------+---------------+
+|Module Name       | RTL Object                     | Inference | Size (Depth x Width) | Primitives    | 
++------------------+--------------------------------+-----------+----------------------+---------------+
+|Motherboard__GCB0 | mips/regfile/register_file_reg | Implied   | 32 x 32              | RAM32M x 12   | 
+|vga_ascii_fifo    | mem_reg                        | Implied   | 32 x 8               | RAM32M x 4    | 
+|vga_address_fifo  | mem_reg                        | Implied   | 32 x 12              | RAM32M x 4    | 
++------------------+--------------------------------+-----------+----------------------+---------------+
 
 ---------------------------------------------------------------------------------
 Finished ROM, RAM, DSP and Shift Register Reporting
@@ -1367,12 +1360,12 @@ Report RTL Partitions:
 |3     |RAM_B__GB2                 |           1|      2403|
 |4     |RAM_B__GB3                 |           1|      3304|
 |5     |RAM_B__GB4                 |           1|      3125|
-|6     |muxpart__2060              |           1|      8184|
+|6     |muxpart__2062              |           1|      8184|
 |7     |RAM_B__parameterized0__GB1 |           1|      1382|
 |8     |RAM_B__parameterized0__GB2 |           1|      2384|
 |9     |RAM_B__parameterized0__GB3 |           1|      3328|
 |10    |RAM_B__parameterized0__GB4 |           1|      3139|
-|11    |muxpart__3085              |           1|      8184|
+|11    |muxpart__3087              |           1|      8184|
 |12    |RAM_B__parameterized1__GB1 |           1|      1375|
 |13    |RAM_B__parameterized1__GB2 |           1|      2384|
 |14    |RAM_B__parameterized1__GB3 |           1|      3292|
@@ -1380,17 +1373,18 @@ Report RTL Partitions:
 |16    |RAM_B__parameterized2__GB0 |           1|     14160|
 |17    |RAM_B__parameterized2__GB1 |           1|      1792|
 |18    |RAM_B__parameterized2__GB2 |           1|      1880|
-|19    |Motherboard__GC0           |           1|     13478|
+|19    |Motherboard__GCB0          |           1|      8557|
+|20    |Motherboard__GCB1          |           1|      5532|
 +------+---------------------------+------------+----------+
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:819]
 INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:814]
-INFO: [Synth 8-4480] The timing for the instance i_18/vga_term/video_ram/ram_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
-INFO: [Synth 8-4480] The timing for the instance i_18/vga_term/buffer_ram/ram_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance vga_term/video_ram/ram_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance vga_term/buffer_ram/ram_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:03:15 ; elapsed = 00:05:34 . Memory (MB): peak = 2189.969 ; gain = 1016.836 ; free physical = 232 ; free virtual = 17571
+Finished Technology Mapping : Time (s): cpu = 00:03:22 ; elapsed = 00:05:46 . Memory (MB): peak = 2194.234 ; gain = 1021.109 ; free physical = 380 ; free virtual = 16585
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -1398,7 +1392,6 @@ Report RTL Partitions:
 |      |RTL Partition              |Replication |Instances |
 +------+---------------------------+------------+----------+
 |1     |RAM_B__parameterized2__GB0 |           1|      9769|
-|2     |Motherboard__GC0           |           1|      6093|
 +------+---------------------------+------------+----------+
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -1420,7 +1413,7 @@ INFO: [Synth 8-4480] The timing for the instance vga_term/buffer_ram/ram_reg (im
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:03:23 ; elapsed = 00:05:42 . Memory (MB): peak = 2189.969 ; gain = 1016.836 ; free physical = 277 ; free virtual = 17616
+Finished IO Insertion : Time (s): cpu = 00:03:33 ; elapsed = 00:05:56 . Memory (MB): peak = 2194.234 ; gain = 1021.109 ; free physical = 329 ; free virtual = 16606
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -1433,7 +1426,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:03:23 ; elapsed = 00:05:43 . Memory (MB): peak = 2189.969 ; gain = 1016.836 ; free physical = 277 ; free virtual = 17616
+Finished Renaming Generated Instances : Time (s): cpu = 00:03:33 ; elapsed = 00:05:57 . Memory (MB): peak = 2194.234 ; gain = 1021.109 ; free physical = 331 ; free virtual = 16605
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -1445,25 +1438,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:03:27 ; elapsed = 00:05:47 . Memory (MB): peak = 2189.969 ; gain = 1016.836 ; free physical = 276 ; free virtual = 17615
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:03:38 ; elapsed = 00:06:01 . Memory (MB): peak = 2194.234 ; gain = 1021.109 ; free physical = 343 ; free virtual = 16615
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:03:30 ; elapsed = 00:05:50 . Memory (MB): peak = 2189.969 ; gain = 1016.836 ; free physical = 278 ; free virtual = 17617
+Finished Renaming Generated Ports : Time (s): cpu = 00:03:40 ; elapsed = 00:06:03 . Memory (MB): peak = 2194.234 ; gain = 1021.109 ; free physical = 344 ; free virtual = 16615
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:03:32 ; elapsed = 00:05:53 . Memory (MB): peak = 2189.969 ; gain = 1016.836 ; free physical = 282 ; free virtual = 17615
+Finished Handling Custom Attributes : Time (s): cpu = 00:03:42 ; elapsed = 00:06:06 . Memory (MB): peak = 2194.234 ; gain = 1021.109 ; free physical = 350 ; free virtual = 16615
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:03:33 ; elapsed = 00:05:53 . Memory (MB): peak = 2189.969 ; gain = 1016.836 ; free physical = 282 ; free virtual = 17615
+Finished Renaming Generated Nets : Time (s): cpu = 00:03:42 ; elapsed = 00:06:06 . Memory (MB): peak = 2194.234 ; gain = 1021.109 ; free physical = 351 ; free virtual = 16616
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -1480,23 +1473,23 @@ Report Cell Usage:
 |      |Cell      |Count |
 +------+----------+------+
 |1     |BUFG      |     5|
-|2     |CARRY4    |   777|
+|2     |CARRY4    |   797|
 |3     |DSP48E1   |     4|
 |4     |DSP48E1_1 |     1|
-|5     |LUT1      |   267|
-|6     |LUT2      |   503|
-|7     |LUT3      |  2226|
-|8     |LUT4      |   921|
-|9     |LUT5      |   701|
-|10    |LUT6      | 13388|
-|11    |MUXF7     |  4499|
-|12    |MUXF8     |  2212|
+|5     |LUT1      |   277|
+|6     |LUT2      |   662|
+|7     |LUT3      |  2201|
+|8     |LUT4      |   922|
+|9     |LUT5      |   788|
+|10    |LUT6      | 13499|
+|11    |MUXF7     |  4522|
+|12    |MUXF8     |  2216|
 |13    |RAM32M    |    20|
 |14    |RAMB36E1  |     2|
-|15    |FDCE      |   390|
+|15    |FDCE      |   379|
 |16    |FDPE      |     3|
 |17    |FDRE      | 32803|
-|18    |LD        |    64|
+|18    |LD        |    96|
 |19    |IBUF      |     6|
 |20    |OBUF      |    15|
 +------+----------+------+
@@ -1505,61 +1498,62 @@ Report Instance Areas:
 +------+--------------------------+--------------------------+------+
 |      |Instance                  |Module                    |Cells |
 +------+--------------------------+--------------------------+------+
-|1     |top                       |                          | 58807|
-|2     |  button_clk              |Syncronizer               |     2|
+|1     |top                       |                          | 59218|
+|2     |  button_clk              |Syncronizer               |     1|
 |3     |  clock                   |CLOCK_GENERATOR           |    83|
-|4     |  keyboard                |ASCII_Keyboard            |    75|
-|5     |    ascii_to_vga          |FIFO                      |    17|
+|4     |  keyboard                |ASCII_Keyboard            |    84|
+|5     |    ascii_to_vga          |FIFO                      |    18|
 |6     |    keyboard              |Keyboard                  |    31|
 |7     |      counter_ps2_clks    |COUNTER                   |    14|
 |8     |      scan_code_register  |SHIFTREGISTER             |    15|
 |9     |      sync_clk            |Syncronizer_3             |     1|
 |10    |      sync_data           |Syncronizer_4             |     1|
-|11    |  mips                    |MIPS                      |  8768|
+|11    |  mips                    |MIPS                      |  9342|
 |12    |    adder                 |ADDER                     |     8|
-|13    |    alu                   |ALU                       |  2838|
-|14    |    branch_pc_adder       |ADDER_2                   |    10|
-|15    |    pc_register           |REGISTER                  |  5847|
-|16    |    regfile               |REGFILE                   |    65|
-|17    |  ramb_0                  |RAM_B__parameterized2     | 12017|
-|18    |  ramb_1                  |RAM_B__parameterized1     | 12026|
-|19    |  ramb_2                  |RAM_B__parameterized0     | 12024|
-|20    |  ramb_3                  |RAM_B                     | 12023|
+|13    |    branch_pc_adder       |ADDER_2                   |     8|
+|14    |    alu                   |ALU                       |  2905|
+|15    |    pc_register           |REGISTER                  |  6220|
+|16    |    regfile               |REGFILE                   |   201|
+|17    |  ramb_0                  |RAM_B__parameterized2     | 12016|
+|18    |  ramb_1                  |RAM_B__parameterized1     | 12016|
+|19    |  ramb_2                  |RAM_B__parameterized0     | 12016|
+|20    |  ramb_3                  |RAM_B                     | 12016|
 |21    |  vga_address_fifo        |FIFO__parameterized1      |    90|
 |22    |  vga_ascii_fifo          |FIFO__parameterized0      |    70|
-|23    |  vga_term                |VGA_Terminal              |  1507|
+|23    |  vga_term                |VGA_Terminal              |  1409|
 |24    |    ram_address_mux       |MUX__parameterized4_0     |    12|
 |25    |    buffer_address_mux    |MUX__parameterized4       |    12|
 |26    |    buffer_ram            |RAM                       |     2|
-|27    |    cu                    |VGA_Terminal_Control_Unit |   930|
+|27    |    cu                    |VGA_Terminal_Control_Unit |   843|
 |28    |    linearize             |ConvertXYToAddress        |     1|
 |29    |    pixel_clock_generator |PixelClock                |    47|
-|30    |    rom                   |FontROM                   |   302|
-|31    |    vga_controller        |VGA                       |   199|
+|30    |    rom                   |FontROM                   |   299|
+|31    |    vga_controller        |VGA                       |   191|
 |32    |    video_ram             |RAM_1                     |     2|
 +------+--------------------------+--------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:03:33 ; elapsed = 00:05:53 . Memory (MB): peak = 2189.969 ; gain = 1016.836 ; free physical = 282 ; free virtual = 17615
+Finished Writing Synthesis Report : Time (s): cpu = 00:03:42 ; elapsed = 00:06:06 . Memory (MB): peak = 2194.234 ; gain = 1021.109 ; free physical = 351 ; free virtual = 16616
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 125 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:03:08 ; elapsed = 00:05:15 . Memory (MB): peak = 2189.969 ; gain = 457.203 ; free physical = 2712 ; free virtual = 20048
-Synthesis Optimization Complete : Time (s): cpu = 00:03:33 ; elapsed = 00:05:56 . Memory (MB): peak = 2189.969 ; gain = 1016.836 ; free physical = 2728 ; free virtual = 20048
+Synthesis finished with 0 errors, 0 critical warnings and 122 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:03:18 ; elapsed = 00:05:28 . Memory (MB): peak = 2194.234 ; gain = 460.477 ; free physical = 2525 ; free virtual = 18791
+Synthesis Optimization Complete : Time (s): cpu = 00:03:43 ; elapsed = 00:06:08 . Memory (MB): peak = 2194.234 ; gain = 1021.109 ; free physical = 2542 ; free virtual = 18791
 INFO: [Project 1-571] Translating synthesized netlist
-INFO: [Netlist 29-17] Analyzing 7585 Unisim elements for replacement
+INFO: [Netlist 29-17] Analyzing 7664 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
-INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Opt 31-138] Pushed 1 inverter(s) to 12 load pin(s).
 INFO: [Project 1-111] Unisim Transformation Summary:
-  A total of 84 instances were transformed.
-  LD => LDCE: 64 instances
-  RAM32M => RAM32M (RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMS32, RAMS32): 20 instances
+  A total of 116 instances were transformed.
+  LD => LDCE: 96 instances
+  RAM32M => RAM32M (RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMS32, RAMS32): 8 instances
+  RAM32M => RAM32M (inverted pins: WCLK) (RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMS32, RAMS32): 12 instances
 
 INFO: [Common 17-83] Releasing license: Synthesis
-456 Infos, 230 Warnings, 0 Critical Warnings and 0 Errors encountered.
+458 Infos, 225 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:03:42 ; elapsed = 00:06:05 . Memory (MB): peak = 2202.062 ; gain = 1042.305 ; free physical = 2776 ; free virtual = 20096
+synth_design: Time (s): cpu = 00:03:53 ; elapsed = 00:06:18 . Memory (MB): peak = 2206.328 ; gain = 1046.578 ; free physical = 2613 ; free virtual = 18845
 INFO: [Common 17-1381] The checkpoint '/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.runs/synth_2/Motherboard.dcp' has been generated.
-write_checkpoint: Time (s): cpu = 00:00:09 ; elapsed = 00:00:11 . Memory (MB): peak = 2226.074 ; gain = 24.012 ; free physical = 2784 ; free virtual = 20110
+write_checkpoint: Time (s): cpu = 00:00:11 ; elapsed = 00:00:14 . Memory (MB): peak = 2230.340 ; gain = 24.012 ; free physical = 2506 ; free virtual = 18798
 INFO: [runtcl-4] Executing : report_utilization -file Motherboard_utilization_synth.rpt -pb VGA_Terminal_utilization_synth.pb
-report_utilization: Time (s): cpu = 00:00:00.35 ; elapsed = 00:00:00.47 . Memory (MB): peak = 2226.074 ; gain = 0.000 ; free physical = 2784 ; free virtual = 20113
-INFO: [Common 17-206] Exiting Vivado at Thu Mar 15 20:43:10 2018...
+report_utilization: Time (s): cpu = 00:00:00.45 ; elapsed = 00:00:00.63 . Memory (MB): peak = 2230.340 ; gain = 0.000 ; free physical = 2491 ; free virtual = 18788
+INFO: [Common 17-206] Exiting Vivado at Fri Mar 16 13:34:59 2018...

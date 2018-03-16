@@ -413,13 +413,13 @@ integer v;
 //// Wires
 // ==================================
 wire [(`HARDWARE_CONTROLLED_ROWS*`TERMINAL_COLUMNS*`ASCII_WIDTH)-1:0] strings = {
-    "       PC:0x","FFFFFFFF","  DataBus:0x","FFFFFFFF","   DEBUG0:0x","FFFFFFFF","   DEBUG5:0x","FFFFFFFF",
-    "   ALUOUT:0x","FFFFFFFF","  AddrBus:0x","FFFFFFFF","   DEBUG1:0x","FFFFFFFF","   DEBUG6:0x","FFFFFFFF",
-    "  REGOUT1:0x","FFFFFFFF","  CtrlSig:0x","FFFFFFFF","   DEBUG2:0x","FFFFFFFF","   DEBUG7:0x","FFFFFFFF",
-    "  REGOUT2:0x","FFFFFFFF"," Instruct:0x","FFFFFFFF","   DEBUG3:0x","FFFFFFFF","   DEBUG8:0x","FFFFFFFF",
-    " REGWRITE:0x","FFFFFFFF","         :0x","FFFFFFFF","   DEBUG4:0x","FFFFFFFF","   DEBUG9:0x","FFFFFFFF",
+    "       PC:0x","FFFFFFFF"," RGWRADDR:0x","FFFFFFFF","   DEBUG0:0x","FFFFFFFF","   DEBUG5:0x","FFFFFFFF",
+    "   ALUOUT:0x","FFFFFFFF","  DataBus:0x","FFFFFFFF","   DEBUG1:0x","FFFFFFFF","   DEBUG6:0x","FFFFFFFF",
+    "  REGOUT1:0x","FFFFFFFF","  AddrBus:0x","FFFFFFFF","   DEBUG2:0x","FFFFFFFF","   DEBUG7:0x","FFFFFFFF",
+    "  REGOUT2:0x","FFFFFFFF","  CtrlSig:0x","FFFFFFFF","   DEBUG3:0x","FFFFFFFF","   DEBUG8:0x","FFFFFFFF",
+    " REGWRITE:0x","FFFFFFFF"," Instruct:0x","FFFFFFFF","   DEBUG4:0x","FFFFFFFF","   DEBUG9:0x","FFFFFFFF",
     "------------","--------","------------","--DEBUG ","MONITOR-----","--------","------------","--------"
-};
+};  //REGWADDR
 // ==================================
 //// Wire Assignments
 // ==================================

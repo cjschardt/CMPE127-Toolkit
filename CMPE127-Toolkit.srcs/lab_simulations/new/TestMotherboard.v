@@ -81,7 +81,7 @@ begin
 end
 endtask
 
-parameter FULL_CYCLE = 32'd1000;
+parameter FULL_CYCLE = 32'd3000;
 
 initial begin
     #10

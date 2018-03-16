@@ -469,7 +469,6 @@ module Keyboard_DEMO(
 
 wire [7:0] ascii;
 wire [7:0] scan_code;
-wire ready;
 wire busy;
 // wire [12:0] address;
 reg [12:0] address;

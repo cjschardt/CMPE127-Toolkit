@@ -173,6 +173,7 @@ module MIPS(
     output wire [`REGISTER_WIDTH-1:0] RegOut1,
     output wire [`REGISTER_WIDTH-1:0] RegOut2,
     output wire [`REGISTER_WIDTH-1:0] RegWriteData,
+    output wire [`REGISTER_WIDTH-1:0] RegWriteAddress,
     input wire  [`REGISTER_WIDTH-1:0] Instruction
 );
 
@@ -183,7 +184,7 @@ assign mips_instruction = Instruction;
 assign RegOut1          = read_data_1;
 assign RegOut2          = read_data_2;
 assign RegWriteData     = write_data;
-
+assign RegWriteAddress  = write_address;
 //// R-type instruction
 wire [ 5:0] opcode                 = mips_instruction[31:26];
 wire [ 4:0] register_source        = mips_instruction[25:21];
@@ -199,7 +200,8 @@ wire [25:0] jump_address           = mips_instruction[25:0];
 wire [`INSTRUCTION_WIDTH-1:0] mips_instruction;
 wire [`REGISTER_WIDTH-1:0] final_pc;
 wire [`REGISTER_WIDTH-1:0] next_pc;
-wire less_than_eq, greater_than;
+wire less_than_eq; 
+wire greater_than;
 
 wire [`REGISTER_WIDTH-1:0] branch_pc;
 wire [`REGISTER_WIDTH-1:0] alu_b;
@@ -406,7 +408,6 @@ module PROCESSOR_DECODER(
     output reg [1:0]                RegWriteDst,
     output reg [1:0]                RegInSelect,
     output reg [1:0]                PCSrc,
-    output reg [1:0]                HiLoSelect,
     output reg                      ALUSrc,
     output reg                      SignExtImm,
     output reg                      RegWrite,
@@ -802,7 +803,12 @@ begin
         `FUNCTION_OP_XOR:       result <=  (a ^ b);
         `PSUEDO_LOAD_UPPER:     result <= (b << `REGISTER_WIDTH/2);
         default:                result <= `REGISTER_WIDTH'hxxxxxxxx;
-
+        /* NOTE:
+            The clk signal is used here only to qualify the period before an instruction
+            transition. Without this qualification, during transition, the high_result and
+            low_result registers are re-written with contents of the next instruction
+            destroying the results of the previous instruction.
+        */
         `FUNCTION_OP_MULT, `FUNCTION_OP_MULTU: 
         begin
             if(!clk)
