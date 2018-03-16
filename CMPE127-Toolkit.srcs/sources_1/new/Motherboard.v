@@ -165,7 +165,7 @@ ROM #(
     .WIDTH(32),
     .FILE_NAME("rom.mem")
 ) rom (
-	.a({2'b00, ProgramCounter[31:2]}),
+	.a(ProgramCounter[13:2]),
 	.out(Instruction)
 );
 
@@ -339,6 +339,8 @@ OR #(.WIDTH(2)) fifo_to_vga_cs_and (
 	.out(vga_cs)
 );
 
+wire [31:0] ControlBus = { {(32-12){1'b0}}, 3'b0, BusCycle, 3'b0, MemRead, 3'b0, MemWrite };
+
 VGA_Terminal vga_term(
     .clk(clk100Mhz),
     .rst(rst),
@@ -347,33 +349,11 @@ VGA_Terminal vga_term(
     .r(r),
     .g(g),
     .b(b),
-    .values({
-        ProgramCounter,
-        DataBus,
-        32'h0,
-        32'h0,
-
-        ALUResult,
-        AddressBus,
-        32'h0,
-        32'h0,
-        
-        RegOut1,
-        { {(32-12){1'b0}}, 3'b0, BusCycle, 3'b0, MemRead, 3'b0, MemWrite },
-        32'h0,
-        32'h0,
-        
-        RegOut2,
-        Instruction,
-        32'h0,
-        32'h0,
-        
-        RegWriteData,
-        32'h0,
-        32'h0,
-        32'h0
-        //mips_instruction
-    }),
+    .value0(ProgramCounter), .value1(DataBus), .value2(32'h0), .value3(32'h0),
+    .value4(ALUResult),  .value5(AddressBus), .value6(32'h0), .value7(32'h0),
+    .value8(RegOut1), .value9(ControlBus), .value10(32'h0), .value11(32'h0),
+    .value12(RegOut2), .value13(Instruction), .value14(32'h0), .value15(32'h0),
+    .value16(RegWriteData), .value17(32'h0), .value18(32'h0), .value19(32'h0),
     .address(vga_AddressBus),
     .data(vga_DataBus),
     .cs(vga_cs),

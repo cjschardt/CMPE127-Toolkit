@@ -100,32 +100,17 @@ VGA_Terminal(
     .r(r),
     .g(g),
     .b(b),
-    .values({
-        debug_value_0,
-        debug_value_1,
-        debug_value_2,
-        debug_value_3,
-        32'h12345678,
-        debug_value_4,
-        debug_value_5,
-        debug_value_6,
-        debug_value_7,
-        32'h9ABCDEF0,
-        debug_value_8,
-        debug_value_9,
-        32'h22222222,
-        32'h33333333,
-        32'h44444444,
-        32'h55555555,
-        32'h66666666,
-        32'h77777777,
-        32'h88888888,
-        32'hDEADBEEF
-    }),
+    .value0(debug_value_0), .value1(debug_value_1), .value2(debug_value_2),  .value3(debug_value_3),
+    .value4(32'h12345678),  .value5(debug_value_4), .value6(debug_value_5),  .value7(debug_value_6),
+    .value8(debug_value_7), .value9(32'h9ABCDEF0),  .value10(debug_value_8), .value11(debug_value_9),
+    .value12(32'h22222222), .value13(32'h33333333), .value14(32'h44444444),  .value15(32'h55555555),
+    .value16(32'h66666666), .value17(32'h77777777), .value18(32'h88888888),  .value19(32'hDEADBEE),
     .address(sign_extend_address),
     .data(sign_extend_data),
     .cs(cs),
-    .busy(busy)
+    .busy(busy),
+    .text(3'b111),
+    .background(3'b000)
 );
 
 endmodule
@@ -142,7 +127,27 @@ module VGA_Terminal(
     output wire [`RGB_RESOLUTION-1:0] r,
     output wire [`RGB_RESOLUTION-1:0] g,
     output wire [`RGB_RESOLUTION-1:0] b,
-    input wire [(`TOTAL_SEGMENTS*`VALUE_BIT_WIDTH)-1:0] values,
+    // input wire [(`TOTAL_SEGMENTS*`VALUE_BIT_WIDTH)-1:0] values,
+    input wire [`VALUE_BIT_WIDTH-1:0] value0,
+    input wire [`VALUE_BIT_WIDTH-1:0] value1,
+    input wire [`VALUE_BIT_WIDTH-1:0] value2,
+    input wire [`VALUE_BIT_WIDTH-1:0] value3,
+    input wire [`VALUE_BIT_WIDTH-1:0] value4,
+    input wire [`VALUE_BIT_WIDTH-1:0] value5,
+    input wire [`VALUE_BIT_WIDTH-1:0] value6,
+    input wire [`VALUE_BIT_WIDTH-1:0] value7,
+    input wire [`VALUE_BIT_WIDTH-1:0] value8,
+    input wire [`VALUE_BIT_WIDTH-1:0] value9,
+    input wire [`VALUE_BIT_WIDTH-1:0] value10,
+    input wire [`VALUE_BIT_WIDTH-1:0] value11,
+    input wire [`VALUE_BIT_WIDTH-1:0] value12,
+    input wire [`VALUE_BIT_WIDTH-1:0] value13,
+    input wire [`VALUE_BIT_WIDTH-1:0] value14,
+    input wire [`VALUE_BIT_WIDTH-1:0] value15,
+    input wire [`VALUE_BIT_WIDTH-1:0] value16,
+    input wire [`VALUE_BIT_WIDTH-1:0] value17,
+    input wire [`VALUE_BIT_WIDTH-1:0] value18,
+    input wire [`VALUE_BIT_WIDTH-1:0] value19,
     //// 12-bit address bus to address which location in video ram to write ascii characters to
     //// The address is linear
     input wire [`VGA_RAM_ADDRESS_WIDTH-1:0] address,
@@ -164,6 +169,13 @@ module VGA_Terminal(
 // ==================================
 //// Wires
 // ==================================
+wire [(`TOTAL_SEGMENTS*`VALUE_BIT_WIDTH)-1:0] values = {
+    value0,  value1,  value2,  value3,
+    value4,  value5,  value6,  value7,
+    value8,  value9,  value10, value11,
+    value12, value13, value14, value15,
+    value16, value17, value18, value19
+};
 /** 
  * VGA Terminal Signals
  */

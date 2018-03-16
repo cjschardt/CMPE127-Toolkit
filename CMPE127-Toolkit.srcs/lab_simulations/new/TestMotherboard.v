@@ -33,7 +33,7 @@ wire [3:0] r;
 wire [3:0] g;
 wire [3:0] b;
 
-Motherboard motherboard(
+Motherboard #(.CLOCK_DIVIDER(1)) motherboard(
 	//// input 100 MHz clock
     .clk100Mhz(clk),
     .rst(rst),

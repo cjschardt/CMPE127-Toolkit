@@ -290,7 +290,7 @@ module REGISTER #(parameter WIDTH = 8)(
 	input wire rst,
 	input wire clk,
 	input wire load,
-	input wire [WIDTH-1:0] in,
+	input wire [WIDTH-1:0] D,
 	output reg [WIDTH-1:0] Q
 );
 
@@ -302,7 +302,7 @@ begin
     end
     else if(load)
     begin
-        Q <= in;
+        Q <= D;
     end
 end
 

@@ -235,7 +235,6 @@ wire [`SCAN_CODE_LENGTH-1:0] scan_code;
 wire calculated_parity;
 wire is_valid_scan_code;
 wire scancode_based_clear;
-wire ready;
 
 // assign internal_clear = (rst | clr  | scancode_based_clear);
 assign internal_clear = (rst | clr);
@@ -500,32 +499,11 @@ VGA_Terminal vga_term(
     .r(r),
     .g(g),
     .b(b),
-    .values({
-        32'h0,
-        32'h0,
-        {20'h0, address},
-        {24'h0, ascii},
-
-        32'h0,
-        32'h0,
-        {24'h0, scan_code},
-        extended_count,
-        
-        32'h0,
-        32'h0,
-        32'h0,
-        32'h0,
-        
-        32'h0,
-        32'h0,
-        32'h0,
-        32'h0,
-        
-        32'h0,
-        32'h0,
-        32'h0,
-        32'h0
-    }),
+    .value0(32'h0),  .value1(32'h0),  .value2({20'h0, address}),   .value3({24'h0, ascii}),
+    .value4(32'h0),  .value5(32'h0),  .value6({24'h0, scan_code}), .value7(extended_count),
+    .value8(32'h0),  .value9(32'h0),  .value10(32'h0),             .value11(32'h0),
+    .value12(32'h0), .value13(32'h0), .value14(32'h0),             .value15(32'h0),
+    .value16(32'h0), .value17(32'h0), .value18(32'h0),             .value19(32'h0),
     .address(address),
     .data(ascii),
     .cs({ ready && !command }),
