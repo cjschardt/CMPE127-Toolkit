@@ -77,6 +77,44 @@ end
 
 endmodule
 
+module ONESHOT(
+    input wire clk,
+    input wire rst,
+    input wire signal,
+    output reg out
+);
+
+reg previously_high;
+
+always @(posedge clk or posedge rst)
+begin
+    if(rst)
+    begin
+        out <= 0;
+        previously_high <= 0;
+    end
+    else
+    begin
+        if(signal && !previously_high)
+        begin
+            out <= 1;
+            previously_high <= 1;
+        end
+        else if(signal && previously_high)
+        begin
+            out <= 0;
+            previously_high <= 1;
+        end
+        else
+        begin
+            out <= 0;
+            previously_high <= 0;
+        end
+    end
+end
+
+endmodule
+
 module Motherboard #(parameter CLOCK_DIVIDER = 100)
 (
 	//// input 100 MHz clock
@@ -263,13 +301,13 @@ wire key_cs;
 wire key_ready_cs;
 wire vga_fifo_cs;
 
-AND #(.WIDTH(2)) key_cs_and (
-	.in({ extern_access, (AddressBus == `KEYBOARD_ADDRESS)}),
+AND #(.WIDTH(3)) key_cs_and (
+	.in({ extern_access, (AddressBus == `KEYBOARD_ADDRESS), MemRead}),
 	.out(key_cs)
 );
 
-AND #(.WIDTH(2)) key_ready_cs_and (
-	.in({ extern_access, (AddressBus == `KEYBOARD_READY_ADDRESS)}),
+AND #(.WIDTH(3)) key_ready_cs_and (
+	.in({ extern_access, (AddressBus == `KEYBOARD_READY_ADDRESS), MemRead}),
 	.out(key_ready_cs)
 );
 
@@ -279,14 +317,23 @@ AND #(.WIDTH(4)) vga_fifo_cs_and (
 );
 
 wire [7:0] keyboard_ascii;
+wire next;
+
+ONESHOT oneshot_next(
+    .clk(!clk100Mhz),
+    .rst(rst),
+    .signal(key_cs),
+    .out(next)
+);
 
 ASCII_Keyboard keyboard(
     .clk(clk100Mhz),
+    .pclk(clk),
     .rst(rst),
     .ps2_clk(ps2_clk),
     .ps2_data(ps2_data),
     .oe(key_cs),
-    .next(key_cs),
+    .next(next),
     .ascii(keyboard_ascii),
     .ready(keyboard_ready),
     .scan_code_reg(scan_code),

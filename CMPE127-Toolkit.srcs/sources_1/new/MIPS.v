@@ -200,7 +200,7 @@ wire [25:0] jump_address           = mips_instruction[25:0];
 wire [`INSTRUCTION_WIDTH-1:0] mips_instruction;
 wire [`REGISTER_WIDTH-1:0] final_pc;
 wire [`REGISTER_WIDTH-1:0] next_pc;
-wire less_than_eq; 
+wire less_than_eq;
 wire greater_than;
 
 wire [`REGISTER_WIDTH-1:0] branch_pc;
@@ -291,6 +291,8 @@ VALUE_EXTEND #(
 );
 
 wire [`REGISTER_WIDTH-1:0] branch_pc_offset;
+wire [`REGISTER_WIDTH-1:0] branch_pc_offset_sign_extended;
+
 SHIFT_LEFT #(.AMOUNT(2))
 branch_shift_immediate
 (
@@ -298,8 +300,18 @@ branch_shift_immediate
 	.y(branch_pc_offset)
 );
 
-ADDER #(.WIDTH(`REGISTER_WIDTH)) branch_pc_adder (
+VALUE_EXTEND #(
+    .INPUT_WIDTH(16),
+    .OUTPUT_WIDTH(32)
+) branch_pc_offset_sign_extend
+(
+    .sign_extend(1),
 	.a(branch_pc_offset),
+	.y(branch_pc_offset_sign_extended)
+);
+
+ADDER #(.WIDTH(`REGISTER_WIDTH)) branch_pc_adder (
+	.a(branch_pc_offset_sign_extended),
     .b(next_pc),
 	.y(branch_pc)
 );
