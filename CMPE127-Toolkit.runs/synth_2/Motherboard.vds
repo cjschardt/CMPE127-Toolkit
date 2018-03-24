@@ -2,8 +2,8 @@
 # Vivado v2017.3 (64-bit)
 # SW Build 2018833 on Wed Oct  4 19:58:07 MDT 2017
 # IP Build 2016188 on Wed Oct  4 21:52:56 MDT 2017
-# Start of session at: Fri Mar 16 21:04:34 2018
-# Process ID: 7887
+# Start of session at: Fri Mar 23 16:55:40 2018
+# Process ID: 25293
 # Current directory: /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.runs/synth_2
 # Command line: vivado -log Motherboard.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source Motherboard.tcl
 # Log file: /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.runs/synth_2/Motherboard.vds
@@ -15,21 +15,23 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 7925 
+INFO: Helper process launched with PID 25302 
 WARNING: [Synth 8-2507] parameter declaration becomes local in RAM_B with formal parameter declaration list [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:41]
 WARNING: [Synth 8-2507] parameter declaration becomes local in RAM_B with formal parameter declaration list [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:42]
 WARNING: [Synth 8-2507] parameter declaration becomes local in RAM_B with formal parameter declaration list [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:43]
 WARNING: [Synth 8-2507] parameter declaration becomes local in RAM with formal parameter declaration list [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:106]
-WARNING: [Synth 8-2507] parameter declaration becomes local in FIFO with formal parameter declaration list [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:213]
-WARNING: [Synth 8-2507] parameter declaration becomes local in STACK with formal parameter declaration list [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:315]
+WARNING: [Synth 8-2507] parameter declaration becomes local in RAM_BYTE with formal parameter declaration list [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:174]
+WARNING: [Synth 8-2507] parameter declaration becomes local in RAM_BYTE with formal parameter declaration list [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:175]
+WARNING: [Synth 8-2507] parameter declaration becomes local in FIFO with formal parameter declaration list [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:305]
+WARNING: [Synth 8-2507] parameter declaration becomes local in STACK with formal parameter declaration list [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:407]
 WARNING: [Synth 8-2507] parameter declaration becomes local in PWMCapture with formal parameter declaration list [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/PWMCapture.v:39]
 WARNING: [Synth 8-2507] parameter declaration becomes local in PWMCapture with formal parameter declaration list [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/PWMCapture.v:40]
 WARNING: [Synth 8-2507] parameter declaration becomes local in PWMCapture with formal parameter declaration list [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/PWMCapture.v:41]
-WARNING: [Synth 8-2306] macro FREQ_IN redefined [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:15]
+WARNING: [Synth 8-2306] macro FREQ_IN redefined [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:16]
 WARNING: [Synth 8-2306] macro FREQ_IN redefined [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:7]
-WARNING: [Synth 8-2306] macro OP_SLTIU redefined [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:80]
+WARNING: [Synth 8-2306] macro OP_SLTIU redefined [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:81]
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1246.402 ; gain = 73.277 ; free physical = 3102 ; free virtual = 18957
+Starting RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1246.402 ; gain = 73.277 ; free physical = 2779 ; free virtual = 22629
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-638] synthesizing module 'Motherboard' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Motherboard.v:118]
 	Parameter CLOCK_DIVIDER bound to: 100 - type: integer 
@@ -44,41 +46,42 @@ INFO: [Synth 8-638] synthesizing module 'MUX' [/home/kammce/Documents/University
 	Parameter WIDTH bound to: 1 - type: integer 
 	Parameter INPUTS bound to: 2 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'MUX' (3#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:113]
-INFO: [Synth 8-638] synthesizing module 'ROM' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:156]
-	Parameter LENGTH bound to: 4096 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'ROM' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:248]
+	Parameter LENGTH bound to: 256 - type: integer 
 	Parameter WIDTH bound to: 32 - type: integer 
 	Parameter FILE_NAME bound to: rom.mem - type: string 
-INFO: [Synth 8-3876] $readmem data file 'rom.mem' is read successfully [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:189]
-INFO: [Synth 8-256] done synthesizing module 'ROM' (4#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:156]
-INFO: [Synth 8-638] synthesizing module 'MIPS' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:163]
-INFO: [Synth 8-638] synthesizing module 'PROCESSOR_DECODER' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:412]
-INFO: [Synth 8-638] synthesizing module 'IMMEDIATE_TO_ALU_CONVERTER' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:667]
-INFO: [Synth 8-256] done synthesizing module 'IMMEDIATE_TO_ALU_CONVERTER' (5#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:667]
-WARNING: [Synth 8-151] case item 6'b000001 is unreachable [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:479]
-INFO: [Synth 8-256] done synthesizing module 'PROCESSOR_DECODER' (6#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:412]
+INFO: [Synth 8-3876] $readmem data file 'rom.mem' is read successfully [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:281]
+INFO: [Synth 8-256] done synthesizing module 'ROM' (4#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:248]
+WARNING: [Synth 8-689] width (12) of port connection 'a' does not match port width (8) of module 'ROM' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Motherboard.v:211]
+INFO: [Synth 8-638] synthesizing module 'MIPS' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:164]
+INFO: [Synth 8-638] synthesizing module 'PROCESSOR_DECODER' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:415]
+INFO: [Synth 8-638] synthesizing module 'IMMEDIATE_TO_ALU_CONVERTER' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:670]
+INFO: [Synth 8-256] done synthesizing module 'IMMEDIATE_TO_ALU_CONVERTER' (5#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:670]
+WARNING: [Synth 8-151] case item 6'b000001 is unreachable [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:482]
+INFO: [Synth 8-256] done synthesizing module 'PROCESSOR_DECODER' (6#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:415]
 INFO: [Synth 8-638] synthesizing module 'REGISTER' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:288]
 	Parameter WIDTH bound to: 32 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'REGISTER' (7#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:288]
-INFO: [Synth 8-638] synthesizing module 'ADDER' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:710]
+INFO: [Synth 8-638] synthesizing module 'ADDER' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:713]
 	Parameter WIDTH bound to: 32 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'ADDER' (8#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:710]
+INFO: [Synth 8-256] done synthesizing module 'ADDER' (8#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:713]
 INFO: [Synth 8-638] synthesizing module 'MUX__parameterized0' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:113]
 	Parameter WIDTH bound to: 5 - type: integer 
 	Parameter INPUTS bound to: 3 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'MUX__parameterized0' (8#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:113]
-WARNING: [Synth 8-689] width (42) of port connection 'in' does not match port width (15) of module 'MUX__parameterized0' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:260]
-INFO: [Synth 8-638] synthesizing module 'REGFILE' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:723]
+WARNING: [Synth 8-689] width (42) of port connection 'in' does not match port width (15) of module 'MUX__parameterized0' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:282]
+INFO: [Synth 8-638] synthesizing module 'REGFILE' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:726]
 	Parameter WIDTH bound to: 32 - type: integer 
 	Parameter COUNT bound to: 32 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'REGFILE' (9#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:723]
-INFO: [Synth 8-638] synthesizing module 'VALUE_EXTEND' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:846]
+INFO: [Synth 8-256] done synthesizing module 'REGFILE' (9#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:726]
+INFO: [Synth 8-638] synthesizing module 'VALUE_EXTEND' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:849]
 	Parameter INPUT_WIDTH bound to: 16 - type: integer 
 	Parameter OUTPUT_WIDTH bound to: 32 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'VALUE_EXTEND' (10#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:846]
-INFO: [Synth 8-638] synthesizing module 'SHIFT_LEFT' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:863]
+INFO: [Synth 8-256] done synthesizing module 'VALUE_EXTEND' (10#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:849]
+INFO: [Synth 8-638] synthesizing module 'SHIFT_LEFT' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:866]
 	Parameter AMOUNT bound to: 2 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'SHIFT_LEFT' (11#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:863]
-WARNING: [Synth 8-689] width (32) of port connection 'a' does not match port width (16) of module 'VALUE_EXTEND' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:309]
+INFO: [Synth 8-256] done synthesizing module 'SHIFT_LEFT' (11#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:866]
+WARNING: [Synth 8-689] width (32) of port connection 'a' does not match port width (16) of module 'VALUE_EXTEND' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:320]
 INFO: [Synth 8-638] synthesizing module 'MUX__parameterized1' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:113]
 	Parameter WIDTH bound to: 32 - type: integer 
 	Parameter INPUTS bound to: 4 - type: integer 
@@ -87,10 +90,10 @@ INFO: [Synth 8-638] synthesizing module 'MUX__parameterized2' [/home/kammce/Docu
 	Parameter WIDTH bound to: 32 - type: integer 
 	Parameter INPUTS bound to: 2 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'MUX__parameterized2' (11#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:113]
-INFO: [Synth 8-638] synthesizing module 'ALU' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:766]
-WARNING: [Synth 8-151] case item 6'b100001 is unreachable [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:793]
-WARNING: [Synth 8-151] case item 6'b100000 is unreachable [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:793]
-INFO: [Synth 8-256] done synthesizing module 'ALU' (12#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:766]
+INFO: [Synth 8-638] synthesizing module 'ALU' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:769]
+WARNING: [Synth 8-151] case item 6'b100001 is unreachable [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:796]
+WARNING: [Synth 8-151] case item 6'b100000 is unreachable [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:796]
+INFO: [Synth 8-256] done synthesizing module 'ALU' (12#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:769]
 INFO: [Synth 8-638] synthesizing module 'OR' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:60]
 	Parameter WIDTH bound to: 4 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'OR' (13#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:60]
@@ -101,86 +104,23 @@ INFO: [Synth 8-256] done synthesizing module 'MUX__parameterized3' (13#1) [/home
 INFO: [Synth 8-638] synthesizing module 'TRIBUFFER' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:37]
 	Parameter WIDTH bound to: 32 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'TRIBUFFER' (14#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:37]
-INFO: [Synth 8-638] synthesizing module 'SHIFT_RIGHT' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:873]
+INFO: [Synth 8-638] synthesizing module 'SHIFT_RIGHT' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:876]
 	Parameter WIDTH bound to: 32 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'SHIFT_RIGHT' (15#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:873]
-INFO: [Synth 8-256] done synthesizing module 'MIPS' (16#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:163]
-INFO: [Synth 8-638] synthesizing module 'RAM_B' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:22]
+INFO: [Synth 8-256] done synthesizing module 'SHIFT_RIGHT' (15#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:876]
+INFO: [Synth 8-256] done synthesizing module 'MIPS' (16#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:164]
+INFO: [Synth 8-638] synthesizing module 'RAM_BYTE' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:157]
 	Parameter LENGTH bound to: 1024 - type: integer 
-	Parameter COLUMN bound to: 3 - type: integer 
 	Parameter USE_FILE bound to: 1 - type: integer 
 	Parameter FILE_NAME bound to: ram.mem - type: string 
 	Parameter ADDRESS_WIDTH bound to: 10 - type: integer 
-	Parameter RAM_WIDTH bound to: 32 - type: integer 
-	Parameter BYTE_WIDTH bound to: 8 - type: integer 
-INFO: [Synth 8-3876] $readmem data file 'ram.mem' is read successfully [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:66]
-INFO: [Synth 8-3876] $readmem data file 'ram.mem' is read successfully [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:74]
-WARNING: [Synth 8-5788] Register ram_reg in module RAM_B is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code 
-WARNING: [Synth 8-5788] Register data_out_reg in module RAM_B is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:55]
-WARNING: [Synth 8-4767] Trying to implement RAM 'ram_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
-Reason is one or more of the following :
-	1: RAM is sensitive to asynchronous reset signal. this RTL style is not supported. 
-RAM "ram_reg" dissolved into registers
-INFO: [Synth 8-256] done synthesizing module 'RAM_B' (17#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:22]
-WARNING: [Synth 8-689] width (12) of port connection 'address' does not match port width (10) of module 'RAM_B' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Motherboard.v:240]
-INFO: [Synth 8-638] synthesizing module 'RAM_B__parameterized0' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:22]
-	Parameter LENGTH bound to: 1024 - type: integer 
-	Parameter COLUMN bound to: 2 - type: integer 
-	Parameter USE_FILE bound to: 1 - type: integer 
-	Parameter FILE_NAME bound to: ram.mem - type: string 
-	Parameter ADDRESS_WIDTH bound to: 10 - type: integer 
-	Parameter RAM_WIDTH bound to: 32 - type: integer 
-	Parameter BYTE_WIDTH bound to: 8 - type: integer 
-INFO: [Synth 8-3876] $readmem data file 'ram.mem' is read successfully [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:66]
-INFO: [Synth 8-3876] $readmem data file 'ram.mem' is read successfully [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:74]
-WARNING: [Synth 8-5788] Register ram_reg in module RAM_B__parameterized0 is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code 
-WARNING: [Synth 8-5788] Register data_out_reg in module RAM_B__parameterized0 is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:55]
-WARNING: [Synth 8-4767] Trying to implement RAM 'ram_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
-Reason is one or more of the following :
-	1: RAM is sensitive to asynchronous reset signal. this RTL style is not supported. 
-RAM "ram_reg" dissolved into registers
-INFO: [Synth 8-256] done synthesizing module 'RAM_B__parameterized0' (17#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:22]
-WARNING: [Synth 8-689] width (12) of port connection 'address' does not match port width (10) of module 'RAM_B__parameterized0' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Motherboard.v:255]
-INFO: [Synth 8-638] synthesizing module 'RAM_B__parameterized1' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:22]
-	Parameter LENGTH bound to: 1024 - type: integer 
-	Parameter COLUMN bound to: 1 - type: integer 
-	Parameter USE_FILE bound to: 1 - type: integer 
-	Parameter FILE_NAME bound to: ram.mem - type: string 
-	Parameter ADDRESS_WIDTH bound to: 10 - type: integer 
-	Parameter RAM_WIDTH bound to: 32 - type: integer 
-	Parameter BYTE_WIDTH bound to: 8 - type: integer 
-INFO: [Synth 8-3876] $readmem data file 'ram.mem' is read successfully [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:66]
-INFO: [Synth 8-3876] $readmem data file 'ram.mem' is read successfully [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:74]
-WARNING: [Synth 8-5788] Register ram_reg in module RAM_B__parameterized1 is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code 
-WARNING: [Synth 8-5788] Register data_out_reg in module RAM_B__parameterized1 is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:55]
-WARNING: [Synth 8-4767] Trying to implement RAM 'ram_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
-Reason is one or more of the following :
-	1: RAM is sensitive to asynchronous reset signal. this RTL style is not supported. 
-RAM "ram_reg" dissolved into registers
-INFO: [Synth 8-256] done synthesizing module 'RAM_B__parameterized1' (17#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:22]
-WARNING: [Synth 8-689] width (12) of port connection 'address' does not match port width (10) of module 'RAM_B__parameterized1' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Motherboard.v:270]
-INFO: [Synth 8-638] synthesizing module 'RAM_B__parameterized2' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:22]
-	Parameter LENGTH bound to: 1024 - type: integer 
-	Parameter COLUMN bound to: 0 - type: integer 
-	Parameter USE_FILE bound to: 1 - type: integer 
-	Parameter FILE_NAME bound to: ram.mem - type: string 
-	Parameter ADDRESS_WIDTH bound to: 10 - type: integer 
-	Parameter RAM_WIDTH bound to: 32 - type: integer 
-	Parameter BYTE_WIDTH bound to: 8 - type: integer 
-INFO: [Synth 8-3876] $readmem data file 'ram.mem' is read successfully [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:66]
-INFO: [Synth 8-3876] $readmem data file 'ram.mem' is read successfully [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:74]
-WARNING: [Synth 8-5788] Register ram_reg in module RAM_B__parameterized2 is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code 
-WARNING: [Synth 8-5788] Register data_out_reg in module RAM_B__parameterized2 is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:55]
-WARNING: [Synth 8-4767] Trying to implement RAM 'ram_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
-Reason is one or more of the following :
-	1: RAM is sensitive to asynchronous reset signal. this RTL style is not supported. 
-RAM "ram_reg" dissolved into registers
-INFO: [Synth 8-256] done synthesizing module 'RAM_B__parameterized2' (17#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:22]
-WARNING: [Synth 8-689] width (12) of port connection 'address' does not match port width (10) of module 'RAM_B__parameterized2' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Motherboard.v:285]
+	Parameter WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-3876] $readmem data file 'ram.mem' is read successfully [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:199]
+INFO: [Synth 8-256] done synthesizing module 'RAM_BYTE' (17#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:157]
+WARNING: [Synth 8-689] width (12) of port connection 'address' does not match port width (10) of module 'RAM_BYTE' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Motherboard.v:241]
 INFO: [Synth 8-638] synthesizing module 'DECODER' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:130]
 	Parameter INPUT_WIDTH bound to: 3 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'DECODER' (18#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:130]
-WARNING: [Synth 8-689] width (3) of port connection 'out' does not match port width (8) of module 'DECODER' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Motherboard.v:297]
+WARNING: [Synth 8-689] width (3) of port connection 'out' does not match port width (8) of module 'DECODER' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Motherboard.v:250]
 INFO: [Synth 8-638] synthesizing module 'AND' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:51]
 	Parameter WIDTH bound to: 3 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'AND' (19#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:51]
@@ -195,7 +135,7 @@ INFO: [Synth 8-638] synthesizing module 'ASCII_Keyboard' [/home/kammce/Documents
 	Parameter TRANSLATE bound to: 2 - type: integer 
 	Parameter WRITE_TO_FIFO bound to: 3 - type: integer 
 	Parameter STATE_WIDTH bound to: 2 - type: integer 
-INFO: [Synth 8-638] synthesizing module 'Keyboard' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:231]
+INFO: [Synth 8-638] synthesizing module 'Keyboard' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:211]
 INFO: [Synth 8-638] synthesizing module 'SHIFTREGISTER' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:266]
 	Parameter WIDTH bound to: 11 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'SHIFTREGISTER' (21#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:266]
@@ -214,38 +154,38 @@ INFO: [Synth 8-256] done synthesizing module 'AND__parameterized1' (23#1) [/home
 INFO: [Synth 8-638] synthesizing module 'TRIBUFFER__parameterized0' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:37]
 	Parameter WIDTH bound to: 8 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'TRIBUFFER__parameterized0' (23#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:37]
-INFO: [Synth 8-256] done synthesizing module 'Keyboard' (24#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:231]
-INFO: [Synth 8-638] synthesizing module 'FIFO' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:194]
+INFO: [Synth 8-256] done synthesizing module 'Keyboard' (24#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:211]
+INFO: [Synth 8-638] synthesizing module 'FIFO' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:286]
 	Parameter LENGTH bound to: 16 - type: integer 
 	Parameter WIDTH bound to: 8 - type: integer 
 	Parameter ADDRESS_WIDTH bound to: 4 - type: integer 
-WARNING: [Synth 8-6014] Unused sequential element previously_empty_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:245]
-INFO: [Synth 8-256] done synthesizing module 'FIFO' (25#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:194]
-INFO: [Synth 8-638] synthesizing module 'KeyboardToASCIIROM' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:335]
-INFO: [Synth 8-256] done synthesizing module 'KeyboardToASCIIROM' (26#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:335]
-INFO: [Synth 8-226] default block is never used [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:157]
-WARNING: [Synth 8-6014] Unused sequential element address_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:148]
+WARNING: [Synth 8-6014] Unused sequential element previously_empty_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:337]
+INFO: [Synth 8-256] done synthesizing module 'FIFO' (25#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:286]
+INFO: [Synth 8-638] synthesizing module 'KeyboardToASCIIROM' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:315]
+INFO: [Synth 8-256] done synthesizing module 'KeyboardToASCIIROM' (26#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:315]
+INFO: [Synth 8-226] default block is never used [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:137]
+WARNING: [Synth 8-6014] Unused sequential element address_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:128]
 INFO: [Synth 8-256] done synthesizing module 'ASCII_Keyboard' (27#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:44]
-INFO: [Synth 8-638] synthesizing module 'FIFO__parameterized0' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:194]
+INFO: [Synth 8-638] synthesizing module 'FIFO__parameterized0' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:286]
 	Parameter LENGTH bound to: 32 - type: integer 
 	Parameter WIDTH bound to: 8 - type: integer 
 	Parameter ADDRESS_WIDTH bound to: 5 - type: integer 
-WARNING: [Synth 8-6014] Unused sequential element previously_empty_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:245]
-INFO: [Synth 8-256] done synthesizing module 'FIFO__parameterized0' (27#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:194]
-INFO: [Synth 8-638] synthesizing module 'FIFO__parameterized1' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:194]
+WARNING: [Synth 8-6014] Unused sequential element previously_empty_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:337]
+INFO: [Synth 8-256] done synthesizing module 'FIFO__parameterized0' (27#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:286]
+INFO: [Synth 8-638] synthesizing module 'FIFO__parameterized1' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:286]
 	Parameter LENGTH bound to: 32 - type: integer 
 	Parameter WIDTH bound to: 12 - type: integer 
 	Parameter ADDRESS_WIDTH bound to: 5 - type: integer 
-WARNING: [Synth 8-6014] Unused sequential element previously_empty_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:245]
-INFO: [Synth 8-256] done synthesizing module 'FIFO__parameterized1' (27#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:194]
+WARNING: [Synth 8-6014] Unused sequential element previously_empty_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:337]
+INFO: [Synth 8-256] done synthesizing module 'FIFO__parameterized1' (27#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:286]
 INFO: [Synth 8-638] synthesizing module 'OR__parameterized0' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:60]
 	Parameter WIDTH bound to: 2 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'OR__parameterized0' (27#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:60]
-INFO: [Synth 8-638] synthesizing module 'VGA_Terminal' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:118]
-INFO: [Synth 8-638] synthesizing module 'PixelClock' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:737]
+INFO: [Synth 8-638] synthesizing module 'VGA_Terminal' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:119]
+INFO: [Synth 8-638] synthesizing module 'PixelClock' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:839]
 	Parameter HOLD_TICK_COUNT bound to: 2 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'PixelClock' (28#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:737]
-INFO: [Synth 8-638] synthesizing module 'VGA' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:781]
+INFO: [Synth 8-256] done synthesizing module 'PixelClock' (28#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:839]
+INFO: [Synth 8-638] synthesizing module 'VGA' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:883]
 	Parameter DISPLAY_WIDTH bound to: 639 - type: integer 
 	Parameter DISPLAY_HEIGHT bound to: 479 - type: integer 
 	Parameter HORIZONTAL_FRONT_PORCH bound to: 16 - type: integer 
@@ -254,24 +194,33 @@ INFO: [Synth 8-638] synthesizing module 'VGA' [/home/kammce/Documents/University
 	Parameter VERTICAL_FRONT_PORCH bound to: 11 - type: integer 
 	Parameter VERTICAL_SYNC_PULSE bound to: 2 - type: integer 
 	Parameter VERTICAL_BACK_PORCH bound to: 31 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'VGA' (29#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:781]
+INFO: [Synth 8-256] done synthesizing module 'VGA' (29#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:883]
 INFO: [Synth 8-638] synthesizing module 'VGA_Terminal_Control_Unit' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:371]
 	Parameter LOAD_RAMS bound to: 0 - type: integer 
 	Parameter WAIT_FOR_VBLANK bound to: 1 - type: integer 
 	Parameter WRITE_HEX_TO_BUFFER bound to: 2 - type: integer 
 	Parameter COPY_BUFFER_TO_VIDEO bound to: 3 - type: integer 
 	Parameter WAIT_OUT_VBLANK bound to: 4 - type: integer 
-	Parameter STATE_WIDTH bound to: 2 - type: integer 
-WARNING: [Synth 8-151] case item 32'b00000000000000000000000000000100 is unreachable [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:597]
-INFO: [Synth 8-226] default block is never used [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:460]
-WARNING: [Synth 8-6014] Unused sequential element temp_value_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:442]
-INFO: [Synth 8-256] done synthesizing module 'VGA_Terminal_Control_Unit' (30#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:371]
-INFO: [Synth 8-638] synthesizing module 'ConvertXYToAddress' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:693]
-INFO: [Synth 8-256] done synthesizing module 'ConvertXYToAddress' (31#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:693]
+	Parameter STATE_WIDTH bound to: 3 - type: integer 
+	Parameter HEX_DIGIT_WIDTH bound to: 4 - type: integer 
+	Parameter STRING_MATRIX_WIDTH bound to: 3840 - type: integer 
 INFO: [Synth 8-638] synthesizing module 'MUX__parameterized4' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:113]
+	Parameter WIDTH bound to: 4 - type: integer 
+	Parameter INPUTS bound to: 160 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'MUX__parameterized4' (29#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:113]
+WARNING: [Synth 8-689] width (32) of port connection 'select' does not match port width (8) of module 'MUX__parameterized4' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:439]
+INFO: [Synth 8-638] synthesizing module 'MUX__parameterized5' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:113]
+	Parameter WIDTH bound to: 8 - type: integer 
+	Parameter INPUTS bound to: 480 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'MUX__parameterized5' (29#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:113]
+WARNING: [Synth 8-689] width (32) of port connection 'select' does not match port width (9) of module 'MUX__parameterized5' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:448]
+INFO: [Synth 8-256] done synthesizing module 'VGA_Terminal_Control_Unit' (30#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:371]
+INFO: [Synth 8-638] synthesizing module 'ConvertXYToAddress' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:795]
+INFO: [Synth 8-256] done synthesizing module 'ConvertXYToAddress' (31#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:795]
+INFO: [Synth 8-638] synthesizing module 'MUX__parameterized6' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:113]
 	Parameter WIDTH bound to: 12 - type: integer 
 	Parameter INPUTS bound to: 2 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'MUX__parameterized4' (31#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:113]
+INFO: [Synth 8-256] done synthesizing module 'MUX__parameterized6' (31#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:113]
 INFO: [Synth 8-638] synthesizing module 'RAM' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Memory.v:88]
 	Parameter LENGTH bound to: 2400 - type: integer 
 	Parameter WIDTH bound to: 8 - type: integer 
@@ -282,9 +231,9 @@ INFO: [Synth 8-256] done synthesizing module 'RAM' (32#1) [/home/kammce/Document
 INFO: [Synth 8-638] synthesizing module 'FontROM' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Font.v:23]
 WARNING: [Synth 8-151] case item 8'b00001010 is unreachable [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Font.v:33]
 INFO: [Synth 8-256] done synthesizing module 'FontROM' (33#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Font.v:23]
-INFO: [Synth 8-638] synthesizing module 'PixelRender' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:704]
-INFO: [Synth 8-256] done synthesizing module 'PixelRender' (34#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:704]
-INFO: [Synth 8-256] done synthesizing module 'VGA_Terminal' (35#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:118]
+INFO: [Synth 8-638] synthesizing module 'PixelRender' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:806]
+INFO: [Synth 8-256] done synthesizing module 'PixelRender' (34#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:806]
+INFO: [Synth 8-256] done synthesizing module 'VGA_Terminal' (35#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:119]
 INFO: [Synth 8-256] done synthesizing module 'Motherboard' (36#1) [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Motherboard.v:118]
 WARNING: [Synth 8-3331] design PixelRender has unconnected port hcount[31]
 WARNING: [Synth 8-3331] design PixelRender has unconnected port hcount[30]
@@ -358,7 +307,6 @@ WARNING: [Synth 8-3331] design ConvertXYToAddress has unconnected port vcount[0]
 WARNING: [Synth 8-3331] design VGA_Terminal_Control_Unit has unconnected port hblank
 WARNING: [Synth 8-3331] design SHIFTREGISTER has unconnected port en
 WARNING: [Synth 8-3331] design Syncronizer has unconnected port rst
-WARNING: [Synth 8-3331] design ASCII_Keyboard has unconnected port pclk
 WARNING: [Synth 8-3331] design PROCESSOR_DECODER has unconnected port alu_result[31]
 WARNING: [Synth 8-3331] design PROCESSOR_DECODER has unconnected port alu_result[30]
 WARNING: [Synth 8-3331] design PROCESSOR_DECODER has unconnected port alu_result[29]
@@ -386,9 +334,10 @@ WARNING: [Synth 8-3331] design PROCESSOR_DECODER has unconnected port alu_result
 WARNING: [Synth 8-3331] design PROCESSOR_DECODER has unconnected port alu_result[7]
 WARNING: [Synth 8-3331] design PROCESSOR_DECODER has unconnected port alu_result[6]
 WARNING: [Synth 8-3331] design PROCESSOR_DECODER has unconnected port alu_result[5]
+WARNING: [Synth 8-3331] design PROCESSOR_DECODER has unconnected port alu_result[4]
 INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 1580.996 ; gain = 407.871 ; free physical = 2848 ; free virtual = 18689
+Finished RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1286.652 ; gain = 113.527 ; free physical = 2791 ; free virtual = 22637
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -398,7 +347,7 @@ Report Check Netlist:
 |1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
 +------+------------------+-------+---------+-------+------------------+
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:18 ; elapsed = 00:00:20 . Memory (MB): peak = 1580.996 ; gain = 407.871 ; free physical = 2873 ; free virtual = 18732
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1286.652 ; gain = 113.527 ; free physical = 2794 ; free virtual = 22640
 ---------------------------------------------------------------------------------
 INFO: [Device 21-403] Loading part xc7a100tcsg324-1
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -414,82 +363,87 @@ Completed Processing XDC Constraints
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.03 . Memory (MB): peak = 2140.629 ; gain = 0.000 ; free physical = 2283 ; free virtual = 18135
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1635.238 ; gain = 0.000 ; free physical = 2539 ; free virtual = 22384
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:53 ; elapsed = 00:01:11 . Memory (MB): peak = 2140.629 ; gain = 967.504 ; free physical = 2678 ; free virtual = 18530
+Finished Constraint Validation : Time (s): cpu = 00:00:27 ; elapsed = 00:00:48 . Memory (MB): peak = 1635.238 ; gain = 462.113 ; free physical = 2622 ; free virtual = 22468
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a100tcsg324-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:53 ; elapsed = 00:01:11 . Memory (MB): peak = 2140.629 ; gain = 967.504 ; free physical = 2678 ; free virtual = 18530
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:27 ; elapsed = 00:00:48 . Memory (MB): peak = 1635.238 ; gain = 462.113 ; free physical = 2622 ; free virtual = 22467
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:53 ; elapsed = 00:01:11 . Memory (MB): peak = 2140.629 ; gain = 967.504 ; free physical = 2678 ; free virtual = 18530
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:27 ; elapsed = 00:00:48 . Memory (MB): peak = 1635.238 ; gain = 462.113 ; free physical = 2620 ; free virtual = 22466
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-5545] ROM "slow_clk" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
 INFO: [Synth 8-5545] ROM "counter" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
 INFO: [Synth 8-5546] ROM "rom" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "PCSrc" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5845] Not enough pipeline registers after wide multiplier. Recommended levels of pipeline registers is 4 [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:828]
+INFO: [Synth 8-5845] Not enough pipeline registers after wide multiplier. Recommended levels of pipeline registers is 4 [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:831]
 INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:336]
 WARNING: [Synth 8-6014] Unused sequential element Q_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:328]
 INFO: [Synth 8-5546] ROM "break_code_detected" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "extended" won't be mapped to RAM because it is too sparse
-WARNING: [Synth 8-6014] Unused sequential element extended_count_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:153]
-WARNING: [Synth 8-6014] Unused sequential element count_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:766]
-WARNING: [Synth 8-6014] Unused sequential element hcount_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:814]
-WARNING: [Synth 8-6014] Unused sequential element vcount_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:819]
-INFO: [Synth 8-4471] merging register 'video_wr_reg' into 'video_out_control_reg' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:452]
-INFO: [Synth 8-4471] merging register 'video_oe_reg' into 'xy_count_select_reg' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:454]
-WARNING: [Synth 8-6014] Unused sequential element video_wr_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:452]
-WARNING: [Synth 8-6014] Unused sequential element video_oe_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:454]
-WARNING: [Synth 8-327] inferring latch for variable 'result_reg' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:784]
-WARNING: [Synth 8-327] inferring latch for variable 'high_result_reg' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:801]
-WARNING: [Synth 8-327] inferring latch for variable 'low_result_reg' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:802]
+WARNING: [Synth 8-6014] Unused sequential element extended_count_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:133]
+WARNING: [Synth 8-6014] Unused sequential element count_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:868]
+WARNING: [Synth 8-6014] Unused sequential element hcount_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:916]
+WARNING: [Synth 8-6014] Unused sequential element vcount_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:921]
+INFO: [Synth 8-4471] merging register 'video_oe_reg' into 'xy_count_select_reg' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:467]
+INFO: [Synth 8-4471] merging register 'video_databus_enable_reg' into 'video_wr_reg' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:430]
+WARNING: [Synth 8-6014] Unused sequential element video_oe_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:467]
+WARNING: [Synth 8-6014] Unused sequential element video_databus_enable_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:430]
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'VGA_Terminal_Control_Unit'
+INFO: [Synth 8-5544] ROM "xy_count_select" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "video_wr" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "video_cs" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "buffer_wr" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "buffer_cs" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "buffer_oe" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "buffer_databus_enable" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "buffer_databus" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "state0" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "state0" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "state" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "state" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "state" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+WARNING: [Synth 8-327] inferring latch for variable 'result_reg' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:787]
+WARNING: [Synth 8-327] inferring latch for variable 'high_result_reg' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:804]
+WARNING: [Synth 8-327] inferring latch for variable 'low_result_reg' [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/MIPS.v:805]
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+               LOAD_RAMS |                              000 |                              000
+         WAIT_FOR_VBLANK |                              001 |                              001
+     WRITE_HEX_TO_BUFFER |                              010 |                              010
+    COPY_BUFFER_TO_VIDEO |                              011 |                              011
+         WAIT_OUT_VBLANK |                              100 |                              100
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'VGA_Terminal_Control_Unit'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:01:32 ; elapsed = 00:02:00 . Memory (MB): peak = 2140.629 ; gain = 967.504 ; free physical = 2572 ; free virtual = 18424
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:29 ; elapsed = 00:00:50 . Memory (MB): peak = 1635.238 ; gain = 462.113 ; free physical = 2579 ; free virtual = 22425
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
-+------+---------------------------+------------+----------+
-|      |RTL Partition              |Replication |Instances |
-+------+---------------------------+------------+----------+
-|1     |RAM_B__GB0                 |           1|     32746|
-|2     |RAM_B__GB1                 |           1|      5408|
-|3     |RAM_B__GB2                 |           1|      9554|
-|4     |RAM_B__GB3                 |           1|     13588|
-|5     |RAM_B__GB4                 |           1|     18331|
-|6     |muxpart__2062              |           1|     32736|
-|7     |RAM_B__parameterized0__GB1 |           1|      5434|
-|8     |RAM_B__parameterized0__GB2 |           1|      9536|
-|9     |RAM_B__parameterized0__GB3 |           1|     13574|
-|10    |RAM_B__parameterized0__GB4 |           1|     18347|
-|11    |muxpart__3087              |           1|     32736|
-|12    |RAM_B__parameterized1__GB1 |           1|      5436|
-|13    |RAM_B__parameterized1__GB2 |           1|      9536|
-|14    |RAM_B__parameterized1__GB3 |           1|     13622|
-|15    |RAM_B__parameterized1__GB4 |           1|     18297|
-|16    |RAM_B__parameterized2__GB0 |           1|     31996|
-|17    |RAM_B__parameterized2__GB1 |           1|      9498|
-|18    |RAM_B__parameterized2__GB2 |           1|     13581|
-|19    |Motherboard__GC0           |           1|     27545|
-+------+---------------------------+------------+----------+
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
 +---Adders : 
 	   2 Input     64 Bit       Adders := 1     
-	   2 Input     32 Bit       Adders := 15    
+	   2 Input     32 Bit       Adders := 9     
 	   3 Input     32 Bit       Adders := 2     
 	   2 Input     16 Bit       Adders := 1     
-	   2 Input     13 Bit       Adders := 1     
-	   2 Input     12 Bit       Adders := 2     
+	   2 Input     13 Bit       Adders := 4     
+	   2 Input     12 Bit       Adders := 5     
 	   3 Input      6 Bit       Adders := 2     
 	   3 Input      5 Bit       Adders := 1     
 	   2 Input      5 Bit       Adders := 4     
@@ -500,30 +454,30 @@ Detailed RTL Component Info :
 	                8 Bit    Wide XORs := 1     
 	                2 Bit    Wide XORs := 1     
 +---Registers : 
-	               32 Bit    Registers := 4101  
-	               12 Bit    Registers := 3     
+	               32 Bit    Registers := 3     
+	               12 Bit    Registers := 6     
 	               11 Bit    Registers := 1     
-	                8 Bit    Registers := 11    
+	                8 Bit    Registers := 7     
 	                6 Bit    Registers := 2     
 	                5 Bit    Registers := 5     
 	                4 Bit    Registers := 3     
-	                2 Bit    Registers := 2     
+	                2 Bit    Registers := 1     
 	                1 Bit    Registers := 29    
 +---RAMs : 
+	              32K Bit         RAMs := 1     
 	              18K Bit         RAMs := 2     
 	              384 Bit         RAMs := 1     
 	              256 Bit         RAMs := 1     
 	              128 Bit         RAMs := 1     
 +---Muxes : 
-	 102 Input     33 Bit        Muxes := 1     
-	   2 Input     32 Bit        Muxes := 12    
+	 132 Input     33 Bit        Muxes := 1     
+	   2 Input     32 Bit        Muxes := 9     
 	  24 Input     32 Bit        Muxes := 1     
-	   4 Input     32 Bit        Muxes := 3     
-	   2 Input     12 Bit        Muxes := 4     
-	   4 Input     12 Bit        Muxes := 1     
+	   2 Input     12 Bit        Muxes := 9     
+	   5 Input     12 Bit        Muxes := 5     
 	   2 Input      8 Bit        Muxes := 9     
-	   4 Input      8 Bit        Muxes := 4     
-	   5 Input      8 Bit        Muxes := 1     
+	   4 Input      8 Bit        Muxes := 2     
+	   5 Input      8 Bit        Muxes := 3     
 	 130 Input      8 Bit        Muxes := 4     
 	   8 Input      8 Bit        Muxes := 1     
 	   2 Input      6 Bit        Muxes := 1     
@@ -533,17 +487,17 @@ Detailed RTL Component Info :
 	   2 Input      4 Bit        Muxes := 9     
 	  17 Input      3 Bit        Muxes := 1     
 	   2 Input      3 Bit        Muxes := 1     
+	  12 Input      3 Bit        Muxes := 1     
 	 130 Input      3 Bit        Muxes := 2     
 	  17 Input      2 Bit        Muxes := 3     
 	   2 Input      2 Bit        Muxes := 6     
 	   3 Input      2 Bit        Muxes := 2     
 	   4 Input      2 Bit        Muxes := 1     
-	   6 Input      2 Bit        Muxes := 1     
-	   2 Input      1 Bit        Muxes := 4116  
+	   2 Input      1 Bit        Muxes := 21    
 	  17 Input      1 Bit        Muxes := 4     
 	  24 Input      1 Bit        Muxes := 1     
-	   5 Input      1 Bit        Muxes := 1     
-	   4 Input      1 Bit        Muxes := 22    
+	   5 Input      1 Bit        Muxes := 12    
+	   4 Input      1 Bit        Muxes := 7     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -551,34 +505,6 @@ Finished RTL Component Statistics
 Start RTL Hierarchical Component Statistics 
 ---------------------------------------------------------------------------------
 Hierarchical RTL Component report 
-Module RAM_B 
-Detailed RTL Component Info : 
-+---Registers : 
-	               32 Bit    Registers := 1024  
-	                8 Bit    Registers := 1     
-+---Muxes : 
-	   2 Input      1 Bit        Muxes := 1024  
-Module RAM_B__parameterized0 
-Detailed RTL Component Info : 
-+---Registers : 
-	               32 Bit    Registers := 1024  
-	                8 Bit    Registers := 1     
-+---Muxes : 
-	   2 Input      1 Bit        Muxes := 1024  
-Module RAM_B__parameterized1 
-Detailed RTL Component Info : 
-+---Registers : 
-	               32 Bit    Registers := 1024  
-	                8 Bit    Registers := 1     
-+---Muxes : 
-	   2 Input      1 Bit        Muxes := 1024  
-Module RAM_B__parameterized2 
-Detailed RTL Component Info : 
-+---Registers : 
-	               32 Bit    Registers := 1024  
-	                8 Bit    Registers := 1     
-+---Muxes : 
-	   2 Input      1 Bit        Muxes := 1024  
 Module CLOCK_GENERATOR 
 Detailed RTL Component Info : 
 +---Adders : 
@@ -596,7 +522,7 @@ Detailed RTL Component Info :
 Module ROM 
 Detailed RTL Component Info : 
 +---Muxes : 
-	 102 Input     33 Bit        Muxes := 1     
+	 132 Input     33 Bit        Muxes := 1     
 Module IMMEDIATE_TO_ALU_CONVERTER 
 Detailed RTL Component Info : 
 +---Muxes : 
@@ -614,7 +540,7 @@ Module REGISTER
 Detailed RTL Component Info : 
 +---Registers : 
 	               32 Bit    Registers := 1     
-Module ADDER__1 
+Module ADDER 
 Detailed RTL Component Info : 
 +---Adders : 
 	   2 Input     32 Bit       Adders := 1     
@@ -622,18 +548,10 @@ Module REGFILE
 Detailed RTL Component Info : 
 +---Muxes : 
 	   2 Input     32 Bit        Muxes := 2     
-Module VALUE_EXTEND__1 
-Detailed RTL Component Info : 
-+---Muxes : 
-	   2 Input     32 Bit        Muxes := 1     
 Module VALUE_EXTEND 
 Detailed RTL Component Info : 
 +---Muxes : 
 	   2 Input     32 Bit        Muxes := 1     
-Module ADDER 
-Detailed RTL Component Info : 
-+---Adders : 
-	   2 Input     32 Bit       Adders := 1     
 Module ALU 
 Detailed RTL Component Info : 
 +---Adders : 
@@ -651,6 +569,12 @@ Detailed RTL Component Info :
 +---Muxes : 
 	   2 Input      4 Bit        Muxes := 1     
 	   2 Input      3 Bit        Muxes := 1     
+Module RAM_BYTE 
+Detailed RTL Component Info : 
++---Registers : 
+	               32 Bit    Registers := 1     
++---RAMs : 
+	              32K Bit         RAMs := 1     
 Module DECODER 
 Detailed RTL Component Info : 
 +---Muxes : 
@@ -661,14 +585,6 @@ Detailed RTL Component Info :
 	                1 Bit    Registers := 2     
 +---Muxes : 
 	   2 Input      1 Bit        Muxes := 1     
-Module Syncronizer__1 
-Detailed RTL Component Info : 
-+---Registers : 
-	                1 Bit    Registers := 1     
-Module Syncronizer__2 
-Detailed RTL Component Info : 
-+---Registers : 
-	                1 Bit    Registers := 1     
 Module SHIFTREGISTER 
 Detailed RTL Component Info : 
 +---Registers : 
@@ -772,30 +688,20 @@ Detailed RTL Component Info :
 Module VGA_Terminal_Control_Unit 
 Detailed RTL Component Info : 
 +---Adders : 
-	   2 Input     32 Bit       Adders := 6     
-	   2 Input     13 Bit       Adders := 1     
-	   2 Input     12 Bit       Adders := 1     
+	   2 Input     13 Bit       Adders := 4     
+	   2 Input     12 Bit       Adders := 4     
 +---Registers : 
-	               32 Bit    Registers := 3     
-	               12 Bit    Registers := 2     
+	               12 Bit    Registers := 5     
 	                8 Bit    Registers := 2     
-	                2 Bit    Registers := 1     
 	                1 Bit    Registers := 7     
 +---Muxes : 
-	   4 Input     32 Bit        Muxes := 3     
-	   2 Input     32 Bit        Muxes := 3     
-	   4 Input     12 Bit        Muxes := 1     
-	   2 Input     12 Bit        Muxes := 1     
-	   4 Input      8 Bit        Muxes := 2     
+	   2 Input     12 Bit        Muxes := 6     
+	   5 Input     12 Bit        Muxes := 5     
 	   2 Input      8 Bit        Muxes := 1     
-	   6 Input      2 Bit        Muxes := 1     
-	   4 Input      1 Bit        Muxes := 15    
-Module RAM__1 
-Detailed RTL Component Info : 
-+---Registers : 
-	                8 Bit    Registers := 1     
-+---RAMs : 
-	              18K Bit         RAMs := 1     
+	   5 Input      8 Bit        Muxes := 2     
+	  12 Input      3 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 1     
+	   5 Input      1 Bit        Muxes := 11    
 Module RAM 
 Detailed RTL Component Info : 
 +---Registers : 
@@ -829,318 +735,9 @@ BRAMs: 270 (col length: RAMB18 80 RAMB36 40)
 ---------------------------------------------------------------------------------
 Finished Part Resource Summary
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-5580] Multithreading enabled for synth_design using a maximum of 4 processes.
 ---------------------------------------------------------------------------------
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "p_0_out" won't be mapped to RAM because it is too sparse
-INFO: [Common 17-14] Message 'Synth 8-5546' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[450][0]' (FDE) to 'ramb_3i_1/ram_reg[450][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[450][1]' (FDE) to 'ramb_3i_1/ram_reg[450][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[450][2]' (FDE) to 'ramb_3i_1/ram_reg[450][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[450][3]' (FDE) to 'ramb_3i_1/ram_reg[450][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[450][4]' (FDE) to 'ramb_3i_1/ram_reg[450][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[450][5]' (FDE) to 'ramb_3i_1/ram_reg[450][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[450][6]' (FDE) to 'ramb_3i_1/ram_reg[450][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[450][7]' (FDE) to 'ramb_3i_1/ram_reg[450][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[450][8]' (FDE) to 'ramb_3i_1/ram_reg[450][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[450][9]' (FDE) to 'ramb_3i_1/ram_reg[450][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[450][10]' (FDE) to 'ramb_3i_1/ram_reg[450][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[450][11]' (FDE) to 'ramb_3i_1/ram_reg[450][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[450][12]' (FDE) to 'ramb_3i_1/ram_reg[450][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[450][13]' (FDE) to 'ramb_3i_1/ram_reg[450][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[450][14]' (FDE) to 'ramb_3i_1/ram_reg[450][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[450][15]' (FDE) to 'ramb_3i_1/ram_reg[450][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[450][16]' (FDE) to 'ramb_3i_1/ram_reg[450][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[450][17]' (FDE) to 'ramb_3i_1/ram_reg[450][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[450][18]' (FDE) to 'ramb_3i_1/ram_reg[450][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[450][19]' (FDE) to 'ramb_3i_1/ram_reg[450][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[450][20]' (FDE) to 'ramb_3i_1/ram_reg[450][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[450][21]' (FDE) to 'ramb_3i_1/ram_reg[450][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[450][22]' (FDE) to 'ramb_3i_1/ram_reg[450][23]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[450][23] )
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[451][0]' (FDE) to 'ramb_3i_1/ram_reg[451][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[451][1]' (FDE) to 'ramb_3i_1/ram_reg[451][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[451][2]' (FDE) to 'ramb_3i_1/ram_reg[451][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[451][3]' (FDE) to 'ramb_3i_1/ram_reg[451][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[451][4]' (FDE) to 'ramb_3i_1/ram_reg[451][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[451][5]' (FDE) to 'ramb_3i_1/ram_reg[451][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[451][6]' (FDE) to 'ramb_3i_1/ram_reg[451][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[451][7]' (FDE) to 'ramb_3i_1/ram_reg[451][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[451][8]' (FDE) to 'ramb_3i_1/ram_reg[451][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[451][9]' (FDE) to 'ramb_3i_1/ram_reg[451][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[451][10]' (FDE) to 'ramb_3i_1/ram_reg[451][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[451][11]' (FDE) to 'ramb_3i_1/ram_reg[451][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[451][12]' (FDE) to 'ramb_3i_1/ram_reg[451][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[451][13]' (FDE) to 'ramb_3i_1/ram_reg[451][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[451][14]' (FDE) to 'ramb_3i_1/ram_reg[451][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[451][15]' (FDE) to 'ramb_3i_1/ram_reg[451][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[451][16]' (FDE) to 'ramb_3i_1/ram_reg[451][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[451][17]' (FDE) to 'ramb_3i_1/ram_reg[451][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[451][18]' (FDE) to 'ramb_3i_1/ram_reg[451][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[451][19]' (FDE) to 'ramb_3i_1/ram_reg[451][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[451][20]' (FDE) to 'ramb_3i_1/ram_reg[451][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[451][21]' (FDE) to 'ramb_3i_1/ram_reg[451][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[451][22]' (FDE) to 'ramb_3i_1/ram_reg[451][23]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[451][23] )
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[607][0]' (FDE) to 'ramb_3i_1/ram_reg[607][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[607][1]' (FDE) to 'ramb_3i_1/ram_reg[607][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[607][2]' (FDE) to 'ramb_3i_1/ram_reg[607][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[607][3]' (FDE) to 'ramb_3i_1/ram_reg[607][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[607][4]' (FDE) to 'ramb_3i_1/ram_reg[607][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[607][5]' (FDE) to 'ramb_3i_1/ram_reg[607][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[607][6]' (FDE) to 'ramb_3i_1/ram_reg[607][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[607][7]' (FDE) to 'ramb_3i_1/ram_reg[607][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[607][8]' (FDE) to 'ramb_3i_1/ram_reg[607][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[607][9]' (FDE) to 'ramb_3i_1/ram_reg[607][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[607][10]' (FDE) to 'ramb_3i_1/ram_reg[607][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[607][11]' (FDE) to 'ramb_3i_1/ram_reg[607][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[607][12]' (FDE) to 'ramb_3i_1/ram_reg[607][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[607][13]' (FDE) to 'ramb_3i_1/ram_reg[607][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[607][14]' (FDE) to 'ramb_3i_1/ram_reg[607][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[607][15]' (FDE) to 'ramb_3i_1/ram_reg[607][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[607][16]' (FDE) to 'ramb_3i_1/ram_reg[607][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[607][17]' (FDE) to 'ramb_3i_1/ram_reg[607][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[607][18]' (FDE) to 'ramb_3i_1/ram_reg[607][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[607][19]' (FDE) to 'ramb_3i_1/ram_reg[607][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[607][20]' (FDE) to 'ramb_3i_1/ram_reg[607][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[607][21]' (FDE) to 'ramb_3i_1/ram_reg[607][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[607][22]' (FDE) to 'ramb_3i_1/ram_reg[607][23]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[607][23] )
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[452][0]' (FDE) to 'ramb_3i_1/ram_reg[452][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[452][1]' (FDE) to 'ramb_3i_1/ram_reg[452][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[452][2]' (FDE) to 'ramb_3i_1/ram_reg[452][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[452][3]' (FDE) to 'ramb_3i_1/ram_reg[452][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[452][4]' (FDE) to 'ramb_3i_1/ram_reg[452][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[452][5]' (FDE) to 'ramb_3i_1/ram_reg[452][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[452][6]' (FDE) to 'ramb_3i_1/ram_reg[452][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[452][7]' (FDE) to 'ramb_3i_1/ram_reg[452][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[452][8]' (FDE) to 'ramb_3i_1/ram_reg[452][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[452][9]' (FDE) to 'ramb_3i_1/ram_reg[452][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[452][10]' (FDE) to 'ramb_3i_1/ram_reg[452][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[452][11]' (FDE) to 'ramb_3i_1/ram_reg[452][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[452][12]' (FDE) to 'ramb_3i_1/ram_reg[452][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[452][13]' (FDE) to 'ramb_3i_1/ram_reg[452][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[452][14]' (FDE) to 'ramb_3i_1/ram_reg[452][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[452][15]' (FDE) to 'ramb_3i_1/ram_reg[452][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[452][16]' (FDE) to 'ramb_3i_1/ram_reg[452][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[452][17]' (FDE) to 'ramb_3i_1/ram_reg[452][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[452][18]' (FDE) to 'ramb_3i_1/ram_reg[452][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[452][19]' (FDE) to 'ramb_3i_1/ram_reg[452][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[452][20]' (FDE) to 'ramb_3i_1/ram_reg[452][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[452][21]' (FDE) to 'ramb_3i_1/ram_reg[452][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[452][22]' (FDE) to 'ramb_3i_1/ram_reg[452][23]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[452][23] )
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[453][0]' (FDE) to 'ramb_3i_1/ram_reg[453][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[453][1]' (FDE) to 'ramb_3i_1/ram_reg[453][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[453][2]' (FDE) to 'ramb_3i_1/ram_reg[453][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[453][3]' (FDE) to 'ramb_3i_1/ram_reg[453][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[453][4]' (FDE) to 'ramb_3i_1/ram_reg[453][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[453][5]' (FDE) to 'ramb_3i_1/ram_reg[453][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[453][6]' (FDE) to 'ramb_3i_1/ram_reg[453][23]'
-INFO: [Synth 8-3886] merging instance 'ramb_3i_1/ram_reg[453][7]' (FDE) to 'ramb_3i_1/ram_reg[453][23]'
-INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[453][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[606][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[454][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[455][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[605][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[456][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[457][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[604][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[458][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[459][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[603][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[460][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[461][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[602][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[462][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[463][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[449][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[448][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[601][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[464][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[465][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[600][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[466][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[467][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[599][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[468][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[469][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[598][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[470][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[471][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[597][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[472][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[473][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[596][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[447][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[446][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[445][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[444][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[443][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[442][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[441][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[440][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[439][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[438][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[437][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[436][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[434][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[433][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[432][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[431][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[430][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[429][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[428][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[427][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[426][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[425][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[424][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[423][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[422][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[421][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[420][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[419][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[418][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[417][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[416][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[415][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[414][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[627][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[413][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[412][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[628][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[411][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[410][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[629][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[409][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[408][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[630][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[407][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[406][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[631][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[405][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[404][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[632][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[403][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[402][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[633][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[401][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[400][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[634][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[399][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[398][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[635][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[397][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[396][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[350][23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (ramb_3i_1/\ram_reg[636][23] )
-INFO: [Common 17-14] Message 'Synth 8-3333' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
-INFO: [Common 17-14] Message 'Synth 8-5546' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
-INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
-INFO: [Common 17-14] Message 'Synth 8-3333' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
-INFO: [Common 17-14] Message 'Synth 8-5546' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
-INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
-INFO: [Common 17-14] Message 'Synth 8-3333' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
-INFO: [Common 17-14] Message 'Synth 8-5546' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
-INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
-INFO: [Common 17-14] Message 'Synth 8-3333' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 DSP Report: Generating DSP low_result0, operation Mode is: A*B.
 DSP Report: operator low_result0 is absorbed into DSP low_result0.
 DSP Report: operator low_result0 is absorbed into DSP low_result0.
@@ -1153,87 +750,97 @@ DSP Report: operator low_result0 is absorbed into DSP low_result0.
 DSP Report: Generating DSP low_result0, operation Mode is: (PCIN>>17)+A*B.
 DSP Report: operator low_result0 is absorbed into DSP low_result0.
 DSP Report: operator low_result0 is absorbed into DSP low_result0.
-WARNING: [Synth 8-6014] Unused sequential element keyboard/counter_ps2_clks/Q_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:328]
-WARNING: [Synth 8-6014] Unused sequential element extended_count_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:153]
-WARNING: [Synth 8-6014] Unused sequential element pixel_clock_generator/count_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:766]
-WARNING: [Synth 8-6014] Unused sequential element vga_controller/hcount_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:814]
-WARNING: [Synth 8-6014] Unused sequential element vga_controller/vcount_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:819]
+WARNING: [Synth 8-6014] Unused sequential element hcount_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:916]
+WARNING: [Synth 8-6014] Unused sequential element vcount_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:921]
+WARNING: [Synth 8-6014] Unused sequential element pixel_clock_generator/count_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:868]
 DSP Report: Generating DSP linearize/address, operation Mode is: C+A*(B:0x50).
 DSP Report: operator linearize/address is absorbed into DSP linearize/address.
 DSP Report: operator linearize/address0 is absorbed into DSP linearize/address.
 INFO: [Synth 8-5545] ROM "clock/counter" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
 INFO: [Synth 8-5545] ROM "clock/slow_clk" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5546] ROM "keyboard/extended" won't be mapped to RAM because it is too sparse
+WARNING: [Synth 8-6014] Unused sequential element keyboard/keyboard/counter_ps2_clks/Q_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/GlueLogic.v:328]
+WARNING: [Synth 8-6014] Unused sequential element keyboard/extended_count_reg was removed.  [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/Keyboard.v:133]
 INFO: [Synth 8-5784] Optimized 0 bits of RAM "video_ram/ram_reg" due to constant propagation. Old ram width 8 bits, new ram width 8 bits.
 INFO: [Synth 8-4652] Swapped enable and write-enable on 1 RAM instances of RAM video_ram/ram_reg to conserve power
 INFO: [Synth 8-5784] Optimized 0 bits of RAM "buffer_ram/ram_reg" due to constant propagation. Old ram width 8 bits, new ram width 8 bits.
 INFO: [Synth 8-4652] Swapped enable and write-enable on 1 RAM instances of RAM buffer_ram/ram_reg to conserve power
-WARNING: [Synth 8-3332] Sequential element (keyboard/scan_code_register/Q_reg[10]) is unused and will be removed from module ASCII_Keyboard.
-WARNING: [Synth 8-3332] Sequential element (extended_count_reg[0]) is unused and will be removed from module ASCII_Keyboard.
-WARNING: [Synth 8-3332] Sequential element (extended_count_reg[1]) is unused and will be removed from module ASCII_Keyboard.
-WARNING: [Synth 8-3332] Sequential element (extended_count_reg[2]) is unused and will be removed from module ASCII_Keyboard.
-WARNING: [Synth 8-3332] Sequential element (extended_count_reg[3]) is unused and will be removed from module ASCII_Keyboard.
-WARNING: [Synth 8-3332] Sequential element (extended_count_reg[4]) is unused and will be removed from module ASCII_Keyboard.
-WARNING: [Synth 8-3332] Sequential element (extended_count_reg[5]) is unused and will be removed from module ASCII_Keyboard.
-WARNING: [Synth 8-3332] Sequential element (extended_count_reg[6]) is unused and will be removed from module ASCII_Keyboard.
-WARNING: [Synth 8-3332] Sequential element (extended_count_reg[7]) is unused and will be removed from module ASCII_Keyboard.
-WARNING: [Synth 8-3332] Sequential element (extended_count_reg[8]) is unused and will be removed from module ASCII_Keyboard.
-WARNING: [Synth 8-3332] Sequential element (extended_count_reg[9]) is unused and will be removed from module ASCII_Keyboard.
-WARNING: [Synth 8-3332] Sequential element (extended_count_reg[10]) is unused and will be removed from module ASCII_Keyboard.
-WARNING: [Synth 8-3332] Sequential element (extended_count_reg[11]) is unused and will be removed from module ASCII_Keyboard.
-WARNING: [Synth 8-3332] Sequential element (extended_count_reg[12]) is unused and will be removed from module ASCII_Keyboard.
-WARNING: [Synth 8-3332] Sequential element (extended_count_reg[13]) is unused and will be removed from module ASCII_Keyboard.
-WARNING: [Synth 8-3332] Sequential element (extended_count_reg[14]) is unused and will be removed from module ASCII_Keyboard.
-WARNING: [Synth 8-3332] Sequential element (extended_count_reg[15]) is unused and will be removed from module ASCII_Keyboard.
-WARNING: [Synth 8-3332] Sequential element (extended_count_reg[16]) is unused and will be removed from module ASCII_Keyboard.
-WARNING: [Synth 8-3332] Sequential element (extended_count_reg[17]) is unused and will be removed from module ASCII_Keyboard.
-WARNING: [Synth 8-3332] Sequential element (extended_count_reg[18]) is unused and will be removed from module ASCII_Keyboard.
-WARNING: [Synth 8-3332] Sequential element (extended_count_reg[19]) is unused and will be removed from module ASCII_Keyboard.
-WARNING: [Synth 8-3332] Sequential element (extended_count_reg[20]) is unused and will be removed from module ASCII_Keyboard.
-WARNING: [Synth 8-3332] Sequential element (extended_count_reg[21]) is unused and will be removed from module ASCII_Keyboard.
-WARNING: [Synth 8-3332] Sequential element (extended_count_reg[22]) is unused and will be removed from module ASCII_Keyboard.
-WARNING: [Synth 8-3332] Sequential element (extended_count_reg[23]) is unused and will be removed from module ASCII_Keyboard.
-WARNING: [Synth 8-3332] Sequential element (extended_count_reg[24]) is unused and will be removed from module ASCII_Keyboard.
-WARNING: [Synth 8-3332] Sequential element (extended_count_reg[25]) is unused and will be removed from module ASCII_Keyboard.
-WARNING: [Synth 8-3332] Sequential element (extended_count_reg[26]) is unused and will be removed from module ASCII_Keyboard.
-WARNING: [Synth 8-3332] Sequential element (extended_count_reg[27]) is unused and will be removed from module ASCII_Keyboard.
-WARNING: [Synth 8-3332] Sequential element (extended_count_reg[28]) is unused and will be removed from module ASCII_Keyboard.
-WARNING: [Synth 8-3332] Sequential element (extended_count_reg[29]) is unused and will be removed from module ASCII_Keyboard.
-WARNING: [Synth 8-3332] Sequential element (extended_count_reg[30]) is unused and will be removed from module ASCII_Keyboard.
-WARNING: [Synth 8-3332] Sequential element (extended_count_reg[31]) is unused and will be removed from module ASCII_Keyboard.
-WARNING: [Synth 8-3332] Sequential element (previous_position_reg[0]) is unused and will be removed from module VGA_Terminal_Control_Unit.
-WARNING: [Synth 8-3332] Sequential element (v_reg[31]) is unused and will be removed from module VGA_Terminal_Control_Unit.
-WARNING: [Synth 8-3332] Sequential element (v_reg[30]) is unused and will be removed from module VGA_Terminal_Control_Unit.
-WARNING: [Synth 8-3332] Sequential element (buffer_data_out_reg[7]) is unused and will be removed from module VGA_Terminal_Control_Unit.
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (vga_term/cu/\buffer_databus_reg[7] )
+WARNING: [Synth 8-3332] Sequential element (hex_counter_reg[11]) is unused and will be removed from module VGA_Terminal_Control_Unit.
+WARNING: [Synth 8-3332] Sequential element (hex_counter_reg[10]) is unused and will be removed from module VGA_Terminal_Control_Unit.
+WARNING: [Synth 8-3332] Sequential element (hex_counter_reg[9]) is unused and will be removed from module VGA_Terminal_Control_Unit.
+WARNING: [Synth 8-3332] Sequential element (hex_counter_reg[8]) is unused and will be removed from module VGA_Terminal_Control_Unit.
+WARNING: [Synth 8-3332] Sequential element (buffer_databus_reg[7]) is unused and will be removed from module VGA_Terminal_Control_Unit.
+WARNING: [Synth 8-3332] Sequential element (keyboard/keyboard/scan_code_register/Q_reg[10]) is unused and will be removed from module Motherboard.
+INFO: [Synth 8-3886] merging instance 'keyboard/ascii_to_vga/write_position_reg_rep[0]' (FDCE) to 'keyboard/ascii_to_vga/write_position_reg[0]'
+INFO: [Synth 8-3886] merging instance 'keyboard/ascii_to_vga/write_position_reg_rep[1]' (FDCE) to 'keyboard/ascii_to_vga/write_position_reg[1]'
+INFO: [Synth 8-3886] merging instance 'keyboard/ascii_to_vga/write_position_reg_rep[2]' (FDCE) to 'keyboard/ascii_to_vga/write_position_reg[2]'
+INFO: [Synth 8-3886] merging instance 'keyboard/ascii_to_vga/write_position_reg_rep[3]' (FDCE) to 'keyboard/ascii_to_vga/write_position_reg[3]'
+INFO: [Synth 8-3886] merging instance 'keyboard/ascii_to_vga/read_position_reg_rep[0]' (FDCE) to 'keyboard/ascii_to_vga/read_position_reg[0]'
+INFO: [Synth 8-3886] merging instance 'keyboard/ascii_to_vga/read_position_reg_rep[1]' (FDCE) to 'keyboard/ascii_to_vga/read_position_reg[1]'
+INFO: [Synth 8-3886] merging instance 'keyboard/ascii_to_vga/read_position_reg_rep[2]' (FDCE) to 'keyboard/ascii_to_vga/read_position_reg[2]'
+INFO: [Synth 8-3886] merging instance 'keyboard/ascii_to_vga/read_position_reg_rep[3]' (FDCE) to 'keyboard/ascii_to_vga/read_position_reg[3]'
+INFO: [Synth 8-3886] merging instance 'vga_ascii_fifo/write_position_reg_rep[0]' (FDCE) to 'vga_ascii_fifo/write_position_reg[0]'
+INFO: [Synth 8-3886] merging instance 'vga_ascii_fifo/write_position_reg_rep[1]' (FDCE) to 'vga_ascii_fifo/write_position_reg[1]'
+INFO: [Synth 8-3886] merging instance 'vga_ascii_fifo/write_position_reg_rep[2]' (FDCE) to 'vga_ascii_fifo/write_position_reg[2]'
+INFO: [Synth 8-3886] merging instance 'vga_ascii_fifo/write_position_reg_rep[3]' (FDCE) to 'vga_ascii_fifo/write_position_reg[3]'
+INFO: [Synth 8-3886] merging instance 'vga_ascii_fifo/write_position_reg_rep[4]' (FDCE) to 'vga_ascii_fifo/write_position_reg[4]'
+INFO: [Synth 8-3886] merging instance 'vga_ascii_fifo/read_position_reg_rep[0]' (FDCE) to 'vga_ascii_fifo/read_position_reg[0]'
+INFO: [Synth 8-3886] merging instance 'vga_ascii_fifo/read_position_reg_rep[1]' (FDCE) to 'vga_ascii_fifo/read_position_reg[1]'
+INFO: [Synth 8-3886] merging instance 'vga_ascii_fifo/read_position_reg_rep[2]' (FDCE) to 'vga_ascii_fifo/read_position_reg[2]'
+INFO: [Synth 8-3886] merging instance 'vga_ascii_fifo/read_position_reg_rep[3]' (FDCE) to 'vga_ascii_fifo/read_position_reg[3]'
+INFO: [Synth 8-3886] merging instance 'vga_ascii_fifo/read_position_reg_rep[4]' (FDCE) to 'vga_ascii_fifo/read_position_reg[4]'
+INFO: [Synth 8-3886] merging instance 'vga_address_fifo/write_position_reg_rep[0]' (FDCE) to 'vga_address_fifo/write_position_reg[0]'
+INFO: [Synth 8-3886] merging instance 'vga_address_fifo/write_position_reg_rep[1]' (FDCE) to 'vga_address_fifo/write_position_reg[1]'
+INFO: [Synth 8-3886] merging instance 'vga_address_fifo/write_position_reg_rep[2]' (FDCE) to 'vga_address_fifo/write_position_reg[2]'
+INFO: [Synth 8-3886] merging instance 'vga_address_fifo/write_position_reg_rep[3]' (FDCE) to 'vga_address_fifo/write_position_reg[3]'
+INFO: [Synth 8-3886] merging instance 'vga_address_fifo/write_position_reg_rep[4]' (FDCE) to 'vga_address_fifo/write_position_reg[4]'
+INFO: [Synth 8-3886] merging instance 'vga_address_fifo/read_position_reg_rep[0]' (FDCE) to 'vga_address_fifo/read_position_reg[0]'
+INFO: [Synth 8-3886] merging instance 'vga_address_fifo/read_position_reg_rep[1]' (FDCE) to 'vga_address_fifo/read_position_reg[1]'
+INFO: [Synth 8-3886] merging instance 'vga_address_fifo/read_position_reg_rep[2]' (FDCE) to 'vga_address_fifo/read_position_reg[2]'
+INFO: [Synth 8-3886] merging instance 'vga_address_fifo/read_position_reg_rep[3]' (FDCE) to 'vga_address_fifo/read_position_reg[3]'
+INFO: [Synth 8-3886] merging instance 'vga_address_fifo/read_position_reg_rep[4]' (FDCE) to 'vga_address_fifo/read_position_reg[4]'
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:02:26 ; elapsed = 00:04:26 . Memory (MB): peak = 2144.551 ; gain = 971.426 ; free physical = 510 ; free virtual = 16381
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:52 ; elapsed = 00:01:13 . Memory (MB): peak = 1635.238 ; gain = 462.113 ; free physical = 2530 ; free virtual = 22376
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
 ---------------------------------------------------------------------------------
 
 ROM:
-+-------------------+------------+---------------+----------------+
-|Module Name        | RTL Object | Depth x Width | Implemented As | 
-+-------------------+------------+---------------+----------------+
-|KeyboardToASCIIROM | ascii      | 256x8         | LUT            | 
-|KeyboardToASCIIROM | ascii      | 256x8         | LUT            | 
-|FontROM            | out        | 256x8         | LUT            | 
-|FontROM            | out        | 256x8         | LUT            | 
-|FontROM            | out        | 256x8         | LUT            | 
-|FontROM            | out        | 256x8         | LUT            | 
-|FontROM            | out        | 256x8         | LUT            | 
-|FontROM            | out        | 256x8         | LUT            | 
-|FontROM            | out        | 256x8         | LUT            | 
-|FontROM            | out        | 256x8         | LUT            | 
-|FontROM            | out        | 256x8         | LUT            | 
-|FontROM            | out        | 256x8         | LUT            | 
-+-------------------+------------+---------------+----------------+
++-------------------+--------------------+---------------+----------------+
+|Module Name        | RTL Object         | Depth x Width | Implemented As | 
++-------------------+--------------------+---------------+----------------+
+|KeyboardToASCIIROM | ascii              | 256x8         | LUT            | 
+|KeyboardToASCIIROM | ascii              | 256x8         | LUT            | 
+|FontROM            | out                | 256x8         | LUT            | 
+|FontROM            | out                | 256x8         | LUT            | 
+|FontROM            | out                | 256x8         | LUT            | 
+|FontROM            | out                | 256x8         | LUT            | 
+|FontROM            | out                | 256x8         | LUT            | 
+|FontROM            | out                | 256x8         | LUT            | 
+|FontROM            | out                | 256x8         | LUT            | 
+|FontROM            | out                | 256x8         | LUT            | 
+|FontROM            | out                | 256x8         | LUT            | 
+|FontROM            | out                | 256x8         | LUT            | 
+|FontROM            | out                | 256x8         | LUT            | 
+|FontROM            | out                | 256x8         | LUT            | 
+|FontROM            | out                | 256x8         | LUT            | 
+|FontROM            | out                | 256x8         | LUT            | 
+|FontROM            | out                | 256x8         | LUT            | 
+|FontROM            | out                | 256x8         | LUT            | 
+|FontROM            | out                | 256x8         | LUT            | 
+|FontROM            | out                | 256x8         | LUT            | 
+|Motherboard        | keyboard/rom/ascii | 256x8         | LUT            | 
+|Motherboard        | keyboard/rom/ascii | 256x8         | LUT            | 
++-------------------+--------------------+---------------+----------------+
 
 
 Block RAM: Preliminary Mapping  Report (see note below)
 +------------+--------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
 |Module Name | RTL Object         | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
 +------------+--------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Motherboard | ram/ram_reg        | 1 K x 32(READ_FIRST)   | W |   | 1 K x 32(WRITE_FIRST)  |   | R | Port A and B     | 0      | 1      | 
 |vga_term    | video_ram/ram_reg  | 4 K x 8(READ_FIRST)    | W |   | 4 K x 8(WRITE_FIRST)   |   | R | Port A and B     | 0      | 1      | 
 |vga_term    | buffer_ram/ram_reg | 4 K x 8(READ_FIRST)    | W |   | 4 K x 8(WRITE_FIRST)   |   | R | Port A and B     | 0      | 1      | 
 +------------+--------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
@@ -1241,14 +848,14 @@ Block RAM: Preliminary Mapping  Report (see note below)
 Note: The tale above is a preliminary report that shows the Block RAMs at the current stage of the synthesis flow. Some Block RAMs may be reimplemented as non Block RAM primitives later in the synthesis flow. Multiple instantiated Block RAMs are reported only once. 
 
 Distributed RAM: Preliminary Mapping  Report (see note below)
-+-----------------+---------------------------+-----------+----------------------+---------------+
-|Module Name      | RTL Object                | Inference | Size (Depth x Width) | Primitives    | 
-+-----------------+---------------------------+-----------+----------------------+---------------+
-|mips             | regfile/register_file_reg | Implied   | 32 x 32              | RAM32M x 12   | 
-|keyboard         | ascii_to_vga/mem_reg      | Implied   | 16 x 8               | RAM32M x 4    | 
-|vga_ascii_fifo   | mem_reg                   | Implied   | 32 x 8               | RAM32M x 4    | 
-|vga_address_fifo | mem_reg                   | Implied   | 32 x 12              | RAM32M x 4    | 
-+-----------------+---------------------------+-----------+----------------------+---------------+
++------------+-------------------------------+-----------+----------------------+---------------+
+|Module Name | RTL Object                    | Inference | Size (Depth x Width) | Primitives    | 
++------------+-------------------------------+-----------+----------------------+---------------+
+|mips        | regfile/register_file_reg     | Implied   | 32 x 32              | RAM32M x 12   | 
+|Motherboard | keyboard/ascii_to_vga/mem_reg | Implied   | 16 x 8               | RAM32M x 4    | 
+|Motherboard | vga_ascii_fifo/mem_reg        | Implied   | 32 x 8               | RAM32M x 4    | 
+|Motherboard | vga_address_fifo/mem_reg      | Implied   | 32 x 12              | RAM32M x 4    | 
++------------+-------------------------------+-----------+----------------------+---------------+
 
 Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
 
@@ -1269,40 +876,21 @@ Finished ROM, RAM, DSP and Shift Register Reporting
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
-+------+---------------------------+------------+----------+
-|      |RTL Partition              |Replication |Instances |
-+------+---------------------------+------------+----------+
-|1     |RAM_B__GB0                 |           1|      8194|
-|2     |RAM_B__GB1                 |           1|      1352|
-|3     |RAM_B__GB2                 |           1|      2416|
-|4     |RAM_B__GB3                 |           1|      3308|
-|5     |RAM_B__GB4                 |           1|      3125|
-|6     |muxpart__2062              |           1|     32736|
-|7     |RAM_B__parameterized0__GB1 |           1|      1382|
-|8     |RAM_B__parameterized0__GB2 |           1|      2393|
-|9     |RAM_B__parameterized0__GB3 |           1|      3336|
-|10    |RAM_B__parameterized0__GB4 |           1|      3139|
-|11    |muxpart__3087              |           1|     32736|
-|12    |RAM_B__parameterized1__GB1 |           1|      1383|
-|13    |RAM_B__parameterized1__GB2 |           1|      2388|
-|14    |RAM_B__parameterized1__GB3 |           1|      3297|
-|15    |RAM_B__parameterized1__GB4 |           1|      3129|
-|16    |RAM_B__parameterized2__GB0 |           1|     14160|
-|17    |RAM_B__parameterized2__GB1 |           1|      1792|
-|18    |RAM_B__parameterized2__GB2 |           1|      1880|
-|19    |Motherboard__GC0           |           1|     14814|
-+------+---------------------------+------------+----------+
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:02:36 ; elapsed = 00:04:40 . Memory (MB): peak = 2144.551 ; gain = 971.426 ; free physical = 363 ; free virtual = 16242
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:00 ; elapsed = 00:01:27 . Memory (MB): peak = 1699.238 ; gain = 526.113 ; free physical = 2368 ; free virtual = 22214
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:02:45 ; elapsed = 00:04:50 . Memory (MB): peak = 2144.551 ; gain = 971.426 ; free physical = 349 ; free virtual = 16234
+Finished Timing Optimization : Time (s): cpu = 00:01:02 ; elapsed = 00:01:28 . Memory (MB): peak = 1727.270 ; gain = 554.145 ; free physical = 2353 ; free virtual = 22199
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -1312,67 +900,48 @@ Block RAM: Final Mapping  Report
 +------------+--------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
 |Module Name | RTL Object         | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
 +------------+--------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Motherboard | ram/ram_reg        | 1 K x 32(READ_FIRST)   | W |   | 1 K x 32(WRITE_FIRST)  |   | R | Port A and B     | 0      | 1      | 
 |vga_term    | video_ram/ram_reg  | 4 K x 8(READ_FIRST)    | W |   | 4 K x 8(WRITE_FIRST)   |   | R | Port A and B     | 0      | 1      | 
 |vga_term    | buffer_ram/ram_reg | 4 K x 8(READ_FIRST)    | W |   | 4 K x 8(WRITE_FIRST)   |   | R | Port A and B     | 0      | 1      | 
 +------------+--------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
 
 
 Distributed RAM: Final Mapping  Report
-+-----------------+---------------------------+-----------+----------------------+---------------+
-|Module Name      | RTL Object                | Inference | Size (Depth x Width) | Primitives    | 
-+-----------------+---------------------------+-----------+----------------------+---------------+
-|mips             | regfile/register_file_reg | Implied   | 32 x 32              | RAM32M x 12   | 
-|keyboard         | ascii_to_vga/mem_reg      | Implied   | 16 x 8               | RAM32M x 4    | 
-|vga_ascii_fifo   | mem_reg                   | Implied   | 32 x 8               | RAM32M x 4    | 
-|vga_address_fifo | mem_reg                   | Implied   | 32 x 12              | RAM32M x 4    | 
-+-----------------+---------------------------+-----------+----------------------+---------------+
++------------+-------------------------------+-----------+----------------------+---------------+
+|Module Name | RTL Object                    | Inference | Size (Depth x Width) | Primitives    | 
++------------+-------------------------------+-----------+----------------------+---------------+
+|mips        | regfile/register_file_reg     | Implied   | 32 x 32              | RAM32M x 12   | 
+|Motherboard | keyboard/ascii_to_vga/mem_reg | Implied   | 16 x 8               | RAM32M x 4    | 
+|Motherboard | vga_ascii_fifo/mem_reg        | Implied   | 32 x 8               | RAM32M x 4    | 
+|Motherboard | vga_address_fifo/mem_reg      | Implied   | 32 x 12              | RAM32M x 4    | 
++------------+-------------------------------+-----------+----------------------+---------------+
 
 ---------------------------------------------------------------------------------
 Finished ROM, RAM, DSP and Shift Register Reporting
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
-+------+---------------------------+------------+----------+
-|      |RTL Partition              |Replication |Instances |
-+------+---------------------------+------------+----------+
-|1     |RAM_B__GB0                 |           1|      8194|
-|2     |RAM_B__GB1                 |           1|      1352|
-|3     |RAM_B__GB2                 |           1|      2403|
-|4     |RAM_B__GB3                 |           1|      3304|
-|5     |RAM_B__GB4                 |           1|      3125|
-|6     |muxpart__2062              |           1|      8184|
-|7     |RAM_B__parameterized0__GB1 |           1|      1382|
-|8     |RAM_B__parameterized0__GB2 |           1|      2384|
-|9     |RAM_B__parameterized0__GB3 |           1|      3328|
-|10    |RAM_B__parameterized0__GB4 |           1|      3139|
-|11    |muxpart__3087              |           1|      8184|
-|12    |RAM_B__parameterized1__GB1 |           1|      1375|
-|13    |RAM_B__parameterized1__GB2 |           1|      2384|
-|14    |RAM_B__parameterized1__GB3 |           1|      3292|
-|15    |RAM_B__parameterized1__GB4 |           1|      3129|
-|16    |RAM_B__parameterized2__GB0 |           1|     14160|
-|17    |RAM_B__parameterized2__GB1 |           1|      1792|
-|18    |RAM_B__parameterized2__GB2 |           1|      1880|
-|19    |Motherboard__GC0           |           1|     14832|
-+------+---------------------------+------------+----------+
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:819]
-INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:814]
-INFO: [Synth 8-4480] The timing for the instance i_18/vga_term/video_ram/ram_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
-INFO: [Synth 8-4480] The timing for the instance i_18/vga_term/buffer_ram/ram_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:921]
+INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:916]
+INFO: [Synth 8-4480] The timing for the instance ram/ram_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance vga_term/video_ram/ram_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance vga_term/buffer_ram/ram_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:03:09 ; elapsed = 00:05:20 . Memory (MB): peak = 2170.203 ; gain = 997.078 ; free physical = 246 ; free virtual = 15885
+Finished Technology Mapping : Time (s): cpu = 00:01:05 ; elapsed = 00:01:32 . Memory (MB): peak = 1831.988 ; gain = 658.863 ; free physical = 2343 ; free virtual = 22189
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
-+------+---------------------------+------------+----------+
-|      |RTL Partition              |Replication |Instances |
-+------+---------------------------+------------+----------+
-|1     |RAM_B__parameterized2__GB0 |           1|      9769|
-|2     |Motherboard__GC0           |           1|      6997|
-+------+---------------------------+------------+----------+
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
 ---------------------------------------------------------------------------------
 Start IO Insertion
 ---------------------------------------------------------------------------------
@@ -1385,15 +954,11 @@ Finished Flattening Before IO Insertion
 ---------------------------------------------------------------------------------
 Start Final Netlist Cleanup
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:819]
-INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sources_1/new/VGA.v:814]
-INFO: [Synth 8-4480] The timing for the instance vga_term/video_ram/ram_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
-INFO: [Synth 8-4480] The timing for the instance vga_term/buffer_ram/ram_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
 ---------------------------------------------------------------------------------
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:03:17 ; elapsed = 00:05:28 . Memory (MB): peak = 2170.203 ; gain = 997.078 ; free physical = 289 ; free virtual = 15922
+Finished IO Insertion : Time (s): cpu = 00:01:06 ; elapsed = 00:01:32 . Memory (MB): peak = 1831.988 ; gain = 658.863 ; free physical = 2342 ; free virtual = 22188
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -1406,7 +971,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:03:18 ; elapsed = 00:05:29 . Memory (MB): peak = 2170.203 ; gain = 997.078 ; free physical = 289 ; free virtual = 15922
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:06 ; elapsed = 00:01:33 . Memory (MB): peak = 1831.988 ; gain = 658.863 ; free physical = 2342 ; free virtual = 22188
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -1418,25 +983,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:03:22 ; elapsed = 00:05:33 . Memory (MB): peak = 2170.203 ; gain = 997.078 ; free physical = 285 ; free virtual = 15919
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:06 ; elapsed = 00:01:33 . Memory (MB): peak = 1831.988 ; gain = 658.863 ; free physical = 2341 ; free virtual = 22187
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:03:24 ; elapsed = 00:05:35 . Memory (MB): peak = 2170.203 ; gain = 997.078 ; free physical = 285 ; free virtual = 15918
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:06 ; elapsed = 00:01:33 . Memory (MB): peak = 1831.988 ; gain = 658.863 ; free physical = 2341 ; free virtual = 22187
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:03:26 ; elapsed = 00:05:37 . Memory (MB): peak = 2170.203 ; gain = 997.078 ; free physical = 285 ; free virtual = 15918
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:07 ; elapsed = 00:01:33 . Memory (MB): peak = 1831.988 ; gain = 658.863 ; free physical = 2341 ; free virtual = 22187
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:03:26 ; elapsed = 00:05:37 . Memory (MB): peak = 2170.203 ; gain = 997.078 ; free physical = 285 ; free virtual = 15918
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:07 ; elapsed = 00:01:33 . Memory (MB): peak = 1831.988 ; gain = 658.863 ; free physical = 2341 ; free virtual = 22187
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -1449,78 +1014,77 @@ Report BlackBoxes:
 +-+--------------+----------+
 
 Report Cell Usage: 
-+------+----------+------+
-|      |Cell      |Count |
-+------+----------+------+
-|1     |BUFG      |     6|
-|2     |CARRY4    |   797|
-|3     |DSP48E1   |     4|
-|4     |DSP48E1_1 |     1|
-|5     |LUT1      |   301|
-|6     |LUT2      |   856|
-|7     |LUT3      |  2412|
-|8     |LUT4      |   922|
-|9     |LUT5      |   836|
-|10    |LUT6      | 13462|
-|11    |MUXF7     |  4563|
-|12    |MUXF8     |  2214|
-|13    |RAM32M    |    24|
-|14    |RAMB36E1  |     2|
-|15    |FDCE      |   414|
-|16    |FDPE      |     3|
-|17    |FDRE      | 32803|
-|18    |LD        |    96|
-|19    |IBUF      |     6|
-|20    |OBUF      |    15|
-+------+----------+------+
++------+-----------+------+
+|      |Cell       |Count |
++------+-----------+------+
+|1     |BUFG       |     6|
+|2     |CARRY4     |   752|
+|3     |DSP48E1    |     4|
+|4     |DSP48E1_1  |     1|
+|5     |LUT1       |   277|
+|6     |LUT2       |   751|
+|7     |LUT3       |  2232|
+|8     |LUT4       |   307|
+|9     |LUT5       |   537|
+|10    |LUT6       |  1228|
+|11    |MUXF7      |   230|
+|12    |MUXF8      |    42|
+|13    |RAM32M     |    24|
+|14    |RAMB36E1   |     1|
+|15    |RAMB36E1_1 |     2|
+|16    |FDCE       |   386|
+|17    |FDPE       |     3|
+|18    |FDRE       |     3|
+|19    |LD         |    96|
+|20    |IBUF       |     6|
+|21    |OBUF       |    15|
++------+-----------+------+
 
 Report Instance Areas: 
-+------+--------------------------+--------------------------+------+
-|      |Instance                  |Module                    |Cells |
-+------+--------------------------+--------------------------+------+
-|1     |top                       |                          | 59737|
-|2     |  button_clk              |Syncronizer               |     2|
-|3     |  clock                   |CLOCK_GENERATOR           |    83|
-|4     |  keyboard                |ASCII_Keyboard            |   225|
-|5     |    ascii_to_vga          |FIFO                      |    88|
-|6     |    keyboard              |Keyboard                  |    34|
-|7     |      counter_ps2_clks    |COUNTER                   |    15|
-|8     |      scan_code_register  |SHIFTREGISTER             |    17|
-|9     |      sync_clk            |Syncronizer_3             |     1|
-|10    |      sync_data           |Syncronizer_4             |     1|
-|11    |    rom                   |KeyboardToASCIIROM        |    48|
-|12    |  mips                    |MIPS                      |  9565|
-|13    |    adder                 |ADDER                     |     8|
-|14    |    alu                   |ALU                       |  3008|
-|15    |    branch_pc_adder       |ADDER_2                   |     8|
-|16    |    pc_register           |REGISTER                  |  6438|
-|17    |    regfile               |REGFILE                   |   103|
-|18    |  oneshot_next            |ONESHOT                   |     2|
-|19    |  ramb_0                  |RAM_B__parameterized2     | 12024|
-|20    |  ramb_1                  |RAM_B__parameterized1     | 12056|
-|21    |  ramb_2                  |RAM_B__parameterized0     | 12024|
-|22    |  ramb_3                  |RAM_B                     | 12024|
-|23    |  vga_address_fifo        |FIFO__parameterized1      |    81|
-|24    |  vga_ascii_fifo          |FIFO__parameterized0      |    70|
-|25    |  vga_term                |VGA_Terminal              |  1507|
-|26    |    ram_address_mux       |MUX__parameterized4_0     |    12|
-|27    |    buffer_address_mux    |MUX__parameterized4       |    12|
-|28    |    buffer_ram            |RAM                       |     2|
-|29    |    cu                    |VGA_Terminal_Control_Unit |   936|
-|30    |    linearize             |ConvertXYToAddress        |     1|
-|31    |    pixel_clock_generator |PixelClock                |    47|
-|32    |    rom                   |FontROM                   |   302|
-|33    |    vga_controller        |VGA                       |   193|
-|34    |    video_ram             |RAM_1                     |     2|
-+------+--------------------------+--------------------------+------+
++------+------------------------------------------+--------------------------+------+
+|      |Instance                                  |Module                    |Cells |
++------+------------------------------------------+--------------------------+------+
+|1     |top                                       |                          |  6903|
+|2     |  button_clk                              |Syncronizer               |     2|
+|3     |  clock                                   |CLOCK_GENERATOR           |    83|
+|4     |  keyboard                                |ASCII_Keyboard            |   255|
+|5     |    ascii_to_vga                          |FIFO                      |    88|
+|6     |    keyboard                              |Keyboard                  |    32|
+|7     |      counter_ps2_clks                    |COUNTER                   |    17|
+|8     |      scan_code_register                  |SHIFTREGISTER             |    13|
+|9     |      sync_clk                            |Syncronizer_3             |     1|
+|10    |      sync_data                           |Syncronizer_4             |     1|
+|11    |    rom                                   |KeyboardToASCIIROM        |    48|
+|12    |  mips                                    |MIPS                      |  5140|
+|13    |    adder                                 |ADDER                     |     8|
+|14    |    alu                                   |ALU                       |  3053|
+|15    |    branch_pc_adder                       |ADDER_2                   |     8|
+|16    |    pc_register                           |REGISTER                  |  1980|
+|17    |    regfile                               |REGFILE                   |    91|
+|18    |  oneshot_next_key                        |ONESHOT                   |     2|
+|19    |  ram                                     |RAM_BYTE                  |    33|
+|20    |  vga_address_fifo                        |FIFO__parameterized1      |    81|
+|21    |  vga_ascii_fifo                          |FIFO__parameterized0      |    70|
+|22    |  vga_term                                |VGA_Terminal              |  1196|
+|23    |    ram_address_mux                       |MUX__parameterized6_0     |    12|
+|24    |    buffer_address_mux                    |MUX__parameterized6       |    12|
+|25    |    buffer_ram                            |RAM                       |     2|
+|26    |    cu                                    |VGA_Terminal_Control_Unit |   619|
+|27    |      string_matrix_character_multiplexer |MUX__parameterized5       |    90|
+|28    |    linearize                             |ConvertXYToAddress        |     1|
+|29    |    pixel_clock_generator                 |PixelClock                |    47|
+|30    |    rom                                   |FontROM                   |   303|
+|31    |    vga_controller                        |VGA                       |   198|
+|32    |    video_ram                             |RAM_1                     |     2|
++------+------------------------------------------+--------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:03:26 ; elapsed = 00:05:37 . Memory (MB): peak = 2170.203 ; gain = 997.078 ; free physical = 285 ; free virtual = 15918
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:07 ; elapsed = 00:01:33 . Memory (MB): peak = 1831.988 ; gain = 658.863 ; free physical = 2341 ; free virtual = 22187
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 89 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:03:02 ; elapsed = 00:05:02 . Memory (MB): peak = 2170.203 ; gain = 437.445 ; free physical = 2705 ; free virtual = 18339
-Synthesis Optimization Complete : Time (s): cpu = 00:03:27 ; elapsed = 00:05:41 . Memory (MB): peak = 2170.203 ; gain = 997.078 ; free physical = 2722 ; free virtual = 18339
+Synthesis finished with 0 errors, 0 critical warnings and 52 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:58 ; elapsed = 00:01:07 . Memory (MB): peak = 1831.988 ; gain = 310.277 ; free physical = 2407 ; free virtual = 22253
+Synthesis Optimization Complete : Time (s): cpu = 00:01:07 ; elapsed = 00:01:33 . Memory (MB): peak = 1831.996 ; gain = 658.863 ; free physical = 2407 ; free virtual = 22252
 INFO: [Project 1-571] Translating synthesized netlist
-INFO: [Netlist 29-17] Analyzing 7707 Unisim elements for replacement
+INFO: [Netlist 29-17] Analyzing 1158 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
@@ -1530,11 +1094,10 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   RAM32M => RAM32M (RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMS32, RAMS32): 24 instances
 
 INFO: [Common 17-83] Releasing license: Synthesis
-459 Infos, 193 Warnings, 0 Critical Warnings and 0 Errors encountered.
+182 Infos, 150 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:03:36 ; elapsed = 00:05:50 . Memory (MB): peak = 2182.297 ; gain = 1022.547 ; free physical = 2768 ; free virtual = 18400
+synth_design: Time (s): cpu = 00:01:10 ; elapsed = 00:01:36 . Memory (MB): peak = 1831.996 ; gain = 672.246 ; free physical = 2455 ; free virtual = 22301
 INFO: [Common 17-1381] The checkpoint '/home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.runs/synth_2/Motherboard.dcp' has been generated.
-write_checkpoint: Time (s): cpu = 00:00:09 ; elapsed = 00:00:11 . Memory (MB): peak = 2206.309 ; gain = 24.012 ; free physical = 2768 ; free virtual = 18401
 INFO: [runtcl-4] Executing : report_utilization -file Motherboard_utilization_synth.rpt -pb VGA_Terminal_utilization_synth.pb
-report_utilization: Time (s): cpu = 00:00:00.38 ; elapsed = 00:00:00.47 . Memory (MB): peak = 2206.309 ; gain = 0.000 ; free physical = 2764 ; free virtual = 18401
-INFO: [Common 17-206] Exiting Vivado at Fri Mar 16 21:10:46 2018...
+report_utilization: Time (s): cpu = 00:00:00.14 ; elapsed = 00:00:00.16 . Memory (MB): peak = 1856.000 ; gain = 0.000 ; free physical = 2441 ; free virtual = 22289
+INFO: [Common 17-206] Exiting Vivado at Fri Mar 23 16:57:29 2018...

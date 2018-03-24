@@ -31,6 +31,7 @@ reg ext_pwm;
 reg trigger;
 reg int_clr;
 wire [31:0] data;
+wire int;
 
 integer i;
 

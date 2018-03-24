@@ -8,6 +8,7 @@
 `define SCREEN_HEIGHT			 480
 `define TERMINAL_ROWS 			 30
 `define TERMINAL_COLUMNS         80
+`define TERMINAL_CHARACTER_COUNT `TERMINAL_COLUMNS*`TERMINAL_ROWS
 `define VALUE_BIT_WIDTH  		 32
 `define HORIZONTAL_SEGMENTS 	 4
 `define HARDWARE_CONTROLLED_ROWS 6
@@ -15,7 +16,7 @@
 `define FREQ_IN  				 100_000_000
 `define FREQ_OUT 				 25_000_000
 `define RGB_RESOLUTION  		 4
-
+`define CURSOR                   8'h81
 //////////////////////////////////////////////////////////////////////////////////
 // Company:
 // Engineer:
@@ -127,7 +128,6 @@ module VGA_Terminal(
     output wire [`RGB_RESOLUTION-1:0] r,
     output wire [`RGB_RESOLUTION-1:0] g,
     output wire [`RGB_RESOLUTION-1:0] b,
-    // input wire [(`TOTAL_SEGMENTS*`VALUE_BIT_WIDTH)-1:0] values,
     input wire [`VALUE_BIT_WIDTH-1:0] value0,
     input wire [`VALUE_BIT_WIDTH-1:0] value1,
     input wire [`VALUE_BIT_WIDTH-1:0] value2,
@@ -224,7 +224,7 @@ wire [`ASCII_WIDTH-1:0] buffer_data;
 wire xy_count_select;
 //// Control unit buffer data bus output control
 ////	(TODO: MAY OPTIMIZE OUT)
-wire buffer_out_control;
+wire buffer_databus_enable;
 //// switches between control unit cs and external cs
 wire buffer_ctrl_cs;
 //// Video ram control signals
@@ -275,7 +275,7 @@ VGA_Terminal_Control_Unit cu(
     .video_data(video_data),
     .buffer_data(buffer_data),
     .xy_count_select(xy_count_select),
-    .buffer_out_control(buffer_out_control),
+    .buffer_databus_enable(buffer_databus_enable),
     .video_wr(video_wr),
     .video_cs(video_cs),
     .video_oe(video_oe),
@@ -380,7 +380,7 @@ module VGA_Terminal_Control_Unit(
     inout wire [7:0] video_data,
     inout wire [7:0] buffer_data,
     output reg xy_count_select,
-    output reg buffer_out_control,
+    output reg buffer_databus_enable,
     output reg video_wr,
     output reg video_cs,
     output reg video_oe,
@@ -397,216 +397,318 @@ parameter WAIT_FOR_VBLANK 		= 1;
 parameter WRITE_HEX_TO_BUFFER 	= 2;
 parameter COPY_BUFFER_TO_VIDEO 	= 3;
 parameter WAIT_OUT_VBLANK  		= 4;
-parameter STATE_WIDTH           = $clog2(WAIT_OUT_VBLANK);
+parameter STATE_WIDTH           = $clog2(WAIT_OUT_VBLANK+1);
+parameter HEX_DIGIT_WIDTH       = 4;
+parameter STRING_MATRIX_WIDTH   = (`HARDWARE_CONTROLLED_ROWS*`TERMINAL_COLUMNS*`ASCII_WIDTH);
 // ==================================
 //// Registers
 // ==================================
-reg [STATE_WIDTH-1:0] state;
-reg [`ASCII_WIDTH-1:0] video_data_out;
-reg [`ASCII_WIDTH-1:0] buffer_data_out;
+reg [STATE_WIDTH-1:0]  state;
+reg [`ASCII_WIDTH-1:0] video_databus;
+reg [`ASCII_WIDTH-1:0] buffer_databus;
 reg [3:0] temp_value;
-reg video_out_control;
-integer previous_position;
-integer i;
-integer v;
+reg video_databus_enable;
+reg [$clog2(`TERMINAL_CHARACTER_COUNT)-1:0] previous_position;
+reg [$clog2(`TERMINAL_CHARACTER_COUNT)-1:0] position_counter;
+reg [$clog2(`TERMINAL_CHARACTER_COUNT)-1:0] hex_counter;
 // ==================================
 //// Wires
 // ==================================
-wire [(`HARDWARE_CONTROLLED_ROWS*`TERMINAL_COLUMNS*`ASCII_WIDTH)-1:0] strings = {
-    "       PC:0x","FFFFFFFF"," RGWRADDR:0x","FFFFFFFF","   DEBUG0:0x","FFFFFFFF","   DEBUG5:0x","FFFFFFFF",
+wire [HEX_DIGIT_WIDTH-1:0] hex_digit;
+wire [`ASCII_WIDTH-1:0] string_character;
+wire [STRING_MATRIX_WIDTH-1:0] strings = {
+    "       PC:0x","FFFFFFFF","   WRADDR:0x","FFFFFFFF","   DEBUG0:0x","FFFFFFFF","   DEBUG5:0x","FFFFFFFF",
     "   ALUOUT:0x","FFFFFFFF","  DataBus:0x","FFFFFFFF","   DEBUG1:0x","FFFFFFFF","   DEBUG6:0x","FFFFFFFF",
     "  REGOUT1:0x","FFFFFFFF","  AddrBus:0x","FFFFFFFF","   DEBUG2:0x","FFFFFFFF","   DEBUG7:0x","FFFFFFFF",
     "  REGOUT2:0x","FFFFFFFF","  CtrlSig:0x","FFFFFFFF","   DEBUG3:0x","FFFFFFFF","   DEBUG8:0x","FFFFFFFF",
     " REGWRITE:0x","FFFFFFFF"," Instruct:0x","FFFFFFFF","   DEBUG4:0x","FFFFFFFF","   DEBUG9:0x","FFFFFFFF",
     "------------","--------","------------","--DEBUG ","MONITOR-----","--------","------------","--------"
-};  //REGWADDR
+};
 // ==================================
 //// Wire Assignments
 // ==================================
-assign video_data  = (video_out_control)  ? video_data_out  : 8'hZ;
-assign buffer_data = (buffer_out_control) ? buffer_data_out : 8'hZ;
+assign video_data  = (video_databus_enable)  ? video_databus  : 8'hZ;
+assign buffer_data = (buffer_databus_enable) ? buffer_databus : 8'hZ;
 // ==================================
 //// Modules
 // ==================================
+MUX #(
+    .WIDTH(HEX_DIGIT_WIDTH),
+    .INPUTS((`TOTAL_SEGMENTS*`VALUE_BIT_WIDTH)/HEX_DIGIT_WIDTH)
+) value_matrix_hex_multiplexer (
+    .select((`TOTAL_SEGMENTS*(`VALUE_BIT_WIDTH/HEX_DIGIT_WIDTH))-hex_counter),
+    .in(values),
+    .out(hex_digit)
+);
+
+MUX #(
+    .WIDTH(`ASCII_WIDTH),
+    .INPUTS(STRING_MATRIX_WIDTH/`ASCII_WIDTH)
+) string_matrix_character_multiplexer (
+    .select((STRING_MATRIX_WIDTH/`ASCII_WIDTH)-position_counter),
+    .in(strings),
+    .out(string_character)
+);
 // ==================================
 //// Behavioral Block
 // ==================================
-always @(posedge pclk or posedge rst) begin
-    if (rst) begin
-        // set state
-        state = 0;
+always @(posedge pclk or posedge rst)
+begin
+    if (rst)
+    begin
+        //// Set State
+        state                   <= 0;
+        //// Linearize control
+        xy_count_select         <= 0;
+        //// Video Controls
+        video_address           <= 0;
+        video_wr                <= 0;
+        video_cs                <= 0;
+        video_oe                <= 0;
+        //// Buffer Controls
+        buffer_address          <= 0;
+        buffer_wr               <= 0;
+        buffer_cs               <= 0;
+        buffer_oe               <= 0;
         // set internal variables
-        i = 0;
-        v = 0;
-        previous_position = 0;
-        temp_value = 0;
+        position_counter        <= 0;
+        previous_position       <= 0;
+        hex_counter             <= 0;
+        //temp_value              <= 0;
         // Set out going signals
-        video_out_control = 0;
-        buffer_out_control = 0;
-        video_data_out = 0;
-        
-        buffer_data_out = 0;
-        video_address = 0;
-        buffer_address = 0;
-        xy_count_select = 0;
-        video_wr = 0;
-        video_cs = 0;
-        video_oe = 0;
-        buffer_wr = 0;
-        buffer_cs = 0;
-        buffer_oe = 0;
+        video_databus_enable    <= 0;
+        buffer_databus_enable   <= 0;
+        video_databus           <= 0;
+        buffer_databus          <= 0;
     end
-    else begin
+    else 
+    begin
         case(state)
-            LOAD_RAMS: begin
-                if(i < `TERMINAL_COLUMNS*`TERMINAL_ROWS) begin
-                    xy_count_select 	= 0;
-                    video_wr 		    = 1;
-                    video_cs 		    = 1;
-                    video_oe 		    = 0;
-                    buffer_wr 			= 1;
-                    buffer_cs 			= 1;
-                    buffer_oe 			= 0;
-                    video_out_control   = 1;
-                    buffer_out_control 	= 1;
-
-                    video_address 		= i;
-                    buffer_address 		= i;
-
-                    buffer_data_out 	= (strings >> ((`TERMINAL_COLUMNS*`HARDWARE_CONTROLLED_ROWS)-(i+1))*`ASCII_WIDTH);
-                    video_data_out 		= (strings >> ((`TERMINAL_COLUMNS*`HARDWARE_CONTROLLED_ROWS)-(i+1))*`ASCII_WIDTH);
-
-                    i = i + 1;
-                end
-                else begin
-                    i = 0;
-                    state = WAIT_FOR_VBLANK;
-                end
+            LOAD_RAMS: 
+            begin
+                //// Set State
+                state                   <= (position_counter < `TERMINAL_CHARACTER_COUNT) ? LOAD_RAMS : WAIT_FOR_VBLANK;
+                //// Linearize control
+                xy_count_select         <= 0;
+                //// Video Controls
+                video_address           <= position_counter;
+                video_wr                <= 1;
+                video_cs                <= 1;
+                video_oe                <= 0;
+                //// Buffer Controls
+                buffer_address          <= position_counter;
+                buffer_wr               <= 1;
+                buffer_cs               <= 1;
+                buffer_oe               <= 0;
+                // set internal variables
+                position_counter        <= (position_counter < `TERMINAL_CHARACTER_COUNT) ? position_counter + 1 : 0;
+                previous_position       <= 0;
+                hex_counter             <= 0;
+                //temp_value              <= 0;
+                // Set out going signals
+                video_databus_enable    <= 1;
+                buffer_databus_enable   <= 1;
+                // video_databus           <= (strings >> ((`TERMINAL_COLUMNS*`HARDWARE_CONTROLLED_ROWS)-(position_counter+1))*`ASCII_WIDTH);
+                // buffer_databus          <= (strings >> ((`TERMINAL_COLUMNS*`HARDWARE_CONTROLLED_ROWS)-(position_counter+1))*`ASCII_WIDTH);
+                video_databus           <= string_character;
+                buffer_databus          <= string_character;
             end
-            WAIT_FOR_VBLANK: begin
-                xy_count_select 	= 1;
-                video_wr 			= 0;
-                video_cs 			= 1;
-                video_oe 			= 1;
-                buffer_wr 			= 1; // to allow user to write to ram
-                buffer_cs 			= 0;
-                buffer_oe 			= 0;
-
-                video_out_control 	= 0;
-                buffer_out_control 	= 0;
-                buffer_data_out 	= 0;
+            WAIT_FOR_VBLANK: 
+            begin
+                //// Set State
+                state                   <= (vblank) ? WRITE_HEX_TO_BUFFER : WAIT_FOR_VBLANK;
+                //// Linearize control
+                xy_count_select         <= 1;
+                //// Video Controls
+                video_address           <= 0;
+                video_wr                <= 0;
+                video_cs                <= 1;
+                video_oe                <= 1;
+                //// Buffer Controls
+                buffer_address          <= 0;
+                buffer_wr               <= 1;
+                buffer_cs               <= 0;
+                buffer_oe               <= 0;
+                // set internal variables
+                position_counter        <= (vblank) ? 13 : 0;
+                previous_position       <= (vblank) ? 13 : 0;
+                hex_counter             <= 1;
+                //temp_value              <= (values >> (`TOTAL_SEGMENTS*`VALUE_BIT_WIDTH)-(4*(hex_counter+1)));;
+                // Set out going signals
+                video_databus_enable    <= 0;
+                buffer_databus_enable   <= 0;
+                video_databus           <= 0;
+                buffer_databus          <= 0;
+            end
+            WRITE_HEX_TO_BUFFER: 
+            begin
+                //// Set State
+                //state                   <= 0;
+                //// Linearize control
+                xy_count_select         <= 0;
+                //// Video Controls
+                video_address           <= 0;
+                video_wr                <= 0;
+                video_cs                <= 0;
+                video_oe                <= 0;
+                //// Buffer Controls
+                buffer_address          <= position_counter;
+                buffer_wr               <= 1;
+                buffer_cs               <= 1;
+                buffer_oe               <= 0;
+                // set internal variables
+                //position_counter        <= 0;
+                //previous_position       <= 0;
+                // temp_value              <= (values >> (`TOTAL_SEGMENTS*`VALUE_BIT_WIDTH)-(4*(hex_counter+2)));
+                // Set out going signals
+                video_databus_enable    <= 0;
+                buffer_databus_enable   <= 1;
+                video_databus           <= 0;
                 
-                video_data_out 		= 0;
-
-                if(vblank)
-                begin
-                    state = WRITE_HEX_TO_BUFFER;
-                    i = 12;
-                    v = 0;
-                    previous_position = i;
-                end
-            end
-            WRITE_HEX_TO_BUFFER: begin
-                xy_count_select 	= 0;
-
-                video_wr 		    = 0;
-                video_cs 		    = 0;
-                video_oe 		    = 0;
-
-                buffer_wr 			= 1;
-                buffer_cs 			= 1;
-                buffer_oe 			= 0;
-
-                video_out_control 	= 0;
-                buffer_out_control 	= 1;
-                buffer_address 		= i;
-
-                temp_value = (values >> (`TOTAL_SEGMENTS*`VALUE_BIT_WIDTH)-(4*(v+1)));
-
-                case(temp_value)
-                    4'h0: buffer_data_out = "0";
-                    4'h1: buffer_data_out = "1";
-                    4'h2: buffer_data_out = "2";
-                    4'h3: buffer_data_out = "3";
-                    4'h4: buffer_data_out = "4";
-                    4'h5: buffer_data_out = "5";
-                    4'h6: buffer_data_out = "6";
-                    4'h7: buffer_data_out = "7";
-                    4'h8: buffer_data_out = "8";
-                    4'h9: buffer_data_out = "9";
-                    4'hA: buffer_data_out = "A";
-                    4'hB: buffer_data_out = "B";
-                    4'hC: buffer_data_out = "C";
-                    4'hD: buffer_data_out = "D";
-                    4'hE: buffer_data_out = "E";
-                    4'hF: buffer_data_out = "F";
+                case(hex_digit)
+                    4'h0: buffer_databus <= "0";
+                    4'h1: buffer_databus <= "1";
+                    4'h2: buffer_databus <= "2";
+                    4'h3: buffer_databus <= "3";
+                    4'h4: buffer_databus <= "4";
+                    4'h5: buffer_databus <= "5";
+                    4'h6: buffer_databus <= "6";
+                    4'h7: buffer_databus <= "7";
+                    4'h8: buffer_databus <= "8";
+                    4'h9: buffer_databus <= "9";
+                    4'hA: buffer_databus <= "A";
+                    4'hB: buffer_databus <= "B";
+                    4'hC: buffer_databus <= "C";
+                    4'hD: buffer_databus <= "D";
+                    4'hE: buffer_databus <= "E";
+                    4'hF: buffer_databus <= "F";
                 endcase
-                
-                if(i > (`TERMINAL_COLUMNS*(`HARDWARE_CONTROLLED_ROWS-1)-2))
-                begin
-                    state = COPY_BUFFER_TO_VIDEO;
-                    i = 0;
-                end
-                else if(i == previous_position+7)
-                begin
-                    previous_position = previous_position + 20;
-                    i = previous_position;
-                    v = v + 1;
-                end
-                else begin
-                    i = i + 1;
-                    v = v + 1;
-                end
 
+                if(position_counter > (`TERMINAL_COLUMNS*(`HARDWARE_CONTROLLED_ROWS-1)-2))
+                begin
+                    state               <= COPY_BUFFER_TO_VIDEO;
+                    previous_position   <= 0;
+                    position_counter    <= 0;
+                    hex_counter         <= hex_counter;
+                end
+                else if(position_counter == previous_position+7)
+                begin
+                    state               <= WRITE_HEX_TO_BUFFER;
+                    previous_position   <= previous_position + 20;
+                    position_counter    <= previous_position + 20;
+                    hex_counter         <= hex_counter + 1;
+                end
+                else
+                begin
+                    state               <= WRITE_HEX_TO_BUFFER;
+                    previous_position   <= previous_position;
+                    position_counter    <= position_counter + 1;
+                    hex_counter         <= hex_counter + 1;
+                end
             end
-            COPY_BUFFER_TO_VIDEO: begin
-                xy_count_select 	= 0;
-
-                video_wr 		    = 1;
-                video_cs 		    = 1;
-                video_oe 		    = 0;
-
-                buffer_wr 			= 0;
-                buffer_cs 			= 1;
-                buffer_oe 			= 1;
-
-                video_out_control   = 1;
-                buffer_out_control  = 0;
-
-                buffer_address 		= i;
-                video_address 		= (i > 1) ? i-2 : 0;
-
+            COPY_BUFFER_TO_VIDEO: 
+            begin
+                //// Set State
+                // state                   <= COPY_BUFFER_TO_VIDEO;
+                //// Linearize control
+                xy_count_select         <= 0;
+                //// Video Controls
+                video_address           <= (position_counter > 1) ? position_counter-2 : 0;
+                video_wr                <= 1;
+                video_cs                <= 1;
+                video_oe                <= 0;
+                //// Buffer Controls
+                buffer_address          <= position_counter;
+                buffer_wr               <= 0;
+                buffer_cs               <= 1;
+                buffer_oe               <= 1;
+                // set internal variables
+                //position_counter        <= 0;
+                previous_position       <= 0;
+                //temp_value              <= 0;
+                // Set out going signals
+                video_databus_enable    <= 1;
+                buffer_databus_enable   <= 0;
+                //video_databus           <= ;
+                //buffer_databus          <= ;
                 if(buffer_address == external_address+2)
                 begin
-                    video_data_out = 8'h81;
+                    video_databus       <= `CURSOR;
                 end
                 else
                 begin
-                    video_data_out = buffer_data;  
+                    video_databus       <= buffer_data;
                 end
-                
 
-                if(i < (`TERMINAL_COLUMNS*`TERMINAL_ROWS)-1) begin
-                    i = i + 1;
+                if(position_counter < (`TERMINAL_CHARACTER_COUNT)-1)
+                begin
+                    state               <= COPY_BUFFER_TO_VIDEO;
+                    position_counter    <= position_counter + 1;
                 end
                 else
+                begin
+                    state               <= WAIT_OUT_VBLANK;
+                    position_counter    <= 0;
+                end
+            end
+            WAIT_OUT_VBLANK:
+            begin
+                //// Set State
+                if(vblank)
                 begin
                     state = WAIT_OUT_VBLANK;
                 end
-            end
-            WAIT_OUT_VBLANK: begin
-                buffer_wr 			= 0;
-                buffer_cs 			= 0;
-                buffer_oe 			= 0;
-                video_out_control   = 0;
-                buffer_out_control  = 0;
-                if(!vblank)
+                else
                 begin
                     state = WAIT_FOR_VBLANK;
                 end
+                //// Linearize control
+                xy_count_select         <= 0;
+                //// Video Controls
+                video_address           <= 0;
+                video_wr                <= 0;
+                video_cs                <= 0;
+                video_oe                <= 0;
+                //// Buffer Controls
+                buffer_address          <= 0;
+                buffer_wr               <= 1;
+                buffer_cs               <= 0;
+                buffer_oe               <= 0;
+                // set internal variables
+                position_counter        <= 0;
+                previous_position       <= 0;
+                //temp_value              <= 0;
+                // Set out going signals
+                video_databus_enable    <= 0;
+                buffer_databus_enable   <= 0;
+                video_databus           <= 0;
+                buffer_databus          <= 0;
             end
-            default: begin
-                state = 0;
+            default:
+            begin
+                //// Set State
+                state                   <= 0;
+                //// Linearize control
+                xy_count_select         <= 0;
+                //// Video Controls
+                video_address           <= 0;
+                video_wr                <= 0;
+                video_cs                <= 0;
+                video_oe                <= 0;
+                //// Buffer Controls
+                buffer_address          <= 0;
+                buffer_wr               <= 0;
+                buffer_cs               <= 0;
+                buffer_oe               <= 0;
+                // set internal variables
+                position_counter        <= 0;
+                previous_position       <= 0;
+                //temp_value              <= 0;
+                // Set out going signals
+                video_databus_enable    <= 0;
+                buffer_databus_enable   <= 0;
+                video_databus           <= 0;
+                buffer_databus          <= 0;
             end
         endcase
     end

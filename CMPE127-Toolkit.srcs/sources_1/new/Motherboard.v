@@ -135,42 +135,46 @@ module Motherboard #(parameter CLOCK_DIVIDER = 100)
     output wire show_button
 );
 
-assign show_button = button_clock_sync;
-
 // ==================================
 //// Internal Parameter Field
 // ==================================
 // ==================================
 //// Wires
 // ==================================
-wire keyboard_ready;
-wire vga_busy;
-
-wire MemRead, BusCycle;
+//// Clock Signals
+wire clk;
+wire button_clock_sync;
+wire cpu_clk;
+//// CPU Signals
 wire [31:0] AddressBus, DataBus;
 wire [31:0] ProgramCounter, ALUResult, RegOut1, RegOut2, RegWriteData, RegWriteAddress;
 wire [31:0] Instruction;
 wire [3:0] MemWrite;
-
+wire MemRead, BusCycle;
+//// Address Decoding Signals
+wire text_access;
+wire extern_access;
+wire ram_access;
+wire key_cs;
+wire key_ready_cs;
+wire vga_fifo_cs;
+//// Keyboard signals
+wire keyboard_ready;
+wire [7:0] keyboard_ascii;
 wire [7:0] scan_code;
 wire [31:0] extended_count;
-wire [2:0] text_color;
-wire [2:0] background_color;
-
+wire next_key;
+//// VGA Signals
+wire vga_busy;
 wire [7:0] vga_DataBus;
 wire [11:0] vga_AddressBus;
 // ==================================
 //// Wire Assignments
 // ==================================
-assign text_color = 3'b010;
-assign background_color = 3'b000;
+assign show_button = button_clock_sync;
 // ==================================
 //// Modules
 // ==================================
-
-wire button_clock_sync;
-wire cpu_clk;
-
 CLOCK_GENERATOR #(.DIVIDE(CLOCK_DIVIDER)
 ) clock (
     .rst(rst),
@@ -189,7 +193,6 @@ CLOCK_GENERATOR #(.DIVIDE(CLOCK_DIVIDER)
  	.sync_out(button_clock_sync)
 );
 
-wire clk;
 
 MUX #(
     .WIDTH(1),
@@ -201,7 +204,7 @@ MUX #(
 );
 
 ROM #(
-    .LENGTH(32'h1000),
+    .LENGTH(32'h400/4),
     .WIDTH(32),
     .FILE_NAME("rom.mem")
 ) rom (
@@ -226,69 +229,19 @@ MIPS mips(
     .Instruction(Instruction)
 );
 
-RAM_B #(
+RAM_BYTE #(
     .LENGTH(32'h1000/4),
-    .COLUMN(3),
     .USE_FILE(1),
     .FILE_NAME("ram.mem")
-) ramb_3 (
+) ram (
     .clk(clk),
-    .rst(rst),
-    .we(MemWrite[3]),
+    .we(MemWrite),
     .cs(ram_access),
     .oe(MemRead),
     .address(AddressBus[13:2]),
-    .data(DataBus[31:24])
+    .data(DataBus)
 );
 
-RAM_B #(
-    .LENGTH(32'h1000/4),
-    .COLUMN(2),
-    .USE_FILE(1),
-    .FILE_NAME("ram.mem")
-) ramb_2 (
-    .clk(clk),
-    .rst(rst),
-    .we(MemWrite[2]),
-    .cs(ram_access),
-    .oe(MemRead),
-    .address(AddressBus[13:2]),
-    .data(DataBus[23:16])
-);
-
- RAM_B #(
-    .LENGTH(32'h1000/4),
-    .COLUMN(1),
-    .USE_FILE(1),
-    .FILE_NAME("ram.mem")
-) ramb_1 (
-    .clk(clk),
-    .rst(rst),
-    .we(MemWrite[1]),
-    .cs(ram_access),
-    .oe(MemRead),
-    .address(AddressBus[13:2]),
-    .data(DataBus[15:8])
-);
-
-RAM_B #(
-    .LENGTH(32'h1000/4),
-    .COLUMN(0),
-    .USE_FILE(1),
-    .FILE_NAME("ram.mem")
-) ramb_0 (
-    .clk(clk),
-    .rst(rst),
-    .we(MemWrite[0]),
-    .cs(ram_access),
-    .oe(MemRead),
-    .address(AddressBus[13:2]),
-    .data(DataBus[7:0])
-);
-
-wire text_access;
-wire extern_access;
-wire ram_access;
 
 DECODER #(.INPUT_WIDTH(3)) address_decoder
 (
@@ -296,10 +249,6 @@ DECODER #(.INPUT_WIDTH(3)) address_decoder
 	.in(AddressBus[14:12]),
 	.out({ ram_access, extern_access, text_access })
 );
-
-wire key_cs;
-wire key_ready_cs;
-wire vga_fifo_cs;
 
 AND #(.WIDTH(3)) key_cs_and (
 	.in({ extern_access, (AddressBus == `KEYBOARD_ADDRESS), MemRead}),
@@ -316,24 +265,20 @@ AND #(.WIDTH(4)) vga_fifo_cs_and (
 	.out(vga_fifo_cs)
 );
 
-wire [7:0] keyboard_ascii;
-wire next;
-
-ONESHOT oneshot_next(
+ONESHOT oneshot_next_key(
     .clk(!clk100Mhz),
     .rst(rst),
     .signal(key_cs),
-    .out(next)
+    .out(next_key)
 );
 
 ASCII_Keyboard keyboard(
     .clk(clk100Mhz),
-    .pclk(clk),
     .rst(rst),
     .ps2_clk(ps2_clk),
     .ps2_data(ps2_data),
     .oe(key_cs),
-    .next(next),
+    .next(next_key),
     .ascii(keyboard_ascii),
     .ready(keyboard_ready),
     .scan_code_reg(scan_code),
@@ -349,6 +294,7 @@ key_ready_buffer
 	.out(DataBus)
 );
 
+
 TRIBUFFER #(.WIDTH(32))
 key_ascii_buffer
 (
@@ -358,6 +304,9 @@ key_ascii_buffer
 );
 
 wire ascii_fifo_empty, address_fifo_empty;
+wire vga_cs;
+wire [31:0] ControlBus      = { {(32-12){1'b0}}, 3'b0, BusCycle, 3'b0, MemRead, 3'b0, MemWrite };
+wire [31:0] KeyboardSignals = { 20'b0, keyboard_ascii, scan_code, 3'b0, keyboard_ready};
 
 FIFO #(
     .LENGTH(32),
@@ -392,15 +341,11 @@ FIFO #(
     .in({ 1'b0, AddressBus[10:0] })
 );
 
-wire vga_cs;
 
 OR #(.WIDTH(2)) fifo_to_vga_cs_and (
 	.in({ !ascii_fifo_empty, !address_fifo_empty }),
 	.out(vga_cs)
 );
-
-wire [31:0] ControlBus      = { {(32-12){1'b0}}, 3'b0, BusCycle, 3'b0, MemRead, 3'b0, MemWrite };
-wire [31:0] KeyboardSignals = { 20'b0, keyboard_ascii, scan_code, 3'b0, keyboard_ready};
 
 VGA_Terminal vga_term(
     .clk(clk100Mhz),
@@ -411,7 +356,7 @@ VGA_Terminal vga_term(
     .g(g),
     .b(b),
     .value0(ProgramCounter), .value1 (RegWriteAddress), .value2(KeyboardSignals),  .value3(32'h0),
-    .value4(ALUResult),      .value5 (DataBus),         .value6(32'h0),  .value7(32'h0),
+    .value4(ALUResult),      .value5 (DataBus),         .value6(extended_count),  .value7(32'h0),
     .value8(RegOut1),        .value9 (AddressBus),      .value10(32'h0), .value11(32'h0),
     .value12(RegOut2),       .value13(ControlBus),      .value14(32'h0), .value15(32'h0),
     .value16(RegWriteData),  .value17(Instruction),     .value18(32'h0), .value19(32'h0),
@@ -419,8 +364,8 @@ VGA_Terminal vga_term(
     .data(vga_DataBus),
     .cs(vga_cs),
     .busy(vga_busy),
-    .text(text_color),
-    .background(background_color)
+    .text(3'b010),
+    .background(3'b000)
 );
 
 // ==================================

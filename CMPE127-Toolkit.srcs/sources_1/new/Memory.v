@@ -153,6 +153,98 @@ end
 
 endmodule
 
+
+module RAM_BYTE #(
+    parameter LENGTH = 32'h1000,
+    parameter USE_FILE = 0,
+    parameter FILE_NAME = "ram.mem"
+)
+(
+    input wire clk,
+    input wire [3:0] we,
+    input wire cs,
+    input wire oe,
+    input wire [ADDRESS_WIDTH-1:0] address,
+    inout wire [WIDTH-1:0] data
+);
+
+// ==================================
+//// Internal Parameter Field
+// ==================================
+parameter ADDRESS_WIDTH = $clog2(LENGTH);
+parameter WIDTH = 32;
+// ==================================
+//// Registers
+// ==================================
+reg [WIDTH-1:0] ram [0:LENGTH];
+reg [WIDTH-1:0] data_out;
+// ==================================
+//// Wires
+// ==================================
+// ==================================
+//// Wire Assignments
+// ==================================
+assign data = (cs && oe && !we) ? data_out : {(WIDTH){1'bz}};
+// ==================================
+//// Modules
+// ==================================
+// ==================================
+//// Behavioral Block
+// ==================================
+integer i;
+initial
+begin
+    if(USE_FILE)
+    begin
+        $readmemh(FILE_NAME, ram);
+    end
+    else
+    begin
+        data_out = {(WIDTH){ 1'b0 }};
+		for (i=0; i<32; i=i+1) 
+        begin
+			ram[i] = {(WIDTH){ 1'b0 }};
+        end
+    end
+end
+
+reg [WIDTH-1:0] memory_in = 0; // wire reg
+
+always @(*)
+begin
+    memory_in = ram[address];
+    if (we[3])
+    begin
+        memory_in[31:24] = data[31:24];
+    end
+    if (we[2])
+    begin
+        memory_in[23:16] = data[23:16];
+    end
+    if (we[1])
+    begin
+        memory_in[15:8] = data[15:8];
+    end
+    if (we[0])
+    begin
+        memory_in[7:0] = data[7:0];
+    end
+end
+
+always @(posedge clk)
+begin
+    if (cs && |we)
+    begin
+       ram[address] = memory_in;
+    end
+    else if (cs && oe && !(|we))
+    begin
+        data_out = ram[address];
+    end
+end
+
+endmodule
+
 module ROM #(
     parameter LENGTH = 32'h1000,
     parameter WIDTH = 32,
@@ -391,153 +483,4 @@ begin
     end
 end
 
-endmodule
-
-//module AsynchronousFIFO #(
-//    parameter DATA_WIDTH    = 8,
-//    parameter ADDRESS_WIDTH = 4,
-//    parameter FIFO_DEPTH    = (1 << ADDRESS_WIDTH)
-//)
-//(
-//    // Read Port
-//    output reg  [DATA_WIDTH-1:0] out, 
-//    output reg                   empty,
-//    input wire                   read_enable,
-//    input wire                   rclk,        
-//    // Write Port
-//    input wire  [DATA_WIDTH-1:0] in,  
-//    output reg                   full,
-//    input wire                   write_enable,
-//    input wire                   wclk,
-//    /// clear
-//    input wire                   clear
-//);
-
-//    reg   [DATA_WIDTH-1:0]              Mem [FIFO_DEPTH-1:0];
-//    wire  [ADDRESS_WIDTH-1:0]           pNextWordToWrite, pNextWordToRead;
-//    wire                                EqualAddresses;
-//    wire                                NextWriteAddressEn, NextReadAddressEn;
-//    wire                                Set_Status, Rst_Status;
-//    reg                                 Status;
-//    wire                                PresetFull, PresetEmpty;
-
-//    //(Uses a dual-port RAM).
-//    //'out' logic:
-//    always @ (posedge rclk)
-//    begin
-//        if (read_enable &  ! empty)
-//        begin
-//            out <= Mem[pNextWordToRead];
-//        end
-//    end            
-//    //'in' logic:
-//    always @ (posedge wclk)
-//    begin
-//        if (write_enable &  ! full)
-//        begin
-//            Mem[pNextWordToWrite] <= in;
-//        end
-//    end
-//    //Fifo addresses support logic: 
-//    //'Next Addresses' enable logic:
-//    assign NextWriteAddressEn = write_enable & ~full;
-//    assign NextReadAddressEn  = read_enable  & ~empty;
-            
-//    //Addreses (Gray counters) logic:
-//    GrayCounter GrayCounter_pWr (
-//        .GrayCount_out(pNextWordToWrite),
-//        .Enable_in(NextWriteAddressEn),
-//        .clear(clear),
-//        .Clk(wclk)
-//    );
-        
-//    GrayCounter GrayCounter_pRd (
-//        .out(pNextWordToRead),
-//        .en(NextReadAddressEn),
-//        .clr(clear),
-//        .clk(rclk)
-//    );
-
-//    //'EqualAddresses' logic:
-//    assign EqualAddresses = (pNextWordToWrite == pNextWordToRead);
-
-//    //'Quadrant selectors' logic:
-//    assign Set_Status = (pNextWordToWrite[ADDRESS_WIDTH-2] ~^ pNextWordToRead[ADDRESS_WIDTH-1]) & 
-//                        (pNextWordToWrite[ADDRESS_WIDTH-1] ^  pNextWordToRead[ADDRESS_WIDTH-2]);                            
-//    assign Rst_Status = (pNextWordToWrite[ADDRESS_WIDTH-2] ^  pNextWordToRead[ADDRESS_WIDTH-1]) & 
-//                        (pNextWordToWrite[ADDRESS_WIDTH-1] ~^ pNextWordToRead[ADDRESS_WIDTH-2]);
-                        
-//    //'Status' latch logic:
-//    always @ (Set_Status, Rst_Status, clear) //D Latch w/ Asynchronous Clear & Preset.
-//    begin
-//        if (Rst_Status | clear)
-//        begin
-//            Status = 0;  //Going 'Empty'.
-//        end
-//        else if (Set_Status)
-//        begin
-//            Status = 1;  //Going 'Full'.
-//        end
-//    end            
-//    //'full' logic for the writing port:
-//    assign PresetFull = Status & EqualAddresses;  //'Full' Fifo.
-    
-//    always @ (posedge wclk, posedge PresetFull) //D Flip-Flop w/ Asynchronous Preset.
-//    begin
-//        if (PresetFull)
-//        begin
-//            full <= 1;
-//        end
-//        else
-//        begin
-//            full <= 0;
-//        end
-//    end           
-//    //'empty' logic for the reading port:
-//    assign PresetEmpty = ~Status & EqualAddresses;  //'Empty' Fifo.
-    
-//    always @ (posedge rclk, posedge PresetEmpty)  //D Flip-Flop w/ Asynchronous Preset.
-//    begin
-//        if (PresetEmpty)
-//        begin
-//            empty <= 1;
-//        end
-//        else
-//        begin
-//            empty <= 0;
-//        end
-//    end           
-//endmodule
-
-////==========================================
-//// Function : Code Gray counter.
-//// Coder    : Alex Claros F.
-//// Date     : 15/May/2005.
-////=======================================
-
-module GrayCounter #(parameter COUNTER_WIDTH = 4)
-(
-    input wire                         clk,
-    input wire                         en, 
-    input wire                         clr,
-    output reg  [COUNTER_WIDTH-1:0]    gray_count
-);
-
-reg    [COUNTER_WIDTH-1:0]         BinaryCount;
-
-always @ (posedge clk)
-begin
-    if(clr) 
-    begin
-        BinaryCount   <= {COUNTER_WIDTH{1'b 0}} + 1;  //Gray count begins @ '1' with
-        gray_count <= {COUNTER_WIDTH{1'b 0}};      // first 'Enable_in'.
-    end
-    else if (en) 
-    begin
-        BinaryCount   <= BinaryCount + 1;
-        gray_count <= {BinaryCount[COUNTER_WIDTH-1],
-                        BinaryCount[COUNTER_WIDTH-2:0] ^ BinaryCount[COUNTER_WIDTH-1:1]
-                    };
-    end
-end    
 endmodule

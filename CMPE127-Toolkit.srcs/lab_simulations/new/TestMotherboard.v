@@ -5,6 +5,9 @@
 `define SHIFT_CODE_RIGHT        8'h59
 `define A_SCAN_CODE             8'h1C
 `define B_SCAN_CODE             8'h32
+`define C_SCAN_CODE             8'h21
+`define D_SCAN_CODE             8'h23
+`define E_SCAN_CODE             8'h24
 `define NEWLINE_SCAN_CODE       8'h5A
 `define BACKSPACE_SCAN_CODE     8'h66
 
@@ -114,13 +117,13 @@ begin
 end
 endtask
 
-parameter FULL_CYCLE = 32'd3000;
+parameter FULL_CYCLE = 32'd5000;
 
 initial begin
     #10
     #10
 	RESET;
-	CLOCK(FULL_CYCLE/2);
+	CLOCK(FULL_CYCLE);
     //// Send a A code
     PS2_TRANSMIT(`A_SCAN_CODE);
     CLOCK(10);
@@ -133,6 +136,42 @@ initial begin
     PS2_TRANSMIT(`BREAK_CODE);
     CLOCK(10);
     PS2_TRANSMIT(`B_SCAN_CODE);
+    //// Send a C code
+    PS2_TRANSMIT(`C_SCAN_CODE);
+    CLOCK(10);
+    PS2_TRANSMIT(`BREAK_CODE);
+    CLOCK(10);
+    PS2_TRANSMIT(`C_SCAN_CODE);
+    //// Send a D code
+    PS2_TRANSMIT(`D_SCAN_CODE);
+    CLOCK(10);
+    PS2_TRANSMIT(`BREAK_CODE);
+    CLOCK(10);
+    PS2_TRANSMIT(`D_SCAN_CODE);
+    //// Send a Backspace code
+    PS2_TRANSMIT(`BACKSPACE_SCAN_CODE);
+    CLOCK(10);
+    PS2_TRANSMIT(`BREAK_CODE);
+    CLOCK(10);
+    PS2_TRANSMIT(`BACKSPACE_SCAN_CODE);
+    //// Send a D code
+    PS2_TRANSMIT(`E_SCAN_CODE);
+    CLOCK(10);
+    PS2_TRANSMIT(`BREAK_CODE);
+    CLOCK(10);
+    PS2_TRANSMIT(`E_SCAN_CODE);
+    //// Send a Backspace Code
+    PS2_TRANSMIT(`BACKSPACE_SCAN_CODE);
+    CLOCK(10);
+    PS2_TRANSMIT(`BREAK_CODE);
+    CLOCK(10);
+    PS2_TRANSMIT(`BACKSPACE_SCAN_CODE);
+    //// Send a Backspace Code
+    PS2_TRANSMIT(`BACKSPACE_SCAN_CODE);
+    CLOCK(10);
+    PS2_TRANSMIT(`BREAK_CODE);
+    CLOCK(10);
+    PS2_TRANSMIT(`BACKSPACE_SCAN_CODE);
     //// Send a Newline Code
     PS2_TRANSMIT(`NEWLINE_SCAN_CODE);
     CLOCK(10);

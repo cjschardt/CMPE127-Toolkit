@@ -43,7 +43,6 @@
 
 module ASCII_Keyboard(
     input wire clk,
-    input wire pclk,
     input wire rst,
     input wire ps2_clk,
     input wire ps2_data,
@@ -76,25 +75,6 @@ Keyboard keyboard(
     .clr(clr),
     .ready(key_ready)
 );
-
-// AsynchronousFIFO #(
-//     .DATA_WIDTH(8),
-//     .ADDRESS_WIDTH(4)
-// ) ascii_key_fifo
-// (
-//     // Read Port
-//     .out(fifo_ascii), 
-//     .empty(empty),
-//     .read_enable(next),
-//     .rclk(pclk),        
-//     // Write Port
-//     .in(translated_to_ascii),  
-//     .full(),
-//     .write_enable(key_ready),
-//     .wclk(clk),
-//     /// clear
-//     .clear(rst)
-// );
 
 FIFO #(
     .LENGTH(16),

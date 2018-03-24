@@ -36,40 +36,42 @@ wire cs;
 assign address = 0;
 assign data = 0;
 assign cs = 0;
+wire busy;
 
-VGA_Terminal test(
-	.clk(clk),
-	.rst(rst),
-	.hsync(hsync),
-	.vsync(vsync),
-	.values({
-            32'h11111111,
-            32'h22222222,
-            32'h33333333,
-            32'h44444444,
-            32'h55555555,
-            32'h66666666,
-            32'h77777777,
-            32'h88888888,
-            32'h99999999,
-            32'h9ABCDEF0,
-            32'h12345678,
-            32'h12345678,
-            32'h22222222,
-            32'h33333333,
-            32'h44444444,
-            32'h55555555,
-            32'h66666666,
-            32'h77777777,
-            32'h88888888,
-            32'hDEADBEEF
-     }),
-	.r(r),
-	.g(g),
-	.b(b),
-	.address(address),
-	.data(data),
-	.cs(cs)
+VGA_Terminal vga_term(
+    .clk(clk),
+    .rst(rst),
+    .hsync(hsync),
+    .vsync(vsync),
+    .r(r),
+    .g(g),
+    .b(b),
+    .value0(32'h11111111),
+    .value1(32'h22222222),
+    .value2(32'h33333333),
+    .value3(32'h44444444),
+    .value4(32'h55555555),
+    .value5(32'h66666666),
+    .value6(32'h77777777),
+    .value7(32'h88888888),
+    .value8(32'h99999999),
+    .value9(32'h9ABCDEF0),
+    .value10(32'h12345678),
+    .value11(32'h12345678),
+    .value12(32'h22222222),
+    .value13(32'h33333333),
+    .value14(32'h44444444),
+    .value15(32'h55555555),
+    .value16(32'h66666666),
+    .value17(32'h77777777),
+    .value18(32'h88888888),
+    .value19(32'hDEADBEEF),
+    .address(address),
+    .data(data),
+    .cs(cs),
+    .busy(busy),
+    .text(3'b010),
+    .background(3'b000)
 );
 
 task RESET;

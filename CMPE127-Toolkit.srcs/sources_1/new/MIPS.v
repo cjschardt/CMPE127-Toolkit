@@ -1,4 +1,5 @@
 `timescale 1ns / 1ps
+`default_nettype none
 //------------------------------------------------------------------------------
 // Endianess
 // 0 -> little-endian. 1 -> big-endian
@@ -216,6 +217,27 @@ wire [1:0] RegInSelect;
 wire [1:0] RegWriteDst;
 wire [1:0] PCSrc;
 wire ALUSrc;
+wire RegWrite;
+wire SignExtImm;
+
+wire [`REGISTER_WIDTH-1:0] read_data_1;
+wire [`REGISTER_WIDTH-1:0] read_data_2;
+// wire [$clog2(`NUMBER_OF_REGISTERS)-1:0] read_address_1, read_address_2;
+wire [$clog2(`NUMBER_OF_REGISTERS)-1:0] write_address;
+wire [`REGISTER_WIDTH-1:0] write_data;
+wire [`REGISTER_WIDTH-1:0] immediate_extended;
+wire [`REGISTER_WIDTH-1:0] branch_pc_offset;
+wire [`REGISTER_WIDTH-1:0] branch_pc_offset_sign_extended;
+
+`define BYTE 2
+`define HALF 1
+`define WORD 0
+
+wire [1:0] sw_data_bus_select;
+wire [`REGISTER_WIDTH-1:0] sw_data;
+
+assign sw_data_bus_select = (MemWrite == 4'b1111) ? `WORD : (MemWrite == 4'b0011 || MemWrite == 4'b1100) ? `HALF : `BYTE;
+
 
 PROCESSOR_DECODER decoder(
     .opcode(opcode),
@@ -261,12 +283,6 @@ MUX #(
     .out(write_address)
 );
 
-wire RegWrite;
-wire [`REGISTER_WIDTH-1:0] read_data_1, read_data_2;
-// wire [$clog2(`NUMBER_OF_REGISTERS)-1:0] read_address_1, read_address_2;
-wire [$clog2(`NUMBER_OF_REGISTERS)-1:0] write_address;
-wire [`REGISTER_WIDTH-1:0] write_data;
-
 REGFILE regfile(
 	.clk(clk),
 	.read_address_1(register_source), 
@@ -278,8 +294,6 @@ REGFILE regfile(
     .read_data_2(read_data_2)
 );
 
-wire [`REGISTER_WIDTH-1:0] immediate_extended;
-wire SignExtImm;
 
 VALUE_EXTEND #(
     .INPUT_WIDTH(16),
@@ -289,9 +303,6 @@ VALUE_EXTEND #(
 	.a(immediate),
 	.y(immediate_extended)
 );
-
-wire [`REGISTER_WIDTH-1:0] branch_pc_offset;
-wire [`REGISTER_WIDTH-1:0] branch_pc_offset_sign_extended;
 
 SHIFT_LEFT #(.AMOUNT(2))
 branch_shift_immediate
@@ -351,14 +362,6 @@ OR #(.WIDTH(4)
     .in(MemWrite),
     .out(tribuffer_enable)
 );
-
-`define BYTE 2
-`define HALF 1
-`define WORD 0
-
-wire [1:0] sw_data_bus_select;
-assign sw_data_bus_select = (MemWrite == 4'b1111) ? `WORD : (MemWrite == 4'b0011 || MemWrite == 4'b1100) ? `HALF : `BYTE;
-wire [`REGISTER_WIDTH-1:0] sw_data;
 
 MUX #(
     .WIDTH(`REGISTER_WIDTH),
@@ -594,13 +597,13 @@ begin
             MemRead     <= 0;
             ALUOp       <= `ALU_NULL_OPCODE;
         end
-        `OP_LBU,
         `OP_LH,
         `OP_LHU,
         `OP_LL:begin
             `UNSUPPORTED_OPERATIONS;
         end
         /* TODO: LB AND LW NOT PROPERLY SIGN EXTENDED!! */
+        `OP_LBU,
         `OP_LB: begin
             RegWrite    <= 1;
             SignExtImm  <= 0;
