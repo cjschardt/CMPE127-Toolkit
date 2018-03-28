@@ -2,12 +2,13 @@
 `default_nettype none
 
 `define SCAN_CODE_LENGTH        11
+`define ASCII_WIDTH 			8
 `define SCAN_CODE_DATA_LENGTH   8
 `define RGB_RESOLUTION  		4
-`define FREQ_IN                 32'd100_000_000
+
 `define BREAK_CODE              8'hF0
 `define EXTEND_CODE             8'hE0
-`define SHIFT_CODE_LEFT         8'h12        
+`define SHIFT_CODE_LEFT         8'h12
 `define SHIFT_CODE_RIGHT        8'h59
 
 `define LEFT_ARROW              8'h6B
@@ -48,37 +49,54 @@ module ASCII_Keyboard(
     input wire ps2_data,
     input wire oe,
     input wire next,
-    output wire [7:0] ascii,
+    output wire [`ASCII_WIDTH-1:0] ascii,
     output wire ready,
-    output reg [7:0] scan_code_reg,
+    output reg [`ASCII_WIDTH-1:0] scan_code_reg,
     output reg [31:0] extended_count,
     output wire command
 );
-
-wire [7:0] fifo_ascii;
-wire [7:0] translated_to_ascii;
+// ==================================
+//// Internal Parameter Field
+// ==================================
+parameter WAITING = 0;
+parameter NEW_CODE = 1;
+parameter TRANSLATE = 2;
+parameter WRITE_TO_FIFO = 3;
+parameter STATE_WIDTH = $clog2(WRITE_TO_FIFO+1);
+// ==================================
+//// Wires
+// ==================================
+wire [`ASCII_WIDTH-1:0] fifo_ascii;
+wire [`ASCII_WIDTH-1:0] translated_to_ascii;
+wire [`ASCII_WIDTH-1:0] scan_code;
 wire full, empty;
-wire [7:0] scan_code; 
 wire key_ready;
-
-assign ascii = (oe) ? fifo_ascii : 8'hZ;
+// ==================================
+//// Wire Assignments
+// ==================================
+assign ascii = (oe) ? fifo_ascii : 8'bZ;
 assign ready = (!empty);
-assign command = (fifo_ascii == `LEFT_ARROW_ASCII || fifo_ascii == `RIGHT_ARROW_ASCII || fifo_ascii == `UP_ARROW_ASCII || fifo_ascii == `DOWN_ARROW_ASCII);
-
+assign command = (fifo_ascii == `LEFT_ARROW_ASCII ||
+                    fifo_ascii == `RIGHT_ARROW_ASCII ||
+                    fifo_ascii == `UP_ARROW_ASCII ||
+                    fifo_ascii == `DOWN_ARROW_ASCII);
+// ==================================
+//// Modules
+// ==================================
 Keyboard keyboard(
     .clk(clk),
     .rst(rst),
     .ps2_clk(ps2_clk),
     .ps2_data(ps2_data),
-    .data(scan_code),
-    .cs(1'b1),
     .clr(clr),
+    .cs(1'b1),
+    .data(scan_code),
     .ready(key_ready)
 );
 
 FIFO #(
     .LENGTH(16),
-    .WIDTH(8)
+    .WIDTH(`ASCII_WIDTH)
 ) ascii_to_vga (
     .clk(clk),
     .rst(rst),
@@ -97,24 +115,17 @@ KeyboardToASCIIROM rom(
     .shift(shift),
     .ascii(translated_to_ascii)
 );
-
-parameter WAITING = 0;
-parameter NEW_CODE = 1;
-parameter TRANSLATE = 2;
-parameter WRITE_TO_FIFO = 3;
-parameter STATE_WIDTH = $clog2(WRITE_TO_FIFO+1);
-
-reg [11:0] address;
+// ==================================
+//// Registers
+// ==================================
 reg [STATE_WIDTH-1:0] state;
-// reg [7:0] scan_code_reg;
 reg clr;
-reg break_code_detected;
+reg break_detected;
 reg empty_reg;
 reg previously_empty;
 reg fifo_control;
 reg shift;
-reg extended; 
-
+reg extended;
 // ==================================
 //// Behavioral Block
 // ==================================
@@ -122,15 +133,14 @@ always@(posedge clk or posedge rst)
 begin
     if(rst)
     begin
-        state = WAITING;
-        clr = 0;
-        fifo_control = 0;
-        address = 0;
-        scan_code_reg = 0;
-        break_code_detected = 0;
-        shift = 0;
-        extended = 0;
-        extended_count = 0;
+        state           <= WAITING;
+        clr             <= 0;
+        fifo_control    <= 0;
+        scan_code_reg   <= 0;
+        break_detected  <= 0;
+        shift           <= 0;
+        extended        <= 0;
+        extended_count  <= 0;
     end
     else
     begin
@@ -153,16 +163,16 @@ begin
                     extended_count = extended_count + 1;
                     state = WAITING;
                 end
-                else if(break_code_detected && (scan_code_reg == `SHIFT_CODE_LEFT || scan_code_reg == `SHIFT_CODE_RIGHT))
+                else if(break_detected && (scan_code_reg == `SHIFT_CODE_LEFT || scan_code_reg == `SHIFT_CODE_RIGHT))
                 begin
                     shift = 0;
-                    break_code_detected = 0;
+                    break_detected = 0;
                     state = WAITING;
                 end
-                else if(break_code_detected)
+                else if(break_detected)
                 begin
                     extended = 0;
-                    break_code_detected = 0;
+                    break_detected = 0;
                     state = WAITING;
                 end
                 else begin
@@ -174,7 +184,7 @@ begin
                 clr          = 0;
                 if(scan_code_reg == `BREAK_CODE)
                 begin
-                    break_code_detected = 1;
+                    break_detected = 1;
                     state = WAITING;
                 end
                 else if(extended)
@@ -212,14 +222,14 @@ module Keyboard(
     //// input 100 MHz clock
     input wire clk,
     input wire rst,
-    //// ps2 
+    //// ps2
     input wire ps2_clk,
     input wire ps2_data,
     //// chip select for Keyboard module
     input wire cs,
     //// signal to clear previous key
     input wire clr,
-    //// 8-bit data input bus 
+    //// 8-bit data input bus
     output wire [`SCAN_CODE_DATA_LENGTH-1:0] data,
     //// busy signal to tell CPU or other hardware that the VGA controller cannot be writen to.
     output wire ready
@@ -358,9 +368,9 @@ always @(scan_code, shift) begin
             8'h3D: ascii = "7";
             8'h3E: ascii = "8";
             8'h46: ascii = "9";
-            8'h0E: ascii = "`";	
-            8'h4E: ascii = "-";	
-            8'h55: ascii = "=";	
+            8'h0E: ascii = "`";
+            8'h4E: ascii = "-";
+            8'h55: ascii = "=";
             8'h5D: ascii = "\\";
             8'h29: ascii = " ";
             8'h76: ascii = 8'h03; //// escape
@@ -383,7 +393,7 @@ always @(scan_code, shift) begin
             default: ascii = 8'hFF;
         endcase
     end
-    else 
+    else
     begin
         case (scan_code)
             8'h1C: ascii = "A";
@@ -422,9 +432,9 @@ always @(scan_code, shift) begin
             8'h3D: ascii = "&";
             8'h3E: ascii = "*";
             8'h46: ascii = "(";
-            8'h0E: ascii = "~";	
-            8'h4E: ascii = "_";	
-            8'h55: ascii = "+";	
+            8'h0E: ascii = "~";
+            8'h4E: ascii = "_";
+            8'h55: ascii = "+";
             8'h5D: ascii = "|";
             8'h29: ascii = " ";
             8'h76: ascii = 8'h03; //// escape
@@ -560,7 +570,7 @@ begin
             else
             begin
                 address = address + 1;
-            end                            
+            end
         end
         //// Background color change
         if(!background_button && previous_bsync)
@@ -578,7 +588,7 @@ begin
             text_color_reg = text_color_reg + 1;
             previous_tsync = 0;
         end
-        if(text_button && !previous_tsync) 
+        if(text_button && !previous_tsync)
         begin
             previous_tsync = 1;
         end

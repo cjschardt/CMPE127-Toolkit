@@ -1,7 +1,7 @@
 Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2017.3 (lin64) Build 2018833 Wed Oct  4 19:58:07 MDT 2017
-| Date         : Fri Mar 23 16:59:07 2018
+| Date         : Sun Mar 25 07:44:54 2018
 | Host         : kammce-Lenovo-Y40-80 running 64-bit Ubuntu 16.04.4 LTS
 | Command      : report_control_sets -file Motherboard_control_sets_placed.rpt
 | Design       : Motherboard
@@ -21,7 +21,7 @@ Table of Contents
 +-------------------------------+-------+
 |             Status            | Count |
 +-------------------------------+-------+
-| Number of unique control sets |    26 |
+| Number of unique control sets |    47 |
 +-------------------------------+-------+
 
 
@@ -31,11 +31,11 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |             100 |           66 |
-| No           | No                    | Yes                    |             215 |           86 |
-| No           | Yes                   | No                     |               0 |            0 |
+| No           | No                    | No                     |             100 |           72 |
+| No           | No                    | Yes                    |             232 |           99 |
+| No           | Yes                   | No                     |               7 |            7 |
 | Yes          | No                    | No                     |               0 |            0 |
-| Yes          | No                    | Yes                    |             174 |           62 |
+| Yes          | No                    | Yes                    |             170 |           58 |
 | Yes          | Yes                   | No                     |               0 |            0 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 

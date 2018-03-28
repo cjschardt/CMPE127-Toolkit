@@ -1,7 +1,7 @@
 Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2017.3 (lin64) Build 2018833 Wed Oct  4 19:58:07 MDT 2017
-| Date         : Fri Mar 23 16:59:40 2018
+| Date         : Sun Mar 25 07:45:28 2018
 | Host         : kammce-Lenovo-Y40-80 running 64-bit Ubuntu 16.04.4 LTS
 | Command      : report_drc -file Motherboard_drc_routed.rpt -pb Motherboard_drc_routed.pb -rpx Motherboard_drc_routed.rpx
 | Design       : Motherboard
@@ -24,7 +24,7 @@ Table of Contents
       Design limits: <entire design considered>
            Ruledeck: default
              Max violations: <unlimited>
-             Violations found: 42
+             Violations found: 49
 +-----------+----------+-----------------------------------------------------+------------+
 | Rule      | Severity | Description                                         | Violations |
 +-----------+----------+-----------------------------------------------------+------------+
@@ -33,6 +33,7 @@ Table of Contents
 | DPIP-1    | Warning  | Input pipelining                                    | 10         |
 | DPOP-1    | Warning  | PREG Output pipelining                              | 5          |
 | DPOP-2    | Warning  | MREG Output pipelining                              | 5          |
+| PDRC-153  | Warning  | Gated clock check                                   | 7          |
 | REQP-1839 | Warning  | RAMB36 async control check                          | 20         |
 +-----------+----------+-----------------------------------------------------+------------+
 
@@ -154,6 +155,41 @@ Related violations: <none>
 DPOP-2#5 Warning
 MREG Output pipelining  
 DSP vga_term/linearize/address multiplier stage vga_term/linearize/address/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+Related violations: <none>
+
+PDRC-153#1 Warning
+Gated clock check  
+Net vga_term/cu/buffer_databus_reg[0]_LDC_i_1_n_3 is a gated clock net sourced by a combinational pin vga_term/cu/buffer_databus_reg[0]_LDC_i_1/O, cell vga_term/cu/buffer_databus_reg[0]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#2 Warning
+Gated clock check  
+Net vga_term/cu/buffer_databus_reg[1]_LDC_i_1_n_3 is a gated clock net sourced by a combinational pin vga_term/cu/buffer_databus_reg[1]_LDC_i_1/O, cell vga_term/cu/buffer_databus_reg[1]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#3 Warning
+Gated clock check  
+Net vga_term/cu/buffer_databus_reg[2]_LDC_i_1_n_3 is a gated clock net sourced by a combinational pin vga_term/cu/buffer_databus_reg[2]_LDC_i_1/O, cell vga_term/cu/buffer_databus_reg[2]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#4 Warning
+Gated clock check  
+Net vga_term/cu/buffer_databus_reg[3]_LDC_i_1_n_3 is a gated clock net sourced by a combinational pin vga_term/cu/buffer_databus_reg[3]_LDC_i_1/O, cell vga_term/cu/buffer_databus_reg[3]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#5 Warning
+Gated clock check  
+Net vga_term/cu/buffer_databus_reg[4]_LDC_i_1_n_3 is a gated clock net sourced by a combinational pin vga_term/cu/buffer_databus_reg[4]_LDC_i_1/O, cell vga_term/cu/buffer_databus_reg[4]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#6 Warning
+Gated clock check  
+Net vga_term/cu/buffer_databus_reg[5]_LDC_i_1_n_3 is a gated clock net sourced by a combinational pin vga_term/cu/buffer_databus_reg[5]_LDC_i_1/O, cell vga_term/cu/buffer_databus_reg[5]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#7 Warning
+Gated clock check  
+Net vga_term/cu/buffer_databus_reg[6]_LDC_i_1_n_3 is a gated clock net sourced by a combinational pin vga_term/cu/buffer_databus_reg[6]_LDC_i_1/O, cell vga_term/cu/buffer_databus_reg[6]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 REQP-1839#1 Warning

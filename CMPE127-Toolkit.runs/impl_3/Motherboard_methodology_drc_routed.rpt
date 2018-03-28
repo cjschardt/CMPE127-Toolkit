@@ -1,7 +1,7 @@
 Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2017.3 (lin64) Build 2018833 Wed Oct  4 19:58:07 MDT 2017
-| Date         : Fri Mar 23 16:59:43 2018
+| Date         : Sun Mar 25 07:45:31 2018
 | Host         : kammce-Lenovo-Y40-80 running 64-bit Ubuntu 16.04.4 LTS
 | Command      : report_methodology -file Motherboard_methodology_drc_routed.rpt -pb Motherboard_methodology_drc_routed.pb -rpx Motherboard_methodology_drc_routed.rpx
 | Design       : Motherboard
@@ -23,7 +23,7 @@ Table of Contents
           Floorplan: design_1
       Design limits: <entire design considered>
              Max violations: <unlimited>
-             Violations found: 469
+             Violations found: 476
 +-----------+----------+--------------------------------------------+------------+
 | Rule      | Severity | Description                                | Violations |
 +-----------+----------+--------------------------------------------+------------+
@@ -33,7 +33,7 @@ Table of Contents
 | SYNTH-13  | Warning  | combinational multiplier                   | 1          |
 | TIMING-17 | Warning  | Non-clocked sequential cell                | 332        |
 | TIMING-18 | Warning  | Missing input or output delay              | 9          |
-| TIMING-20 | Warning  | Non-clocked latch                          | 96         |
+| TIMING-20 | Warning  | Non-clocked latch                          | 103        |
 +-----------+----------+--------------------------------------------+------------+
 
 2. REPORT DETAILS
@@ -2381,6 +2381,41 @@ Related violations: <none>
 TIMING-20#96 Warning
 Non-clocked latch  
 The latch mips/alu/result_reg[9] cannot be properly analyzed as its control pin mips/alu/result_reg[9]/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#97 Warning
+Non-clocked latch  
+The latch vga_term/cu/buffer_databus_reg[0]_LDC cannot be properly analyzed as its control pin vga_term/cu/buffer_databus_reg[0]_LDC/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#98 Warning
+Non-clocked latch  
+The latch vga_term/cu/buffer_databus_reg[1]_LDC cannot be properly analyzed as its control pin vga_term/cu/buffer_databus_reg[1]_LDC/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#99 Warning
+Non-clocked latch  
+The latch vga_term/cu/buffer_databus_reg[2]_LDC cannot be properly analyzed as its control pin vga_term/cu/buffer_databus_reg[2]_LDC/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#100 Warning
+Non-clocked latch  
+The latch vga_term/cu/buffer_databus_reg[3]_LDC cannot be properly analyzed as its control pin vga_term/cu/buffer_databus_reg[3]_LDC/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#101 Warning
+Non-clocked latch  
+The latch vga_term/cu/buffer_databus_reg[4]_LDC cannot be properly analyzed as its control pin vga_term/cu/buffer_databus_reg[4]_LDC/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#102 Warning
+Non-clocked latch  
+The latch vga_term/cu/buffer_databus_reg[5]_LDC cannot be properly analyzed as its control pin vga_term/cu/buffer_databus_reg[5]_LDC/G is not reached by a timing clock
+Related violations: <none>
+
+TIMING-20#103 Warning
+Non-clocked latch  
+The latch vga_term/cu/buffer_databus_reg[6]_LDC cannot be properly analyzed as its control pin vga_term/cu/buffer_databus_reg[6]_LDC/G is not reached by a timing clock
 Related violations: <none>
 
 

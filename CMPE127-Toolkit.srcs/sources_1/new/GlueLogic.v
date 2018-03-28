@@ -260,54 +260,6 @@ end
 endmodule
 
 //////////////////////////////////
-// Registers
-//////////////////////////////////
-
-module SHIFTREGISTER #(parameter WIDTH = 8)(
-	input wire rst,
-	input wire clk,
-	input wire en,
-	input wire in,
-	output reg [WIDTH-1:0] Q
-);
-
-always @(posedge clk or posedge rst)
-begin
-    if (rst)
-    begin
-    	Q <= 0;
-    end
-    else
-    begin
-        Q <= { Q[WIDTH-2:0], in };
-    end
-end
-
-endmodule
-
-module REGISTER #(parameter WIDTH = 8)(
-	input wire rst,
-	input wire clk,
-	input wire load,
-	input wire [WIDTH-1:0] D,
-	output reg [WIDTH-1:0] Q
-);
-
-always @(posedge clk or posedge rst)
-begin
-    if (rst)
-    begin
-    	Q <= 0;
-    end
-    else if(load)
-    begin
-        Q <= D;
-    end
-end
-
-endmodule
-
-//////////////////////////////////
 // COUNTERS
 //////////////////////////////////
 

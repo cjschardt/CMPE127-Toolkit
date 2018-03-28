@@ -1,11 +1,9 @@
 `timescale 1ns / 1ps
 `default_nettype none
- 
+
 `define VGA_RAM_ADDRESS_WIDTH 	 12
 `define PIXEL_WIDTH 			 8
 `define ASCII_WIDTH 			 8
-`define SCREEN_WIDTH 			 640
-`define SCREEN_HEIGHT			 480
 `define TERMINAL_ROWS 			 30
 `define TERMINAL_COLUMNS         80
 `define TERMINAL_CHARACTER_COUNT `TERMINAL_COLUMNS*`TERMINAL_ROWS
@@ -13,8 +11,6 @@
 `define HORIZONTAL_SEGMENTS 	 4
 `define HARDWARE_CONTROLLED_ROWS 6
 `define TOTAL_SEGMENTS 		     (`HORIZONTAL_SEGMENTS*(`HARDWARE_CONTROLLED_ROWS-1))
-`define FREQ_IN  				 100_000_000
-`define FREQ_OUT 				 25_000_000
 `define RGB_RESOLUTION  		 4
 `define CURSOR                   8'h81
 //////////////////////////////////////////////////////////////////////////////////
@@ -52,7 +48,7 @@ module VGA_Terminal_DEMO(
     //// 12-bit address bus to address which location in video ram to write ascii characters to
     //// The address is linear
     input wire [8:0] address,
-    //// 7-bit data input bus 
+    //// 7-bit data input bus
     input wire [6:0] data,
     //// chip select for this VGA Terminal module
     input wire cs,
@@ -151,7 +147,7 @@ module VGA_Terminal(
     //// 12-bit address bus to address which location in video ram to write ascii characters to
     //// The address is linear
     input wire [`VGA_RAM_ADDRESS_WIDTH-1:0] address,
-    //// 8-bit data input bus 
+    //// 8-bit data input bus
     input wire [`ASCII_WIDTH-1:0] data,
     //// chip select for this VGA Terminal module
     input wire cs,
@@ -176,20 +172,20 @@ wire [(`TOTAL_SEGMENTS*`VALUE_BIT_WIDTH)-1:0] values = {
     value12, value13, value14, value15,
     value16, value17, value18, value19
 };
-/** 
+/**
  * VGA Terminal Signals
  */
 //// Pixel clock (for 640x480 screen this will be set to 25MHz)
 wire pclk;
 //// Converts the top level address to an address beyond the hardware controlled area
 wire [`VGA_RAM_ADDRESS_WIDTH-1:0] external_address;
-//// Signal from control unit that will 
+//// Signal from control unit that will
 wire enable_rgb;
 //// xyadress will convert the hcount and vcount into the appropriate address of video ram
 wire [`VGA_RAM_ADDRESS_WIDTH-1:0] xyaddress;
 //// Will hold the row of pixels corrisponding to an ascii glyph to print to screen.
 wire [`PIXEL_WIDTH-1:0] pixels;
-/** 
+/**
  * VGA Controller Signals
  */
 //// hcount indicates the horizontal pixel location or x coordinate
@@ -200,16 +196,16 @@ wire [31:0] vcount;
 wire hblank;
 //// vblank indicates when the VGA controller is in the vertical blanking (reseting) stage
 wire vblank;
-/** 
- * CONTROL UNIT WIRES 
+/**
+ * CONTROL UNIT WIRES
  */
-//// Control unit's video address output. 
+//// Control unit's video address output.
 //// Control unit will assert an address when it wants to write or read from video ram
 wire [`VGA_RAM_ADDRESS_WIDTH-1:0] video_ctrl_address;
 //// Control unit's buffer address output.
 //// Control unit will assert an address when it wants to write or read from buffer ram
 wire [`VGA_RAM_ADDRESS_WIDTH-1:0] buffer_ctrl_address;
-//// Video Address Bus 
+//// Video Address Bus
 //// 	(TODO: MAY REMOVE IN PLACE OF VIDEO_ADDR_BUS)
 wire [`VGA_RAM_ADDRESS_WIDTH-1:0] video_address;
 //// Buffer Address Bus
@@ -291,7 +287,7 @@ ConvertXYToAddress linearize(
 );
 
 MUX #(
-    .WIDTH(12),
+    .WIDTH(`VGA_RAM_ADDRESS_WIDTH),
     .INPUTS(2)
 ) ram_address_mux (
     .select(xy_count_select),
@@ -300,8 +296,11 @@ MUX #(
 );
 
 RAM #(
-    .WIDTH(8), 
-    .LENGTH(2400)
+    .LENGTH(`TERMINAL_CHARACTER_COUNT),
+    .USE_FILE(0),
+    .WIDTH(`ASCII_WIDTH),
+    .MINIMUM_SECTIONAL_WIDTH(`ASCII_WIDTH),
+    .FILE_NAME("")
 ) video_ram (
     .clk(clk),
     .we(video_wr),
@@ -312,7 +311,7 @@ RAM #(
 );
 
 MUX #(
-    .WIDTH(12),
+    .WIDTH(`VGA_RAM_ADDRESS_WIDTH),
     .INPUTS(2)
 ) buffer_address_mux (
     .select(buffer_ctrl_cs),
@@ -336,8 +335,11 @@ TRIBUFFER#(.WIDTH(`ASCII_WIDTH)) tristate_switch_data_bus (
 );
 
 RAM #(
-.WIDTH(8), 
-.LENGTH(2400)
+    .LENGTH(`TERMINAL_CHARACTER_COUNT),
+    .USE_FILE(0),
+    .WIDTH(`ASCII_WIDTH),
+    .MINIMUM_SECTIONAL_WIDTH(`ASCII_WIDTH),
+    .FILE_NAME("")
 ) buffer_ram(
     .clk(clk),
     .we(buffer_wr),
@@ -471,32 +473,32 @@ begin
         buffer_cs               <= 0;
         buffer_oe               <= 0;
         // set internal variables
-        position_counter        <= 0;
+        position_counter        <= 1;
         previous_position       <= 0;
         hex_counter             <= 0;
         //temp_value              <= 0;
         // Set out going signals
         video_databus_enable    <= 0;
         buffer_databus_enable   <= 0;
-        video_databus           <= 0;
-        buffer_databus          <= 0;
+        video_databus           <= string_character;
+        buffer_databus          <= string_character;
     end
-    else 
+    else
     begin
         case(state)
-            LOAD_RAMS: 
+            LOAD_RAMS:
             begin
                 //// Set State
                 state                   <= (position_counter < `TERMINAL_CHARACTER_COUNT) ? LOAD_RAMS : WAIT_FOR_VBLANK;
                 //// Linearize control
                 xy_count_select         <= 0;
                 //// Video Controls
-                video_address           <= position_counter;
+                video_address           <= position_counter - 1;
                 video_wr                <= 1;
                 video_cs                <= 1;
                 video_oe                <= 0;
                 //// Buffer Controls
-                buffer_address          <= position_counter;
+                buffer_address          <= position_counter - 1;
                 buffer_wr               <= 1;
                 buffer_cs               <= 1;
                 buffer_oe               <= 0;
@@ -510,10 +512,10 @@ begin
                 buffer_databus_enable   <= 1;
                 // video_databus           <= (strings >> ((`TERMINAL_COLUMNS*`HARDWARE_CONTROLLED_ROWS)-(position_counter+1))*`ASCII_WIDTH);
                 // buffer_databus          <= (strings >> ((`TERMINAL_COLUMNS*`HARDWARE_CONTROLLED_ROWS)-(position_counter+1))*`ASCII_WIDTH);
-                video_databus           <= string_character;
-                buffer_databus          <= string_character;
+                video_databus           <= (position_counter < STRING_MATRIX_WIDTH/`ASCII_WIDTH) ? string_character : 8'b0;
+                buffer_databus          <= (position_counter < STRING_MATRIX_WIDTH/`ASCII_WIDTH) ? string_character : 8'b0;
             end
-            WAIT_FOR_VBLANK: 
+            WAIT_FOR_VBLANK:
             begin
                 //// Set State
                 state                   <= (vblank) ? WRITE_HEX_TO_BUFFER : WAIT_FOR_VBLANK;
@@ -530,8 +532,8 @@ begin
                 buffer_cs               <= 0;
                 buffer_oe               <= 0;
                 // set internal variables
-                position_counter        <= (vblank) ? 13 : 0;
-                previous_position       <= (vblank) ? 13 : 0;
+                position_counter        <= (vblank) ? 12 : 0;
+                previous_position       <= (vblank) ? 12 : 0;
                 hex_counter             <= 1;
                 //temp_value              <= (values >> (`TOTAL_SEGMENTS*`VALUE_BIT_WIDTH)-(4*(hex_counter+1)));;
                 // Set out going signals
@@ -540,7 +542,7 @@ begin
                 video_databus           <= 0;
                 buffer_databus          <= 0;
             end
-            WRITE_HEX_TO_BUFFER: 
+            WRITE_HEX_TO_BUFFER:
             begin
                 //// Set State
                 //state                   <= 0;
@@ -564,7 +566,7 @@ begin
                 video_databus_enable    <= 0;
                 buffer_databus_enable   <= 1;
                 video_databus           <= 0;
-                
+
                 case(hex_digit)
                     4'h0: buffer_databus <= "0";
                     4'h1: buffer_databus <= "1";
@@ -606,7 +608,7 @@ begin
                     hex_counter         <= hex_counter + 1;
                 end
             end
-            COPY_BUFFER_TO_VIDEO: 
+            COPY_BUFFER_TO_VIDEO:
             begin
                 //// Set State
                 // state                   <= COPY_BUFFER_TO_VIDEO;
@@ -631,7 +633,7 @@ begin
                 buffer_databus_enable   <= 0;
                 //video_databus           <= ;
                 //buffer_databus          <= ;
-                if(buffer_address == external_address+2)
+                if(buffer_address == external_address+1)
                 begin
                     video_databus       <= `CURSOR;
                 end
@@ -844,7 +846,9 @@ module PixelClock(
 // ==================================
 //// Internal Parameter Field
 // ==================================
-parameter HOLD_TICK_COUNT = (`FREQ_IN/`FREQ_OUT)/2;
+parameter FREQ_IN         = 100_000_000; // Hz
+parameter FREQ_OUT        =  25_000_000; // Hz
+parameter HOLD_TICK_COUNT = (FREQ_IN/FREQ_OUT)/2;
 // ==================================
 //// Registers
 // ==================================
@@ -894,8 +898,10 @@ module VGA(
 // ==================================
 //// Internal Parameter Field
 // ==================================
-parameter DISPLAY_WIDTH  = `SCREEN_WIDTH-1;
-parameter DISPLAY_HEIGHT = `SCREEN_HEIGHT-1;
+parameter SCREEN_WIDTH 	 = 640;
+parameter SCREEN_HEIGHT	 = 480;
+parameter DISPLAY_WIDTH  = SCREEN_WIDTH-1;
+parameter DISPLAY_HEIGHT = SCREEN_HEIGHT-1;
 parameter HORIZONTAL_FRONT_PORCH = 16;
 parameter HORIZONTAL_SYNC_PULSE = 96;
 parameter HORIZONTAL_BACK_PORCH = 48;

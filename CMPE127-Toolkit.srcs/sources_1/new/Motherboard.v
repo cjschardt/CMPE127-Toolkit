@@ -7,7 +7,7 @@
 `define FREQ_IN                 32'd100_000_000
 `define BREAK_CODE              8'hF0
 `define EXTEND_CODE             8'hE0
-`define SHIFT_CODE_LEFT         8'h12        
+`define SHIFT_CODE_LEFT         8'h12
 `define SHIFT_CODE_RIGHT        8'h59
 
 `define LEFT_ARROW              8'h6B
@@ -60,7 +60,7 @@ begin
         slow_clk <= 0;
         counter <= 0;
     end
-    else 
+    else
     begin
         if(counter == DIVIDE/2)
         begin
@@ -138,6 +138,8 @@ module Motherboard #(parameter CLOCK_DIVIDER = 100)
 // ==================================
 //// Internal Parameter Field
 // ==================================
+parameter ROM_SIZE      = 32'h400/4;
+`define ROM_PC_RANGE    ($clog2(ROM_SIZE)+2):2
 // ==================================
 //// Wires
 // ==================================
@@ -204,11 +206,11 @@ MUX #(
 );
 
 ROM #(
-    .LENGTH(32'h400/4),
+    .LENGTH(ROM_SIZE),
     .WIDTH(32),
     .FILE_NAME("rom.mem")
 ) rom (
-	.a(ProgramCounter[13:2]),
+	.a(ProgramCounter[`ROM_PC_RANGE]),
 	.out(Instruction)
 );
 
@@ -229,9 +231,11 @@ MIPS mips(
     .Instruction(Instruction)
 );
 
-RAM_BYTE #(
+RAM #(
     .LENGTH(32'h1000/4),
     .USE_FILE(1),
+    .WIDTH(32),
+    .MINIMUM_SECTIONAL_WIDTH(8),
     .FILE_NAME("ram.mem")
 ) ram (
     .clk(clk),

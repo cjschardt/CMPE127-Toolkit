@@ -1,90 +1,25 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
+// Company:
+// Engineer:
+//
 // Create Date: 02/20/2018 05:22:16 PM
-// Design Name: 
+// Design Name:
 // Module Name: Memory
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
+// Project Name:
+// Target Devices:
+// Tool Versions:
+// Description:
+//
+// Dependencies:
+//
 // Revision:
 // Revision 0.01 - File Created
 // Additional Comments:
-// 
+//
 //////////////////////////////////////////////////////////////////////////////////
 
-module RAM_B #(
-    parameter LENGTH = 32'h1000,
-    parameter COLUMN = 0,
-    parameter USE_FILE = 0,
-    parameter FILE_NAME = "ram.mem"
-)
-(
-    input wire clk,
-    input wire rst,
-    input wire we,
-    input wire cs,
-    input wire oe,
-    input wire [ADDRESS_WIDTH-1:0] address,
-    inout wire [BYTE_WIDTH-1:0] data
-);
-
-// ==================================
-//// Internal Parameter Field
-// ==================================
-parameter ADDRESS_WIDTH = $clog2(LENGTH);
-parameter RAM_WIDTH = 32;
-parameter BYTE_WIDTH = 8;
-// ==================================
-//// Registers
-// ==================================
-reg [RAM_WIDTH-1:0] ram [0:LENGTH];
-reg [BYTE_WIDTH-1:0] data_out;
-// ==================================
-//// Wires
-// ==================================
-// ==================================
-//// Wire Assignments
-// ==================================
-assign data = (cs && oe && !we) ? data_out : 8'bz;
-// ==================================
-//// Modules
-// ==================================
-// ==================================
-//// Behavioral Block
-// ==================================
-initial
-begin
-    if(USE_FILE)
-    begin
-        $readmemh(FILE_NAME, ram);
-    end
-end
-
-always @(posedge clk or posedge rst)
-begin
-    if(rst)
-    begin
-        $readmemh(FILE_NAME, ram);
-    end
-    else if (cs && we)
-    begin
-       ram[address] = data << (COLUMN*8);
-    end
-    else if (cs && oe && !we)
-    begin
-        data_out = (ram[address] >> (COLUMN*8)) & 8'hFF;
-    end
-end
-
-endmodule
-
+/*
 module RAM #(
     parameter LENGTH = 32'h1000,
     parameter WIDTH = 32,
@@ -132,7 +67,7 @@ begin
     else
     begin
         data_out = {(WIDTH){ 1'b0 }};
-		for (i=0; i<32; i=i+1) 
+		for (i=0; i<32; i=i+1)
         begin
 			ram[i] = {(WIDTH){ 1'b0 }};
         end
@@ -152,16 +87,18 @@ begin
 end
 
 endmodule
+*/
 
-
-module RAM_BYTE #(
+module RAM #(
     parameter LENGTH = 32'h1000,
     parameter USE_FILE = 0,
+    parameter WIDTH = 32,
+    parameter MINIMUM_SECTIONAL_WIDTH = 8,
     parameter FILE_NAME = "ram.mem"
 )
 (
     input wire clk,
-    input wire [3:0] we,
+    input wire [BYTE_ENABLES-1:0] we,
     input wire cs,
     input wire oe,
     input wire [ADDRESS_WIDTH-1:0] address,
@@ -172,7 +109,7 @@ module RAM_BYTE #(
 //// Internal Parameter Field
 // ==================================
 parameter ADDRESS_WIDTH = $clog2(LENGTH);
-parameter WIDTH = 32;
+parameter BYTE_ENABLES = WIDTH/MINIMUM_SECTIONAL_WIDTH;
 // ==================================
 //// Registers
 // ==================================
@@ -201,35 +138,33 @@ begin
     else
     begin
         data_out = {(WIDTH){ 1'b0 }};
-		for (i=0; i<32; i=i+1) 
+        memory_in = {(WIDTH){ 1'b0 }};
+		for (i = 0; i < LENGTH; i = i+1)
         begin
 			ram[i] = {(WIDTH){ 1'b0 }};
         end
     end
 end
 
-reg [WIDTH-1:0] memory_in = 0; // wire reg
+reg [WIDTH-1:0] memory_in; // wire reg
+`define SECTION_RANGES (MINIMUM_SECTIONAL_WIDTH*(c+1))-1 : MINIMUM_SECTIONAL_WIDTH*c
 
-always @(*)
-begin
-    memory_in = ram[address];
-    if (we[3])
-    begin
-        memory_in[31:24] = data[31:24];
+genvar c;
+generate
+    for (c = 0; c < BYTE_ENABLES; c = c + 1) begin: test
+        always @(*)
+        begin
+            if(we[c])
+            begin
+                memory_in[`SECTION_RANGES] = data[`SECTION_RANGES];
+            end
+            else
+            begin
+                memory_in[`SECTION_RANGES] = ram[address][`SECTION_RANGES];
+            end
+        end
     end
-    if (we[2])
-    begin
-        memory_in[23:16] = data[23:16];
-    end
-    if (we[1])
-    begin
-        memory_in[15:8] = data[15:8];
-    end
-    if (we[0])
-    begin
-        memory_in[7:0] = data[7:0];
-    end
-end
+endgenerate
 
 always @(posedge clk)
 begin
@@ -252,7 +187,7 @@ module ROM #(
 )
 (
 	input wire [$clog2(LENGTH)-1:0] a,
-	output wire [WIDTH-1:0] out 
+	output wire [WIDTH-1:0] out
 );
 
 // ==================================
@@ -310,7 +245,6 @@ reg [ADDRESS_WIDTH-1:0] write_position;
 reg [ADDRESS_WIDTH-1:0] read_position;
 reg [ADDRESS_WIDTH:0] status_count;
 reg [WIDTH-1:0] mem [0:LENGTH];
-reg previously_empty;
 // ==================================
 //// Wires
 // ==================================
@@ -332,14 +266,13 @@ begin
         write_position = 0;
         read_position = 0;
         status_count = 0;
-        mem[write_position] = " ";
+        mem[write_position] = 0;
         write_position = 0;
-        previously_empty = 0;
         out = 0;
         full = 0;
         empty = 1;
     end
-    else 
+    else
     begin
         if(status_count == 0)
         begin
@@ -412,7 +345,6 @@ reg [ADDRESS_WIDTH-1:0] write_position;
 reg [ADDRESS_WIDTH-1:0] read_position;
 reg [ADDRESS_WIDTH:0] status_count;
 reg [WIDTH-1:0] mem [0:LENGTH];
-reg previously_empty;
 // ==================================
 //// Wires
 // ==================================
@@ -434,13 +366,12 @@ begin
         write_position = 0;
         read_position = 0;
         status_count = 0;
-        mem[write_position] = " ";
+        mem[write_position] = 0;
         write_position = 0;
-        previously_empty = 0;
         full = 0;
         empty = 1;
     end
-    else 
+    else
     begin
         if(status_count == 0)
         begin
@@ -480,6 +411,54 @@ begin
             status_count = status_count - 1;
             full = 0;
         end
+    end
+end
+
+endmodule
+
+//////////////////////////////////
+// Registers
+//////////////////////////////////
+
+module SHIFTREGISTER #(parameter WIDTH = 8)(
+	input wire rst,
+	input wire clk,
+	input wire en,
+	input wire in,
+	output reg [WIDTH-1:0] Q
+);
+
+always @(posedge clk or posedge rst)
+begin
+    if (rst)
+    begin
+    	Q <= 0;
+    end
+    else
+    begin
+        Q <= { Q[WIDTH-2:0], in };
+    end
+end
+
+endmodule
+
+module REGISTER #(parameter WIDTH = 8)(
+	input wire rst,
+	input wire clk,
+	input wire load,
+	input wire [WIDTH-1:0] D,
+	output reg [WIDTH-1:0] Q
+);
+
+always @(posedge clk or posedge rst)
+begin
+    if (rst)
+    begin
+    	Q <= 0;
+    end
+    else if(load)
+    begin
+        Q <= D;
     end
 end
 
