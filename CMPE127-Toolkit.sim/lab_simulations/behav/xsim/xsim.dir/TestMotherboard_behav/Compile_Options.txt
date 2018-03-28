@@ -1,1 +1,0 @@
--wto "b88e81cc53414897a6cdb318bade6df8" --incr --debug "typical" --relax --mt "8" -L "xil_defaultlib" -L "unisims_ver" -L "unimacro_ver" -L "secureip" --snapshot "TestMotherboard_behav" "xil_defaultlib.TestMotherboard" "xil_defaultlib.glbl" -log "elaborate.log" 

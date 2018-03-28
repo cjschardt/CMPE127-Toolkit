@@ -1,8 +1,0 @@
-Breakpoint File Version 1.0
-161 true /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_Memory.v
-162 true /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_Memory.v
-163 true /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_Memory.v
-164 true /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_Memory.v
-166 true /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_Memory.v
-171 true /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_Memory.v
-172 true /home/kammce/Documents/University/CMPE127/CMPE127-Toolkit/CMPE127-Toolkit.srcs/sim_1/new/Test_Memory.v
