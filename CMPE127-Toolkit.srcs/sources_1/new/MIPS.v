@@ -159,6 +159,28 @@
 `define INSTRUCTION_WIDTH       32
 `define RETURN_ADDRESS_REGISTER 31
 
+//------------------------------------------------------------------------------
+// SYSTEM CONSTANTS
+//------------------------------------------------------------------------------
+`define ALUSRC_FOR_RTYPE            0
+`define ALUSRC_FOR_ITYPE            1
+
+`define REGWRITEDST_FROM_RTYPE      0
+`define REGWRITEDST_FROM_ITYPE      1
+`define REGWRITEDST_RETURN_ADDR     2
+
+`define PCSRC_NEXT_PC               0
+`define PCSRC_BRANCH_PC             1
+`define PCSRC_JUMP_PC_IMMEDIATE     2
+`define PCSRC_JUMP_PC_REGISTER      3
+`define PCSRC_CURRENT_PC            4
+`define PCSRC_DATABUS               5
+
+`define REGIN_ALU_RESULT            0
+`define REGIN_DATABUS               1
+`define REGIN_STORE_NEXT_PC         2
+`define REGIN_DATABUS_BYTE_ACCESS   3
+
 module MIPS(
     input wire clk,
     input wire rst,
@@ -173,7 +195,9 @@ module MIPS(
     output wire [`REGISTER_WIDTH-1:0] RegOut2,
     output wire [`REGISTER_WIDTH-1:0] RegWriteData,
     output wire [`REGISTER_WIDTH-1:0] RegWriteAddress,
-    input wire  [`REGISTER_WIDTH-1:0] Instruction
+    input wire  [`REGISTER_WIDTH-1:0] Instruction,
+    input wire                        InterruptVector,
+    input wire                        InterruptAcknowledge,
 );
 // ==================================
 //// Internal Parameter Field
@@ -220,7 +244,7 @@ wire [`REGISTER_WIDTH-1:0] pc;
 wire [`ALU_OP_CODE_WIDTH-1:0] ALUOp;
 wire [1:0] RegInSelect;
 wire [1:0] RegWriteDst;
-wire [1:0] PCSrc;
+wire [2:0] PCSrc;
 wire ALUSrc;
 wire RegWrite;
 wire SignExtImm;
@@ -244,13 +268,37 @@ wire [`REGISTER_WIDTH-1:0] write_data;
 wire [1:0] data_out_bus_select;
 wire [`REGISTER_WIDTH-1:0] data_out;
 
+// PROCESSOR_DECODER(
+//     input wire                       clk,
+//     input wire [`OP_CODE_WIDTH-1:0]  opcode,
+//     input wire [`FUNCTION_WIDTH-1:0] funct,
+//     input wire [`REGISTER_WIDTH-1:0] alu_result,
+//     input wire                      zero,
+//     input wire                      less_than_eq,
+//     input wire                      greater_than,
+//     input wire                      interrupt_vector,
+//     output wire                     BusCycle,
+//     output reg [1:0]                RegWriteDst,
+//     output reg [1:0]                RegInSelect,
+//     output reg [2:0]                PCSrc,
+//     output reg                      ALUSrc,
+//     output reg                      SignExtImm,
+//     output reg                      RegWrite,
+//     output reg [3:0]                MemWrite,
+//     output reg                      MemRead,
+//     output reg [`ALU_OP_CODE_WIDTH-1:0]  ALUOp
+// );
+
 PROCESSOR_DECODER decoder(
+    .clk(clk),
     .opcode(opcode),
     .funct(funct),
     .alu_result(alu_result),
     .zero(zero),
     .less_than_eq(less_than_eq),
     .greater_than(greater_than),
+    .interrupt_vector(InterruptVector),
+    .interrupt_acknowledge(InterruptAcknowledge),
     .BusCycle(BusCycle),
     .RegWriteDst(RegWriteDst),
     .RegInSelect(RegInSelect),
@@ -334,10 +382,11 @@ ADDER #(.WIDTH(`REGISTER_WIDTH)) branch_pc_adder (
 
 MUX #(
     .WIDTH(`REGISTER_WIDTH),
-    .INPUTS(4)
+    .INPUTS(5)
 ) final_pc_mux (
     .select(PCSrc),
-    .in({ alu_result, branch_pc_offset, branch_pc, next_pc }),
+    .in({
+        { {(`REGISTER_WIDTH-4){1'b0}}, DataBus[2:0], 2'b0 }, pc, alu_result, branch_pc_offset, branch_pc, next_pc }),
     .out(final_pc)
 );
 
@@ -424,6 +473,111 @@ MUX #(
 endmodule
 
 module PROCESSOR_DECODER(
+    input wire                       clk,
+    input wire [`OP_CODE_WIDTH-1:0]  opcode,
+    input wire [`FUNCTION_WIDTH-1:0] funct,
+    input wire [`REGISTER_WIDTH-1:0] alu_result,
+    input wire                      zero,
+    input wire                      less_than_eq,
+    input wire                      greater_than,
+    input wire                      interrupt_vector,
+    output reg                      interrupt_acknowledge,
+    output wire                     BusCycle,
+    output reg [1:0]                RegWriteDst,
+    output reg [1:0]                RegInSelect,
+    output reg [2:0]                PCSrc,
+    output reg                      ALUSrc,
+    output reg                      SignExtImm,
+    output reg                      RegWrite,
+    output reg [3:0]                MemWrite,
+    output reg                      MemRead,
+    output reg [`ALU_OP_CODE_WIDTH-1:0]  ALUOp
+);
+
+wire                      BusCycle_wire;
+wire [1:0]                RegWriteDst_wire;
+wire [1:0]                RegInSelect_wire;
+wire [2:0]                PCSrc_wire;
+wire                      ALUSrc_wire;
+wire                      SignExtImm_wire;
+wire                      RegWrite_wire;
+wire [3:0]                MemWrite_wire;
+wire                      MemRead_wire;
+wire [`ALU_OP_CODE_WIDTH-1:0]  ALUOp_wire;
+
+PROCESSOR_INSTRUCTION_DECODER decoder(
+    .opcode(OpcodeInstr),
+    .funct(funct),
+    .alu_result(alu_result),
+    .zero(zero),
+    .less_than_eq(less_than_eq),
+    .greater_than(greater_than),
+    .BusCycle(BusCycle_wire),
+    .RegWriteDst(RegWriteDst_wire),
+    .RegInSelect(RegInSelect_wire),
+    .PCSrc(PCSrc_wire),
+    .ALUSrc(ALUSrc_wire),
+    .SignExtImm(SignExtImm_wire),
+    .RegWrite(RegWrite_wire),
+    .MemWrite(MemWrite_wire),
+    .MemRead(MemRead_wire),
+    .ALUOp(ALUOp_wire)
+);
+
+reg [`OP_CODE_WIDTH-1:0] OpcodeInstr;
+// reg interrupt_acknowledge;
+
+always @(*)
+begin
+    if(interrupt_vector && !interrupt_acknowledge && clk)
+    begin
+        OpcodeInstr <= 0;
+        FunctInstr  <= 0;
+        RegWrite    <= 0;
+        SignExtImm  <= 0;
+        RegWriteDst <= 0;
+        ALUSrc      <= 0;
+        RegInSelect <= 0;
+        PCSrc       <= `PCSRC_CURRENT_PC;
+        MemWrite    <= 0;
+        MemRead     <= 0;
+        ALUOp       <= 0;
+        interrupt_acknowledge = 1'b1;
+    end
+    else if(interrupt_vector && interrupt_acknowledge && clk)
+    begin
+        OpcodeInstr <= `OP_TYPE_R;
+        FunctInstr  <= `FUNCTION_OP_JAL;
+        RegWrite    <= RegWrite_wire;
+        SignExtImm  <= SignExtImm_wire;
+        RegWriteDst <= RegWriteDst_wire;
+        ALUSrc      <= ALUSrc_wire;
+        RegInSelect <= RegInSelect_wire;
+        PCSrc       <= `PCSRC_DATABUS;
+        MemWrite    <= MemWrite_wire;
+        MemRead     <= MemRead_wire;
+        ALUOp       <= ALUOp_wire;
+        interrupt_acknowledge = 1'b0;
+    end
+    else
+    begin
+        OpcodeInstr <= opcode;
+        RegWrite    <= RegWrite_wire;
+        SignExtImm  <= SignExtImm_wire;
+        RegWriteDst <= RegWriteDst_wire;
+        ALUSrc      <= ALUSrc_wire;
+        RegInSelect <= RegInSelect_wire;
+        PCSrc       <= PCSrc_wire;
+        MemWrite    <= MemWrite_wire;
+        MemRead     <= MemRead_wire;
+        ALUOp       <= ALUOp_wire;
+        interrupt_acknowledge = 1'b0;
+    end
+
+end
+endmodule
+
+module PROCESSOR_INSTRUCTION_DECODER(
     input wire [`OP_CODE_WIDTH-1:0]  opcode,
     input wire [`FUNCTION_WIDTH-1:0] funct,
     input wire [`REGISTER_WIDTH-1:0] alu_result,
@@ -433,7 +587,7 @@ module PROCESSOR_DECODER(
     output wire                     BusCycle,
     output reg [1:0]                RegWriteDst,
     output reg [1:0]                RegInSelect,
-    output reg [1:0]                PCSrc,
+    output reg [2:0]                PCSrc,
     output reg                      ALUSrc,
     output reg                      SignExtImm,
     output reg                      RegWrite,
@@ -442,30 +596,7 @@ module PROCESSOR_DECODER(
     output reg [`ALU_OP_CODE_WIDTH-1:0]  ALUOp
 );
 
-// output reg                      MemToReg,
-// output reg                      Jump,
-// output reg                      RegisterJump,
-// output reg                      LoadByte,
-// output reg                      PCToReg,
-
 assign BusCycle = (MemRead | (|MemWrite));
-
-`define ALUSRC_FOR_RTYPE            0
-`define ALUSRC_FOR_ITYPE            1
-
-`define REGWRITEDST_FROM_RTYPE      0
-`define REGWRITEDST_FROM_ITYPE      1
-`define REGWRITEDST_RETURN_ADDR     2
-
-`define PCSRC_NEXT_PC               0
-`define PCSRC_BRANCH_PC             1
-`define PCSRC_JUMP_PC_IMMEDIATE     2
-`define PCSRC_JUMP_PC_REGISTER      3
-
-`define REGIN_ALU_RESULT            0
-`define REGIN_DATABUS               1
-`define REGIN_STORE_NEXT_PC         2
-`define REGIN_DATABUS_BYTE_ACCESS   3
 
 `define ALU_NULL_OPCODE             `ALU_OP_CODE_WIDTH'b0
 
