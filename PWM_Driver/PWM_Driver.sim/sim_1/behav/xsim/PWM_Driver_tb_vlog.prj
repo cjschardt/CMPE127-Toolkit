@@ -1,6 +1,5 @@
 # compile verilog/system verilog design source files
 verilog xil_defaultlib  \
-"../../../../PWM_Driver.srcs/sources_1/new/PWM_Driver.v" \
 "../../../../PWM_Driver.srcs/sim_1/new/PWM_Driver_tb.v" \
 
 # compile glbl module

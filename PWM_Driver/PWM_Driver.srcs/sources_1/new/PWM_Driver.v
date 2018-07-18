@@ -27,22 +27,20 @@ module PWM_Driver(
     input wire [7:0] duty,
     input wire [31:0] freq,
     output reg signal,
-    output reg [31:0] counter
 );
 // ==================================
 //// Internal Parameter Field
 // ==================================
 parameter CLK_FREQ = 'd50_000_000;                        // System clock is 50MHz
-parameter MAX_FREQ = 'd100_000;
+parameter MAX_FREQ = 'd100_000;                           // Max PWM frequency is 100kHz
 parameter COUNT_WIDTH = 32;
 // ==================================
 //// Registers
 // ==================================
-//reg [COUNT_WIDTH - 1:0] counter;
+reg [COUNT_WIDTH - 1:0] counter;
 reg [COUNT_WIDTH - 1:0] freq_compare_value;
 reg [COUNT_WIDTH - 1:0] duty_compare_value;
 reg [COUNT_WIDTH - 1:0] time_on;
-//reg [15:0] duty_shift;
 // ==================================
 //// Wires
 // ==================================
@@ -55,40 +53,33 @@ reg [COUNT_WIDTH - 1:0] time_on;
 // ==================================
 //// Behavioral Block
 // ==================================
-//integer duty_compare_value;
+
 always @(posedge clk or posedge rst) 
     begin
-        //duty_shift = {duty, 8'b0};
-        if (rst) begin
+        if (rst) begin                                                      // Reset values
             counter = 0;
             signal = 0;
             time_on = 0;
             freq_compare_value <= 0;
-            //duty_compare_value <= 0;
         end
-        else if (ld) begin
-            if (freq > MAX_FREQ) begin
+        else if (ld) begin                                                  // load values into internal registers
+            if (freq > MAX_FREQ)
                 freq_compare_value <= CLK_FREQ/MAX_FREQ;
-            end
-            else begin
+            else
                 freq_compare_value <= CLK_FREQ/freq;
-            end
-            duty_compare_value <= 'hFF00/duty;
-            if (duty == 'd0) begin
+            duty_compare_value <= 'hFF00/duty;                              // fixed-point arithmatic
+            if (duty == 'd0)
                 time_on <= 0;
-            end
-            else begin
-                time_on <= (freq_compare_value*'hFF)/duty_compare_value; 
-            end
+            else
+                time_on <= (freq_compare_value*'hFF)/duty_compare_value;    // fixed-point arithmatic
         end
         else begin
             if (counter >= freq_compare_value) begin
                 counter = 0;
                 signal = 1;
             end
-            if (counter >= time_on) begin
+            if (counter >= time_on)
                 signal = 0;
-            end
             counter = counter + 1;
         end    
     end   
