@@ -16,3 +16,15 @@ add_files -norecurse {C:/Users/Colin/SJSU_Internship_2018/CMPE127-Toolkit/PWM_Dr
 update_compile_order -fileset sources_1
 update_compile_order -fileset sources_1
 add_files -fileset constrs_1 -norecurse C:/Users/Colin/SJSU_Internship_2018/CMPE127-Toolkit/PWM_Driver/PWM_Driver.srcs/constrs_1/new/PWM_Driver.xdc
+launch_runs impl_1 -to_step write_bitstream -jobs 2
+wait_on_run impl_1
+open_hw
+connect_hw_server
+disconnect_hw_server localhost:3121
+connect_hw_server
+disconnect_hw_server localhost:3121
+connect_hw_server
+close_hw
+open_hw
+connect_hw_server
+close_hw
