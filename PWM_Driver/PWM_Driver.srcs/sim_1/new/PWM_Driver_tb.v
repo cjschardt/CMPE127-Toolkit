@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
+// Company: SJSU
+// Engineer: Colin Schardt
 // 
 // Create Date: 07/16/2018 06:07:47 PM
 // Design Name: 

@@ -26,12 +26,12 @@ module PWM_Driver(
     input wire ld,
     input wire [7:0] duty,
     input wire [31:0] freq,
-    output reg signal,
+    output reg signal
 );
 // ==================================
 //// Internal Parameter Field
 // ==================================
-parameter CLK_FREQ = 'd50_000_000;                        // System clock is 50MHz
+parameter CLK_FREQ = 'd100_000_000;                        // System clock is 100MHz
 parameter MAX_FREQ = 'd100_000;                           // Max PWM frequency is 100kHz
 parameter COUNT_WIDTH = 32;
 // ==================================
