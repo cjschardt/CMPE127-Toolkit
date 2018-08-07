@@ -16,6 +16,9 @@ proc create_report { reportName command } {
     send_msg_id runtcl-5 warning "$msg"
   }
 }
+set_param xicom.use_bs_reader 1
+set_msg_config -id {Synth 8-256} -limit 10000
+set_msg_config -id {Synth 8-638} -limit 10000
 create_project -in_memory -part xc7a100tcsg324-1
 
 set_param project.singleFileAddWarning.threshold 0
@@ -29,8 +32,6 @@ set_property ip_output_repo c:/Users/Colin/SJSU_Internship_2018/CMPE127-Toolkit/
 set_property ip_cache_permissions {read write} [current_project]
 read_verilog -library xil_defaultlib {
   C:/Users/Colin/SJSU_Internship_2018/CMPE127-Toolkit/PWM_Driver/PWM_Driver.srcs/sources_1/new/PWM_Driver.v
-  C:/Users/Colin/SJSU_Internship_2018/CMPE127-Toolkit/PWM_Driver/PWM_Driver.srcs/sources_1/new/clk_gen.v
-  C:/Users/Colin/SJSU_Internship_2018/CMPE127-Toolkit/PWM_Driver/PWM_Driver.srcs/sources_1/new/debouncer.v
   C:/Users/Colin/SJSU_Internship_2018/CMPE127-Toolkit/PWM_Driver/PWM_Driver.srcs/sources_1/new/PWM_Top.v
 }
 # Mark all dcp files as not used in implementation to prevent them from being

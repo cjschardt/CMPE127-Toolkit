@@ -20,67 +20,89 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module PWM_Driver(
-    input wire clk,
-    input wire rst,
-    input wire ld,
-    input wire [7:0] duty,
-    input wire [31:0] freq,
+module PWM_Driver #(
+    parameter INPUT_WIDTH = 8,
+    parameter DATA_WIDTH = 16
+    )(
+    input wire sys_clk,
+    input wire reset,
+    input wire load,
+    input wire [DATA_WIDTH  - 1:0] data,
     output reg signal
 );
 // ==================================
 //// Internal Parameter Field
 // ==================================
-parameter CLK_FREQ = 'd100_000_000;                        // System clock is 100MHz
-parameter MAX_FREQ = 'd100_000;                           // Max PWM frequency is 100kHz
-parameter COUNT_WIDTH = 32;
 // ==================================
 //// Registers
 // ==================================
-reg [COUNT_WIDTH - 1:0] counter;
-reg [COUNT_WIDTH - 1:0] freq_compare_value;
-reg [COUNT_WIDTH - 1:0] duty_compare_value;
-reg [COUNT_WIDTH - 1:0] time_on;
+reg [DATA_WIDTH - 1:0] duty_counter;
+reg [INPUT_WIDTH - 1:0] period_counter;
+reg [DATA_WIDTH - 1:0] duty_compare_value;
+
 // ==================================
 //// Wires
 // ==================================
+wire [INPUT_WIDTH - 1:0] duty;
+wire [INPUT_WIDTH - 1:0] period;
+wire pwm_clk1;
 // ==================================
 //// Wire Assignments
-// ==================================  
+// ==================================
+assign period = data[7:0];
+assign duty = data[15:8];
 // ==================================
 //// Modules
 // ==================================
+PWM_CLKGEN CLOCK1 ( .sys_clk(sys_clk), .period(period_counter), .pwm_clk(pwm_clk1));
 // ==================================
 //// Behavioral Block
 // ==================================
+//initial period_counter <= 1;
+    
+always @(posedge pwm_clk1 or negedge reset) begin
+// Reset values
+    if (reset) begin
+        period_counter <= 0;
+        duty_counter <= 0;
+        signal <= 0;
+        duty_compare_value <=0;
+    end
+// load values into internal registers
+    else if (load) begin                                 
+        period_counter <= ~period;
+        duty_compare_value <= duty*4;        
+    end
+    else begin
+// turn the signal on when counter resets
+        if (duty_counter >= 1020) begin
+            signal <= 1;
+            duty_counter <= 0;
+        end
+// turn the signal off when counter passes duty cycle value
+        else if (duty_counter >= duty_compare_value)
+            signal <= 0;
+        duty_counter <= duty_counter + 1;
+    end
+end
+endmodule
 
-always @(posedge clk or posedge rst) 
-    begin
-        if (rst) begin                                                      // Reset values
-            counter = 0;
-            signal = 0;
-            time_on = 0;
-            freq_compare_value <= 0;
-        end
-        else if (ld) begin                                                  // load values into internal registers
-            if (freq > MAX_FREQ)
-                freq_compare_value <= CLK_FREQ/MAX_FREQ;
-            else
-                freq_compare_value <= CLK_FREQ/freq;
-            duty_compare_value <= 'hFF00/duty;                              // fixed-point arithmatic
-            if (duty == 'd0)
-                time_on <= 0;
-            else
-                time_on <= (freq_compare_value*'hFF)/duty_compare_value;    // fixed-point arithmatic
-        end
-        else begin
-            if (counter >= freq_compare_value) begin
-                counter = 0;
-                signal = 1;
-            end
-            if (counter >= time_on)
-                signal = 0;
-            counter = counter + 1;
-        end    
-    end   
+module PWM_CLKGEN (
+    input wire sys_clk,
+    input wire [7:0] period,
+    output reg pwm_clk
+    );
+    
+    reg [7:0] period_adj;
+
+    always @(posedge sys_clk) begin
+        if (period == 'h00)
+            period_adj <= 1;
+        else
+            period_adj <= period;
+        pwm_clk <= 1;
+        #period_adj;
+        pwm_clk <= 0;
+        #period_adj;
+    end
 endmodule

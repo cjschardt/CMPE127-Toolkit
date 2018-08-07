@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1531883869">
+<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1533607814">
   <File Type="PA-TCL" Name="PWM_Top.tcl"/>
-  <File Type="RDS-PROPCONSTRS" Name="PWM_Top_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="PWM_Top_reports.tcl"/>
   <File Type="RDS-RDS" Name="PWM_Top.vds"/>
   <File Type="RDS-UTIL" Name="PWM_Top_utilization_synth.rpt"/>
   <File Type="RDS-UTIL-PB" Name="PWM_Top_utilization_synth.pb"/>
   <File Type="RDS-DCP" Name="PWM_Top.dcp"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="PWM_Top_timing_summary_synth.rpt"/>
-  <File Type="VDS-TIMING-PB" Name="PWM_Top_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/PWM_Driver.v">
@@ -18,8 +15,16 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PSRCDIR/sources_1/new/PWM_Top.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PSRCDIR/sources_1/new/clk_gen.v">
       <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -27,13 +32,7 @@
     </File>
     <File Path="$PSRCDIR/sources_1/new/debouncer.v">
       <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/PWM_Top.v">
-      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>

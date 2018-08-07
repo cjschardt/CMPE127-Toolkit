@@ -1,34 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1531883870">
+<GenRun Id="impl_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1533607817">
   <File Type="PWROPT-DCP" Name="PWM_Top_pwropt.dcp"/>
   <File Type="ROUTE-PWR" Name="PWM_Top_power_routed.rpt"/>
   <File Type="PA-TCL" Name="PWM_Top.tcl"/>
   <File Type="ROUTE-PWR-SUM" Name="PWM_Top_power_summary_routed.pb"/>
   <File Type="REPORTS-TCL" Name="PWM_Top_reports.tcl"/>
   <File Type="BG-DRC" Name="PWM_Top.drc"/>
-  <File Type="OPT-METHODOLOGY-DRC" Name="PWM_Top_methodology_drc_opted.rpt"/>
-  <File Type="INIT-TIMING" Name="PWM_Top_timing_summary_init.rpt"/>
-  <File Type="OPT-HWDEF" Name="PWM_Top.hwdef"/>
   <File Type="OPT-DCP" Name="PWM_Top_opt.dcp"/>
+  <File Type="OPT-HWDEF" Name="PWM_Top.hwdef"/>
   <File Type="OPT-DRC" Name="PWM_Top_drc_opted.rpt"/>
-  <File Type="OPT-TIMING" Name="PWM_Top_timing_summary_opted.rpt"/>
-  <File Type="PWROPT-DRC" Name="PWM_Top_drc_pwropted.rpt"/>
-  <File Type="PWROPT-TIMING" Name="PWM_Top_timing_summary_pwropted.rpt"/>
   <File Type="PLACE-DCP" Name="PWM_Top_placed.dcp"/>
   <File Type="PLACE-IO" Name="PWM_Top_io_placed.rpt"/>
-  <File Type="PLACE-CLK" Name="PWM_Top_clock_utilization_placed.rpt"/>
   <File Type="PLACE-UTIL" Name="PWM_Top_utilization_placed.rpt"/>
   <File Type="PLACE-UTIL-PB" Name="PWM_Top_utilization_placed.pb"/>
   <File Type="PLACE-CTRL" Name="PWM_Top_control_sets_placed.rpt"/>
-  <File Type="PLACE-SIMILARITY" Name="PWM_Top_incremental_reuse_placed.rpt"/>
   <File Type="PLACE-PRE-SIMILARITY" Name="PWM_Top_incremental_reuse_pre_placed.rpt"/>
-  <File Type="PLACE-TIMING" Name="PWM_Top_timing_summary_placed.rpt"/>
   <File Type="POSTPLACE-PWROPT-DCP" Name="PWM_Top_postplace_pwropt.dcp"/>
-  <File Type="POSTPLACE-PWROPT-TIMING" Name="PWM_Top_timing_summary_postplace_pwropted.rpt"/>
   <File Type="PHYSOPT-DCP" Name="PWM_Top_physopt.dcp"/>
-  <File Type="PHYSOPT-DRC" Name="PWM_Top_drc_physopted.rpt"/>
   <File Type="BG-BIT" Name="PWM_Top.bit"/>
-  <File Type="PHYSOPT-TIMING" Name="PWM_Top_timing_summary_physopted.rpt"/>
   <File Type="ROUTE-ERROR-DCP" Name="PWM_Top_routed_error.dcp"/>
   <File Type="ROUTE-DCP" Name="PWM_Top_routed.dcp"/>
   <File Type="ROUTE-BLACKBOX-DCP" Name="PWM_Top_routed_bb.dcp"/>
@@ -48,18 +37,13 @@
   <File Type="ROUTE-TIMINGSUMMARY" Name="PWM_Top_timing_summary_routed.rpt"/>
   <File Type="ROUTE-TIMING-PB" Name="PWM_Top_timing_summary_routed.pb"/>
   <File Type="ROUTE-TIMING-RPX" Name="PWM_Top_timing_summary_routed.rpx"/>
-  <File Type="ROUTE-SIMILARITY" Name="PWM_Top_incremental_reuse_routed.rpt"/>
   <File Type="RDI-RDI" Name="PWM_Top.vdi"/>
   <File Type="ROUTE-CLK" Name="PWM_Top_clock_utilization_routed.rpt"/>
   <File Type="POSTROUTE-PHYSOPT-DCP" Name="PWM_Top_postroute_physopt.dcp"/>
   <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="PWM_Top_postroute_physopt_bb.dcp"/>
-  <File Type="POSTROUTE-PHYSOPT-TIMING" Name="PWM_Top_timing_summary_postroute_physopted.rpt"/>
-  <File Type="POSTROUTE-PHYSOPT-TIMING-PB" Name="PWM_Top_timing_summary_postroute_physopted.pb"/>
-  <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="PWM_Top_timing_summary_postroute_physopted.rpx"/>
   <File Type="BITSTR-NKY" Name="PWM_Top.nky"/>
   <File Type="BITSTR-BMM" Name="PWM_Top_bd.bmm"/>
   <File Type="BITSTR-MMI" Name="PWM_Top.mmi"/>
-  <File Type="BITSTR-LTX" Name="debug_nets.ltx"/>
   <File Type="BITSTR-LTX" Name="PWM_Top.ltx"/>
   <File Type="BITSTR-SYSDEF" Name="PWM_Top.sysdef"/>
   <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
@@ -72,8 +56,16 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PSRCDIR/sources_1/new/PWM_Top.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PSRCDIR/sources_1/new/clk_gen.v">
       <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -81,13 +73,7 @@
     </File>
     <File Path="$PSRCDIR/sources_1/new/debouncer.v">
       <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/PWM_Top.v">
-      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>

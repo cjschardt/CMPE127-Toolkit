@@ -21,22 +21,30 @@
 
 
 module PWM_Top(
-    input clk_100MHz, rst, rst_button, ld_button,
-    input [7:0] duty_cycle, frequency,
-    output pwm_signal      
+    input wire clk_100MHz, reset_button, load_button,
+    input wire [7:0] duty_cycle, period,
+    output wire signal, LED16_R, LED16_G, LED16_B, LED17_R, LED17_G, LED17_B,
+    output wire [15:0] LED
     );
+
+    wire pwm_clk, pwm_reset, pwm_load;
+    //wire [7:0] pwm_duty, pwm_period;
+    //wire pwm_signal;
     
-    wire [31:0] freq_conc;
-    wire signal, clk_5KHz, dummy, rst_button_db, ld_button_db;
-    assign freq_conc = frequency*'d1000;
+    assign pwm_clk = clk_100MHz;
+    assign pwm_reset = reset_button;
+    assign pwm_load = load_button;
     
-    button_debouncer RSTDB (.clk(clk_5KHz), .button(rst_button), .debounced_button(rst_button_db));
+    PWM_Driver PWMGEN (.sys_clk(pwm_clk), .reset(pwm_reset), .load(pwm_load), .data({duty_cycle, period}), .signal(signal));
     
-    button_debouncer LDDB (.clk(clk_5KHz), .button(ld_button), .debounced_button(ld_button_db));
+    assign LED = {period, duty_cycle};
+    //assign signal = pwm_signal;
+    assign LED17_R = reset_button;
+    assign LED17_G = 0;
+    assign LED17_B = 0;
+    assign LED16_R = 0;
+    assign LED16_G = load_button;
+    assign LED16_B = 0;
     
-    PWM_Driver PWMD (.clk(clk_100MHz), .rst(rst_button_db), .ld(ld_button_db), .duty(duty_cycle), .freq(freq_conc), .signal(signal));
     
-    clk_gen     CLK     (clk_100MHz, rst, dummy, clk_5KHz);
-    
-    assign pwm_signal = signal;
 endmodule

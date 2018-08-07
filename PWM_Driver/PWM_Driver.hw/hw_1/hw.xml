@@ -10,7 +10,13 @@
       <Properties Property="FULL_PROBES.FILE" value=""/>
       <Properties Property="PROBES.FILE" value=""/>
       <Properties Property="PROGRAM.HW_BITSTREAM" value="$_project_name_.runs/impl_1/PWM_Top.bit"/>
-      <Properties Property="SLR.COUNT" value="C:/Windows/System32/1"/>
+      <Properties Property="SLR.COUNT" value="C:/Users/Colin/AppData/Roaming/Xilinx/Vivado/1"/>
+    </Object>
+    <Object name="xc7a100t_0_1" gui_info="">
+      <Properties Property="FULL_PROBES.FILE" value=""/>
+      <Properties Property="PROBES.FILE" value=""/>
+      <Properties Property="PROGRAM.HW_BITSTREAM" value="$_project_name_.runs/impl_1/PWM_Top.bit"/>
+      <Properties Property="SLR.COUNT" value="C:/Users/Colin/AppData/Roaming/Xilinx/Vivado/1"/>
     </Object>
   </ObjectList>
   <probeset name="hw project" active="false"/>
